@@ -373,7 +373,7 @@ cleanUp() {
 # Main script
 # ===================================================================================================
 
-export CLASSPATH=/home/wvheerden/Dropbox/Documents/Simulations/algorithms/BuildSets:/home/wvheerden/Dropbox/Documents/Simulations/algorithms/AverageRunResults:.
+export CLASSPATH=/home/ubuntu/Documents/SOMLib/somlib/algorithms/BuildSets:/home/wvheerden/Dropbox/Documents/Simulations/algorithms/AverageRunResults:.
 
 validateSystem ${1}
 buildSets ${1}

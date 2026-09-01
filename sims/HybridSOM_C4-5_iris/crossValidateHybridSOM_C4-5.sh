@@ -495,7 +495,7 @@ cleanUp() {
 # Main script
 # ===================================================================================================
 
-export CLASSPATH=/home/wvheerden/Dropbox/Documents/Simulations/algorithms/BuildSets:/home/wvheerden/Dropbox/Documents/Simulations/algorithms/AverageRunResults:/home/wvheerden/Dropbox/Documents/Simulations/algorithms/GetRuleSetConditionCountC4_5:.
+export CLASSPATH=/home/ubuntu/Documents/SOMLib/somlib/algorithms/BuildSets:/home/wvheerden/Dropbox/Documents/Simulations/algorithms/AverageRunResults:/home/wvheerden/Dropbox/Documents/Simulations/algorithms/GetRuleSetConditionCountC4_5:.
 
 validateSystem ${1}
 buildSets ${1}
