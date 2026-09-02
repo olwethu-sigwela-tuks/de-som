@@ -121,7 +121,7 @@ std::string vector2dToString(const std::vector<std::vector<double>>& vect){
     return output;
 }
 
-std::vector<std::vector<double>> differentialEvolution(std::vector<std::vector<double>>& dataset, int neuronSize, int numNeurons, int NP,  int nGenerations, double CR, double F){
+std::vector<double> differentialEvolution(std::vector<std::vector<double>>& dataset, int neuronSize, int numNeurons, int NP,  int nGenerations, double CR, double F){
     auto population = generateInitPopulation(NP, neuronSize, numNeurons);
 
     std::random_device rd;
@@ -129,12 +129,14 @@ std::vector<std::vector<double>> differentialEvolution(std::vector<std::vector<d
     std::uniform_int_distribution<int> distribVector(0, (neuronSize * numNeurons) - 1);
     std::uniform_real_distribution<double> distribDouble(0.0, 1.0);
     
-    
+    double lowestQuantizationError = DBL_MAX;
+    std::vector<double> bestWeights;
 
     for (int n = 0; n < nGenerations; n++){
 
         std::cout << "GENERATION " << (n+1) << std::endl;
-        std::cout << "Population: " << vector2dToString(population) << std::endl << std::endl;
+        std::cout << "best error " << lowestQuantizationError << std::endl;
+        // std::cout << "Population: " << vector2dToString(population) << std::endl << std::endl;
 
         std::vector<std::vector<double>> newPopulation;
 
@@ -167,20 +169,35 @@ std::vector<std::vector<double>> differentialEvolution(std::vector<std::vector<d
                     u.push_back(population[i][j]);
                 }
             }
+            
+            double parentError = quantizationError(population[i], dataset);
+            double childError = quantizationError(u, dataset);
 
-            if (quantizationError(u, dataset) < quantizationError(population[i], dataset))
+
+            if (childError < parentError)
             {
                 newPopulation.push_back(u);
             }
             else{
                 newPopulation.push_back(population[i]);
             }
+
+
+            if (childError < lowestQuantizationError){
+                lowestQuantizationError = childError;
+                bestWeights = u;
+            }
+            if (parentError < lowestQuantizationError){
+                lowestQuantizationError = parentError;
+                bestWeights = population[i];
+            }
+            
         }
 
         population = newPopulation;
     }
 
-    return population;
+    return bestWeights;
 
 }
 
@@ -226,8 +243,12 @@ int main(int argc, char** argv){
     double CR = std::stod(argv[6]);
     double F = std::stod(argv[7]);
 
-    auto evolvedPopulation = differentialEvolution(dataset, neuronSize, numNeurons, NP, numGenerations, CR, F);
+    auto bestWeights = differentialEvolution(dataset, neuronSize, numNeurons, NP, numGenerations, CR, F);
 
+    std::cout << std::endl << std::endl;
+
+    std::cout << "Best Weights:" << std::endl << std::endl << vectorToString(bestWeights) <<std::endl << std::endl;
+    std::cout << "Best error: " << quantizationError(bestWeights, dataset) << std::endl;
 
     return 0;
 
