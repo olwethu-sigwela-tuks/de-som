@@ -7,23 +7,46 @@
 #include <cmath>
 #include <stdexcept>
 #include <sstream>
+#include <fstream>
 #include <iomanip>
 #include "DataFileReader.h"
 #include "DataPattern.h"
 
-std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, int numNeurons){
-    std::random_device rd; 
+std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, int numNeurons, std::vector<std::vector<double>>& dataset){
+    
     
     std::mt19937 gen(42); 
+
+    std::vector<double> minVal(neuronSize, DBL_MAX);
+    std::vector<double> maxVal(neuronSize, -DBL_MAX);
+
+    for (const auto& sample : dataset){
+        for (int k = 0; k < neuronSize; ++k){
+            if (sample[k] < minVal[k]){
+                minVal[k] = sample[k];
+            }
+
+            if (sample[k] > maxVal[k]){
+                maxVal[k] = sample[k];
+            }
+
+
+        }
+    }
     
-    std::uniform_real_distribution<double> distrib(0.0, 1.0); 
-     
+    
+    std::vector<std::uniform_real_distribution<double>> distributions;
 
-    std::vector<std::vector<double>> population(NP, std::vector<double>(neuronSize * numNeurons));
+    for (int k = 0; k < neuronSize; ++k){
+        distributions.emplace_back(minVal[k], maxVal[k]);
+    }
 
-    for (int i = 0; i < NP; i++){
-        for (int j = 0; j < neuronSize * numNeurons; j++){
-            population[i][j] = distrib(gen);
+    int totalNumWeights = neuronSize * numNeurons;
+    std::vector<std::vector<double>> population(NP, std::vector<double>(totalNumWeights));
+    
+    for (int n = 0; n < NP; ++n){
+        for (int i = 0; i < totalNumWeights; ++i){
+            population[n][i] = distributions[i %  neuronSize](gen);
         }
     }
 
@@ -122,7 +145,7 @@ std::string vector2dToString(const std::vector<std::vector<double>>& vect){
 }
 
 std::vector<double> differentialEvolution(std::vector<std::vector<double>>& dataset, int neuronSize, int numNeurons, int NP,  int nGenerations, double CR, double F){
-    auto population = generateInitPopulation(NP, neuronSize, numNeurons);
+    auto population = generateInitPopulation(NP, neuronSize, numNeurons, dataset);
 
     std::random_device rd;
     std::mt19937 gen(42);
@@ -228,12 +251,37 @@ std::vector<std::vector<double>> loadDataSet(char* dataFileName, char* namesFile
 
 }
 
+std::vector<double> loadMapFile(const std::string& mapFileName){
+    std::ifstream file(mapFileName);
+    std::string line;
+    std::vector<double> weights;
+
+    //skip first (header) line
+    std::getline(file, line);
+
+    while(std::getline(file, line)){
+        if (line.empty()){
+            continue;
+        }
+        std::istringstream iss(line);
+        double val;
+        while(iss >> val){
+            weights.push_back(val);
+        }
+    }
+
+    return weights;
+}
+
 int main(int argc, char** argv){
 
-    if (argc < 8){
-        std::cerr << "Usage: " << argv[0] << " <datasetFileName> <namesFileName> <NP> <numGenerations> <numNeurons> <CR> <F>" << std::endl;
+    if (argc < 9){
+        std::cerr << "Usage: " << argv[0] << " <datasetFileName> <namesFileName> <NP> <numGenerations> <numNeurons> <CR> <F> <baselineWeightsFileName>" << std::endl;
         return 1;
     }
+
+    //best hyperparameters found so far:
+    //./DifferentialEvolution iris.dat iris.som.names 100 2000 48 0.01 0.5 iris_trained.map
 
     auto dataset = loadDataSet(argv[1], argv[2]);
     int neuronSize = dataset[0].size();
@@ -242,6 +290,7 @@ int main(int argc, char** argv){
     int numNeurons = std::stoi(argv[5]);
     double CR = std::stod(argv[6]);
     double F = std::stod(argv[7]);
+    std::string baselineWeightsFileName = argv[8];
 
     auto bestWeights = differentialEvolution(dataset, neuronSize, numNeurons, NP, numGenerations, CR, F);
 
@@ -249,6 +298,13 @@ int main(int argc, char** argv){
 
     std::cout << "Best Weights:" << std::endl << std::endl << vectorToString(bestWeights) <<std::endl << std::endl;
     std::cout << "Best error: " << quantizationError(bestWeights, dataset) << std::endl;
+
+    auto baselineWeights = loadMapFile(baselineWeightsFileName);
+
+    std::cout << std::endl << std::endl;
+
+    std::cout << "Baseline Weights:" << std::endl << std::endl << vectorToString(baselineWeights) <<std::endl << std::endl;
+    std::cout << "Baseline error: " << quantizationError(baselineWeights, dataset) << std::endl;
 
     return 0;
 
