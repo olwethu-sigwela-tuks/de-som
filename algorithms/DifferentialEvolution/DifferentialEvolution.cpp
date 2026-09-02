@@ -73,7 +73,7 @@ std::vector<int> getRandomIndices(std::mt19937& generator, int currIndex, int NP
 
 double euclideanDistance(const std::vector<double>& vect1, const std::vector<double>& vect2){
     if (vect1.size() != vect2.size()){
-        throw std::invalid_argument("length of vect1 does not equal length of vect 2");
+        throw std::invalid_argument("length of vect1 does not equal length of vect2");
     }
 
     double sum = 0;
