@@ -11,6 +11,7 @@
 #include <iomanip>
 #include "DataFileReader.h"
 #include "DataPattern.h"
+#include "DifferentialEvolution.h"
 
 std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, int numNeurons, std::vector<std::vector<double>>& dataset){
     
@@ -273,7 +274,7 @@ std::vector<double> loadMapFile(const std::string& mapFileName){
     return weights;
 }
 
-std::vector<double> runDE(std::vector<std::vector<double>> trainingDataset, std::vector<std::vector<double>> testDataset, int numGenerations, int numNeurons, int NP, double F, double CR){
+std::vector<double> runDE(std::vector<std::vector<double>>& trainingDataset, std::vector<std::vector<double>>& testDataset, int numGenerations, int numNeurons, int NP, double F, double CR){
 
     auto bestWeights = differentialEvolution(trainingDataset, neuronSize, numNeurons, NP, numGenerations, CR, F);
 
