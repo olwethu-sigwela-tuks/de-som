@@ -275,35 +275,29 @@ std::vector<double> loadMapFile(const std::string& mapFileName){
 }
 
 std::vector<double> runDE(std::vector<std::vector<double>>& trainingDataset, std::vector<std::vector<double>>& testDataset, int numGenerations, int numNeurons, int NP, double F, double CR){
-
+    int neuronSize = trainingDataset[0].size();
     auto bestWeights = differentialEvolution(trainingDataset, neuronSize, numNeurons, NP, numGenerations, CR, F);
 
     double trainingError = quantizationError(bestWeights, trainingDataset);
     double testError = quantizationError(bestWeights, testDataset);
 
-    std::cout << "Best training error: " << quantizationError(bestWeights, trainingDataset) << std::endl;
-    std::cout << "Best test error: " << quantizationError(bestWeights, testDataset) << std::endl;
+    std::cout << "Best training error: " << trainingError << std::endl;
+    std::cout << "Best test error: " << testError << std::endl;
 
     std::vector<double> trainTestError(2);
-
     trainTestError[0] = trainingError;
     trainTestError[1] = testError;
 
     return trainTestError;
-
-
 }
 
-
+#ifndef NO_MAIN
 int main(int argc, char** argv){
 
     if (argc < 9){
         std::cerr << "Usage: " << argv[0] << " <datasetFileName> <namesFileName> <NP> <numGenerations> <numNeurons> <CR> <F> <baselineWeightsFileName>" << std::endl;
         return 1;
     }
-
-    //best hyperparameters found so far:
-    //./DifferentialEvolution iris.dat iris.som.names 100 2000 48 0.01 0.5 iris_trained.map
 
     auto dataset = loadDataSet(argv[1], argv[2]);
     int neuronSize = dataset[0].size();
@@ -331,3 +325,4 @@ int main(int argc, char** argv){
     return 0;
 
 }
+#endif

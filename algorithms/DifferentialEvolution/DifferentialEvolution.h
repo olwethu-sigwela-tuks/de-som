@@ -7,4 +7,8 @@ std::vector<double> runDE(std::vector<std::vector<double>>& trainingDataset, std
 
 std::vector<std::vector<double>> loadDataSet(char* dataFileName, char* namesFileName);
 
+double quantizationError(const std::vector<double>& weights, const std::vector<std::vector<double>>& dataset);
+
+std::vector<double> differentialEvolution(std::vector<std::vector<double>>& dataset, int neuronSize, int numNeurons, int NP, int nGenerations, double CR, double F);
+
 #endif
