@@ -1,4 +1,3 @@
-#include <random>
 #include <vector>
 #include <algorithm>
 #include <iostream>
@@ -9,14 +8,16 @@
 #include <sstream>
 #include <fstream>
 #include <iomanip>
+#include <ctime>
+#include <unistd.h>
+#include <gsl/gsl_rng.h>
 #include "DataFileReader.h"
 #include "DataPattern.h"
 #include "DifferentialEvolution.h"
 
 std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, int numNeurons, std::vector<std::vector<double>>& dataset){
-    
-    
-    std::mt19937 gen(42); 
+    gsl_rng* rng = gsl_rng_alloc(gsl_rng_mt19937);
+    gsl_rng_set(rng, 42);
 
     std::vector<double> minVal(neuronSize, DBL_MAX);
     std::vector<double> maxVal(neuronSize, -DBL_MAX);
@@ -30,16 +31,7 @@ std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, 
             if (sample[k] > maxVal[k]){
                 maxVal[k] = sample[k];
             }
-
-
         }
-    }
-    
-    
-    std::vector<std::uniform_real_distribution<double>> distributions;
-
-    for (int k = 0; k < neuronSize; ++k){
-        distributions.emplace_back(minVal[k], maxVal[k]);
     }
 
     int totalNumWeights = neuronSize * numNeurons;
@@ -47,23 +39,21 @@ std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, 
     
     for (int n = 0; n < NP; ++n){
         for (int i = 0; i < totalNumWeights; ++i){
-            population[n][i] = distributions[i %  neuronSize](gen);
+            int k = i % neuronSize;
+            population[n][i] = minVal[k] + (maxVal[k] - minVal[k]) * gsl_rng_uniform(rng);
         }
     }
 
+    gsl_rng_free(rng);
     return population;
 }
 
-
-
-std::vector<int> getRandomIndices(std::mt19937& generator, int currIndex, int NP){
-
+std::vector<int> getRandomIndices(gsl_rng* rng, int currIndex, int NP){
     std::vector<int> indices;
     indices.reserve(3);
-    std::uniform_int_distribution<int> distrib(0, NP - 1);
 
     while(indices.size() < 3){
-        int randomIndex = distrib(generator);
+        int randomIndex = gsl_rng_uniform_int(rng, NP);
         if ((randomIndex != currIndex) && (std::find(indices.begin(), indices.end(), randomIndex) == indices.end())){
             indices.push_back(randomIndex);
         }
@@ -98,6 +88,7 @@ double quantizationError(const std::vector<double>& weights, const std::vector<s
             std::vector<double> neuron(weights.data() + i, weights.data() + i + neuronSize);
 
             double distance = euclideanDistance(neuron, dataset[d]);
+
             if (distance < minimumDistance)
             {
                 minimumDistance = distance;
@@ -148,24 +139,18 @@ std::string vector2dToString(const std::vector<std::vector<double>>& vect){
 std::vector<double> differentialEvolution(std::vector<std::vector<double>>& dataset, int neuronSize, int numNeurons, int NP,  int nGenerations, double CR, double F){
     auto population = generateInitPopulation(NP, neuronSize, numNeurons, dataset);
 
-    std::random_device rd;
-    std::mt19937 gen(42);
-    std::uniform_int_distribution<int> distribVector(0, (neuronSize * numNeurons) - 1);
-    std::uniform_real_distribution<double> distribDouble(0.0, 1.0);
+    gsl_rng* rng = gsl_rng_alloc(gsl_rng_mt19937);
+    gsl_rng_set(rng, 42);
+    int totalWeights = neuronSize * numNeurons;
     
     double lowestQuantizationError = DBL_MAX;
     std::vector<double> bestWeights;
 
     for (int n = 0; n < nGenerations; n++){
-
-        std::cout << "GENERATION " << (n+1) << std::endl;
-        std::cout << "best error " << lowestQuantizationError << std::endl;
-        // std::cout << "Population: " << vector2dToString(population) << std::endl << std::endl;
-
         std::vector<std::vector<double>> newPopulation;
 
         for (int i = 0; i < population.size(); i++){
-            auto randomIndices = getRandomIndices(gen, i, NP);
+            auto randomIndices = getRandomIndices(rng, i, NP);
             int r1 = randomIndices[0];
             int r2 = randomIndices[1];
             int r3 = randomIndices[2];
@@ -176,15 +161,14 @@ std::vector<double> differentialEvolution(std::vector<std::vector<double>>& data
             {
                 double vComponent = population[r1][x] + F * (population[r2][x] - population[r3][x]);
                 v.push_back(vComponent);
-
             }
 
             std::vector<double> u;
-            int randIdx = distribVector(gen);
+            int randIdx = gsl_rng_uniform_int(rng, totalWeights);
 
             for(int j = 0; j < population[i].size(); j++)
             {
-                double randJ = distribDouble(gen);
+                double randJ = gsl_rng_uniform(rng);
 
                 if ((randJ <= CR) || (j == randIdx)){
                     u.push_back(v[j]);
@@ -197,7 +181,6 @@ std::vector<double> differentialEvolution(std::vector<std::vector<double>>& data
             double parentError = quantizationError(population[i], dataset);
             double childError = quantizationError(u, dataset);
 
-
             if (childError < parentError)
             {
                 newPopulation.push_back(u);
@@ -205,7 +188,6 @@ std::vector<double> differentialEvolution(std::vector<std::vector<double>>& data
             else{
                 newPopulation.push_back(population[i]);
             }
-
 
             if (childError < lowestQuantizationError){
                 lowestQuantizationError = childError;
@@ -215,14 +197,13 @@ std::vector<double> differentialEvolution(std::vector<std::vector<double>>& data
                 lowestQuantizationError = parentError;
                 bestWeights = population[i];
             }
-            
         }
 
         population = newPopulation;
     }
 
+    gsl_rng_free(rng);
     return bestWeights;
-
 }
 
 std::vector<std::vector<double>> loadDataSet(char* dataFileName, char* namesFileName){
@@ -257,7 +238,6 @@ std::vector<double> loadMapFile(const std::string& mapFileName){
     std::string line;
     std::vector<double> weights;
 
-    //skip first (header) line
     std::getline(file, line);
 
     while(std::getline(file, line)){

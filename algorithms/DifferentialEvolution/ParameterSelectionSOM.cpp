@@ -5,7 +5,9 @@
 #include <cmath>
 #include <numeric>
 #include <algorithm>
-#include <random>
+#include <ctime>
+#include <unistd.h>
+#include <gsl/gsl_rng.h>
 #include "DifferentialEvolution.h"
 
 struct Fold {
@@ -38,10 +40,11 @@ struct SOMGrid {
     std::vector<std::vector<double>> neurons;
 };
 
-SOMGrid initSOMGrid(int width, int height, const std::vector<std::vector<double>>& dataset, unsigned int seed = 42) {
+SOMGrid initSOMGrid(int width, int height, const std::vector<std::vector<double>>& dataset) {
     int dimension = dataset[0].size();
     int numNeurons = width * height;
-    std::mt19937 gen(seed);
+    gsl_rng* rng = gsl_rng_alloc(gsl_rng_mt19937);
+    gsl_rng_set(rng, 42);
 
     std::vector<double> minVal(dimension, DBL_MAX);
     std::vector<double> maxVal(dimension, -DBL_MAX);
@@ -52,11 +55,6 @@ SOMGrid initSOMGrid(int width, int height, const std::vector<std::vector<double>
         }
     }
 
-    std::vector<std::uniform_real_distribution<double>> distribs;
-    for (int k = 0; k < dimension; ++k) {
-        distribs.emplace_back(minVal[k], maxVal[k]);
-    }
-
     SOMGrid grid;
     grid.width = width;
     grid.height = height;
@@ -65,9 +63,11 @@ SOMGrid initSOMGrid(int width, int height, const std::vector<std::vector<double>
 
     for (int i = 0; i < numNeurons; ++i) {
         for (int k = 0; k < dimension; ++k) {
-            grid.neurons[i][k] = distribs[k](gen);
+            grid.neurons[i][k] = minVal[k] + (maxVal[k] - minVal[k]) * gsl_rng_uniform(rng);
         }
     }
+
+    gsl_rng_free(rng);
     return grid;
 }
 
@@ -85,10 +85,12 @@ double getGridDistance(int i, int j, int width, bool isHexa) {
     return std::sqrt(dx * dx + dy * dy * (isHexa ? 0.75 : 1.0));
 }
 
-void trainConventionalSOM(SOMGrid& grid, const std::vector<std::vector<double>>& dataset, int epochs, double initialLR, double lrDecay, double initialRadius, double radiusDecay, bool isHexa, unsigned int seed = 42) {
+void trainConventionalSOM(SOMGrid& grid, const std::vector<std::vector<double>>& dataset, int epochs, double initialLR, double lrDecay, double initialRadius, double radiusDecay, bool isHexa) {
     int numNeurons = grid.width * grid.height;
     int dimension = grid.dimension;
-    std::mt19937 gen(seed);
+    gsl_rng* rng = gsl_rng_alloc(gsl_rng_mt19937);
+    gsl_rng_set(rng, 42);
+
     std::vector<size_t> indices(dataset.size());
     std::iota(indices.begin(), indices.end(), 0);
 
@@ -96,7 +98,11 @@ void trainConventionalSOM(SOMGrid& grid, const std::vector<std::vector<double>>&
     double radius = initialRadius;
 
     for (int epoch = 0; epoch < epochs; ++epoch) {
-        std::shuffle(indices.begin(), indices.end(), gen);
+        for (size_t i = indices.size() - 1; i > 0; --i) {
+            size_t j = gsl_rng_uniform_int(rng, i + 1);
+            std::swap(indices[i], indices[j]);
+        }
+
         double radSq2 = 2.0 * radius * radius;
 
         for (size_t idx : indices) {
@@ -132,6 +138,8 @@ void trainConventionalSOM(SOMGrid& grid, const std::vector<std::vector<double>>&
         radius *= radiusDecay;
         if (radius < 0.5) radius = 0.5;
     }
+
+    gsl_rng_free(rng);
 }
 
 double evaluateSOMQuantizationError(const SOMGrid& grid, const std::vector<std::vector<double>>& dataset) {
@@ -172,16 +180,18 @@ void selectParametersSOM(char* dataFile, char* namesFile, char* outFile) {
     auto dataset = loadDataSet(dataFile, namesFile);
     auto folds = create5Folds(dataset);
 
-    std::vector<std::pair<int, int>> gridSizes = {{8, 6}, {6, 4}, {10, 7}};
-    std::vector<int> epochCandidates = {100, 200, 500};
+    std::vector<std::pair<int, int>> gridSizes = {{6, 4}, {8, 6}};
+    std::vector<int> epochCandidates = {1000, 2000};
     std::vector<double> lrCandidates = {0.05, 0.1, 0.5};
-    std::vector<double> lrDecayCandidates = {0.95, 0.99};
+    std::vector<double> lrDecayCandidates = {0.99, 0.995};
     std::vector<double> radiusCandidates = {2.0, 4.0, 6.0};
-    std::vector<double> radiusDecayCandidates = {0.95, 0.99};
+    std::vector<double> radiusDecayCandidates = {0.99, 0.995};
     std::vector<bool> topologyCandidates = {true};
 
     double bestCvError = DBL_MAX;
     SOMParams bestParams = {0, 0, 0, 0.0, 0.0, 0.0, 0.0, true};
+
+    std::ofstream out(outFile);
 
     for (auto grid : gridSizes) {
         for (int epochs : epochCandidates) {
@@ -213,6 +223,18 @@ void selectParametersSOM(char* dataFile, char* namesFile, char* outFile) {
                                           << " | 5-Fold Test Error: " << avgTestError 
                                           << std::endl;
 
+                                if (out.is_open()) {
+                                    out << "Grid: " << grid.first << "x" << grid.second 
+                                        << " | Epochs: " << epochs 
+                                        << " | LRate: " << lrate 
+                                        << " | LRDecay: " << lrateDecay 
+                                        << " | Radius: " << radius 
+                                        << " | RadiusDecay: " << radiusDecay 
+                                        << " | Train Error: " << avgTrainError 
+                                        << " | 5-Fold Test Error: " << avgTestError 
+                                        << std::endl;
+                                }
+
                                 if (avgTestError < bestCvError) {
                                     bestCvError = avgTestError;
                                     bestParams = {grid.first, grid.second, epochs, lrate, lrateDecay, radius, radiusDecay, isHexa};
@@ -237,17 +259,18 @@ void selectParametersSOM(char* dataFile, char* namesFile, char* outFile) {
     std::cout << "Best Topology: " << (bestParams.isHexa ? "hexa" : "rect") << std::endl;
     std::cout << "Best 5-Fold Test Quantization Error: " << bestCvError << std::endl;
 
-    std::ofstream out(outFile);
     if (out.is_open()) {
-        out << "GridWidth: " << bestParams.width << std::endl;
-        out << "GridHeight: " << bestParams.height << std::endl;
-        out << "Epochs: " << bestParams.epochs << std::endl;
-        out << "LearningRate: " << bestParams.lrate << std::endl;
-        out << "LearningRateDecay: " << bestParams.lrateDecay << std::endl;
-        out << "Radius: " << bestParams.radius << std::endl;
-        out << "RadiusDecay: " << bestParams.radiusDecay << std::endl;
-        out << "Topology: " << (bestParams.isHexa ? "hexa" : "rect") << std::endl;
-        out << "BestTestQuantizationError: " << bestCvError << std::endl;
+        out << std::endl << std::endl;
+        out << "=== Best Hyperparameters for Conventional SOM from 5-Fold Cross-Validation ===" << std::endl;
+        out << "Best Grid Width: " << bestParams.width << std::endl;
+        out << "Best Grid Height: " << bestParams.height << std::endl;
+        out << "Best Epochs: " << bestParams.epochs << std::endl;
+        out << "Best Learning Rate: " << bestParams.lrate << std::endl;
+        out << "Best Learning Rate Decay: " << bestParams.lrateDecay << std::endl;
+        out << "Best Radius: " << bestParams.radius << std::endl;
+        out << "Best Radius Decay: " << bestParams.radiusDecay << std::endl;
+        out << "Best Topology: " << (bestParams.isHexa ? "hexa" : "rect") << std::endl;
+        out << "Best 5-Fold Test Quantization Error: " << bestCvError << std::endl;
         out.close();
     }
 }

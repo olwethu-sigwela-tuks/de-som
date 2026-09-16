@@ -3,6 +3,7 @@
 #include <vector>
 #include <cfloat>
 #include <algorithm>
+#include <unistd.h>
 #include "DifferentialEvolution.h"
 
 struct Fold {
@@ -45,6 +46,8 @@ void selectParameters(char* dataFile, char* namesFile, char* outFile) {
     double bestCR = 0.0;
     double bestF = 0.0;
 
+    std::ofstream out(outFile);
+
     for (int NP : npCandidates) {
         for (int numGenerations : genCandidates) {
             for (int numNeurons : neuronCandidates) {
@@ -71,6 +74,17 @@ void selectParameters(char* dataFile, char* namesFile, char* outFile) {
                                   << " | 5-Fold Test Error: " << avgTestError 
                                   << std::endl;
 
+                        if (out.is_open()) {
+                            out << "NP: " << NP 
+                                << " | Gen: " << numGenerations 
+                                << " | Neurons: " << numNeurons 
+                                << " | CR: " << CR 
+                                << " | F: " << F 
+                                << " | Train Error: " << avgTrainError 
+                                << " | 5-Fold Test Error: " << avgTestError 
+                                << std::endl;
+                        }
+
                         if (avgTestError < bestCvError) {
                             bestCvError = avgTestError;
                             bestNP = NP;
@@ -94,14 +108,15 @@ void selectParameters(char* dataFile, char* namesFile, char* outFile) {
     std::cout << "Best F: " << bestF << std::endl;
     std::cout << "Best 5-Fold Test Quantization Error: " << bestCvError << std::endl;
 
-    std::ofstream out(outFile);
     if (out.is_open()) {
-        out << "NP: " << bestNP << std::endl;
-        out << "Generations: " << bestGen << std::endl;
-        out << "Neurons: " << bestNeurons << std::endl;
-        out << "CR: " << bestCR << std::endl;
-        out << "F: " << bestF << std::endl;
-        out << "BestTestQuantizationError: " << bestCvError << std::endl;
+        out << std::endl << std::endl;
+        out << "=== Best Hyperparameters from 5-Fold Cross-Validation ===" << std::endl;
+        out << "Best NP: " << bestNP << std::endl;
+        out << "Best Generations: " << bestGen << std::endl;
+        out << "Best Neurons: " << bestNeurons << std::endl;
+        out << "Best CR: " << bestCR << std::endl;
+        out << "Best F: " << bestF << std::endl;
+        out << "Best 5-Fold Test Quantization Error: " << bestCvError << std::endl;
         out.close();
     }
 }
