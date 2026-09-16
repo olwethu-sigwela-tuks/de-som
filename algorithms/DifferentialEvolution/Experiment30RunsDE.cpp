@@ -49,6 +49,11 @@ int main(int argc, char** argv) {
     char* namesFile = defaultNames;
     char* outFile = defaultOut;
 
+    int NP = 20;
+    int numGenerations = 4000;
+    double CR = 0.005;
+    double F = 0.15;
+
     if (argc >= 3) {
         dataFile = argv[1];
         namesFile = argv[2];
@@ -56,16 +61,18 @@ int main(int argc, char** argv) {
     if (argc >= 4) {
         outFile = argv[3];
     }
+    if (argc >= 8) {
+        NP = std::stoi(argv[4]);
+        numGenerations = std::stoi(argv[5]);
+        CR = std::stod(argv[6]);
+        F = std::stod(argv[7]);
+    }
 
     auto dataset = loadDataSet(dataFile, namesFile);
     int neuronSize = dataset[0].size();
     int width = 8;
     int height = 6;
     int numNeurons = width * height;
-    int NP = 20;
-    int numGenerations = 2000;
-    double CR = 0.01;
-    double F = 0.3;
     bool isHexa = true;
 
     std::vector<double> trainQEs;
