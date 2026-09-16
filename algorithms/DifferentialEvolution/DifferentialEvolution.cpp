@@ -15,9 +15,9 @@
 #include "DataPattern.h"
 #include "DifferentialEvolution.h"
 
-std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, int numNeurons, std::vector<std::vector<double>>& dataset){
+std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, int numNeurons, std::vector<std::vector<double>>& dataset, unsigned long seed){
     gsl_rng* rng = gsl_rng_alloc(gsl_rng_mt19937);
-    gsl_rng_set(rng, 42);
+    gsl_rng_set(rng, seed);
 
     std::vector<double> minVal(neuronSize, DBL_MAX);
     std::vector<double> maxVal(neuronSize, -DBL_MAX);
@@ -136,11 +136,56 @@ std::string vector2dToString(const std::vector<std::vector<double>>& vect){
     return output;
 }
 
-std::vector<double> differentialEvolution(std::vector<std::vector<double>>& dataset, int neuronSize, int numNeurons, int NP,  int nGenerations, double CR, double F){
-    auto population = generateInitPopulation(NP, neuronSize, numNeurons, dataset);
+double topographicError(const std::vector<double>& weights, int width, int height, bool isHexa, const std::vector<std::vector<double>>& dataset){
+    int neuronSize = dataset[0].size();
+    int numNeurons = width * height;
+    int errorCount = 0;
+
+    for (size_t d = 0; d < dataset.size(); ++d){
+        int bmu1 = -1;
+        int bmu2 = -1;
+        double minDist1 = DBL_MAX;
+        double minDist2 = DBL_MAX;
+
+        for (int i = 0; i < numNeurons; ++i){
+            std::vector<double> neuron(weights.data() + i * neuronSize, weights.data() + (i + 1) * neuronSize);
+            double dist = euclideanDistance(neuron, dataset[d]);
+            if (dist < minDist1){
+                minDist2 = minDist1;
+                bmu2 = bmu1;
+                minDist1 = dist;
+                bmu1 = i;
+            } else if (dist < minDist2){
+                minDist2 = dist;
+                bmu2 = i;
+            }
+        }
+
+        int y1 = bmu1 / width;
+        int x1 = bmu1 % width;
+        int y2 = bmu2 / width;
+        int x2 = bmu2 % width;
+        double dx = x1 - x2;
+        double dy = y1 - y2;
+        if (isHexa && (y1 % 2 != y2 % 2)){
+            if (y1 % 2 == 1) dx += 0.5;
+            else dx -= 0.5;
+        }
+        double gridDist = std::sqrt(dx * dx + dy * dy * (isHexa ? 0.75 : 1.0));
+
+        if (gridDist > 1.05){
+            errorCount++;
+        }
+    }
+
+    return (double)errorCount / dataset.size();
+}
+
+std::vector<double> differentialEvolution(std::vector<std::vector<double>>& dataset, int neuronSize, int numNeurons, int NP,  int nGenerations, double CR, double F, unsigned long seed){
+    auto population = generateInitPopulation(NP, neuronSize, numNeurons, dataset, seed);
 
     gsl_rng* rng = gsl_rng_alloc(gsl_rng_mt19937);
-    gsl_rng_set(rng, 42);
+    gsl_rng_set(rng, seed);
     int totalWeights = neuronSize * numNeurons;
     
     double lowestQuantizationError = DBL_MAX;
@@ -254,15 +299,12 @@ std::vector<double> loadMapFile(const std::string& mapFileName){
     return weights;
 }
 
-std::vector<double> runDE(std::vector<std::vector<double>>& trainingDataset, std::vector<std::vector<double>>& testDataset, int numGenerations, int numNeurons, int NP, double F, double CR){
+std::vector<double> runDE(std::vector<std::vector<double>>& trainingDataset, std::vector<std::vector<double>>& testDataset, int numGenerations, int numNeurons, int NP, double F, double CR, unsigned long seed){
     int neuronSize = trainingDataset[0].size();
-    auto bestWeights = differentialEvolution(trainingDataset, neuronSize, numNeurons, NP, numGenerations, CR, F);
+    auto bestWeights = differentialEvolution(trainingDataset, neuronSize, numNeurons, NP, numGenerations, CR, F, seed);
 
     double trainingError = quantizationError(bestWeights, trainingDataset);
     double testError = quantizationError(bestWeights, testDataset);
-
-    std::cout << "Best training error: " << trainingError << std::endl;
-    std::cout << "Best test error: " << testError << std::endl;
 
     std::vector<double> trainTestError(2);
     trainTestError[0] = trainingError;
