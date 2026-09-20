@@ -1,0 +1,7 @@
+=== Best Hyperparameters from 5-Fold Cross-Validation ===
+Best NP: 70
+Best Generations: 4000
+Best Neurons: 48
+Best CR: 0.00025
+Best F: 0.15
+Best 5-Fold Test Quantization Error: 0.337694

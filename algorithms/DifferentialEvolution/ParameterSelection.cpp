@@ -33,10 +33,10 @@ void selectParameters(char* dataFile, char* namesFile, char* outFile) {
     auto dataset = loadDataSet(dataFile, namesFile);
     auto folds = create5Folds(dataset);
 
-    std::vector<int> npCandidates = {20};
+    std::vector<int> npCandidates = {20, 50, 70, 100};
     std::vector<int> genCandidates = {2000, 3000, 4000};
     std::vector<int> neuronCandidates = {48};
-    std::vector<double> crCandidates = {0.002, 0.005, 0.008, 0.010, 0.015};
+    std::vector<double> crCandidates = {0.00025, 0.0005, 0.00075, 0.001, 0.0015, 0.002};
     std::vector<double> fCandidates = {0.15, 0.20, 0.25, 0.30};
 
     double bestCvError = DBL_MAX;

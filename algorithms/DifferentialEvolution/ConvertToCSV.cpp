@@ -7,7 +7,7 @@
 
 struct RunRecord {
     int run;
-    int seed;
+    unsigned long seed;
     double trainQE;
     double testQE;
     double trainTE;

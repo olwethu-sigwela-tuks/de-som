@@ -5,6 +5,8 @@
 #include <numeric>
 #include <algorithm>
 #include <iomanip>
+#include <ctime>
+#include <unistd.h>
 #include <gsl/gsl_rng.h>
 #include "DifferentialEvolution.h"
 
@@ -83,7 +85,8 @@ int main(int argc, char** argv) {
     std::ofstream out(outFile);
 
     for (unsigned long run = 1; run <= 30; ++run) {
-        unsigned long seed = run;
+        sleep(1);
+        unsigned long seed = (unsigned long)time(NULL);
 
         gsl_rng* rng = gsl_rng_alloc(gsl_rng_mt19937);
         gsl_rng_set(rng, seed);
