@@ -4,6 +4,10 @@
 #include <string>
 #include <vector>
 #include <algorithm>
+#include <ctime>
+#include <unistd.h>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 struct RunRecord {
     int run;
@@ -13,6 +17,27 @@ struct RunRecord {
     double trainTE;
     double testTE;
 };
+
+std::string getTimestampString() {
+    std::time_t t = std::time(nullptr);
+    std::tm tm = *std::localtime(&t);
+    char buf[64];
+    std::strftime(buf, sizeof(buf), "%Y-%m-%d_%H%M%S", &tm);
+    return std::string(buf);
+}
+
+std::string resolveResultsDir(const std::string& datasetName) {
+    if (access("../../iris.dat", F_OK) == 0) {
+        mkdir("../../results", 0777);
+        std::string dir = "../../results/" + datasetName;
+        mkdir(dir.c_str(), 0777);
+        return dir;
+    }
+    mkdir("results", 0777);
+    std::string dir = "results/" + datasetName;
+    mkdir(dir.c_str(), 0777);
+    return dir;
+}
 
 std::vector<RunRecord> parseResultFile(const std::string& filename) {
     std::vector<RunRecord> records;
@@ -70,23 +95,59 @@ void writePairedCSV(const std::string& outFile, const std::vector<RunRecord>& de
 }
 
 int main(int argc, char** argv) {
-    std::string deFile = "results_30_runs_de.txt";
-    std::string somFile = "results_30_runs_som.txt";
+    std::string datasetName = "iris";
+    std::string deFile = "";
+    std::string somFile = "";
 
-    if (argc >= 2) deFile = argv[1];
-    if (argc >= 3) somFile = argv[2];
+    if (argc == 1) {
+        datasetName = "iris";
+        std::string outDir = resolveResultsDir(datasetName);
+        deFile = outDir + "/runs_30_de.txt";
+        somFile = outDir + "/runs_30_som.txt";
+    } else if (argc == 2) {
+        datasetName = argv[1];
+        std::string outDir = resolveResultsDir(datasetName);
+        deFile = outDir + "/runs_30_de.txt";
+        somFile = outDir + "/runs_30_som.txt";
+    } else if (argc >= 3) {
+        deFile = argv[1];
+        somFile = argv[2];
+        datasetName = "custom";
+    }
 
     auto deRecords = parseResultFile(deFile);
     auto somRecords = parseResultFile(somFile);
 
-    writeSingleCSV("results_30_runs_de.csv", deRecords);
-    writeSingleCSV("results_30_runs_som.csv", somRecords);
-    writePairedCSV("results_30_runs_paired.csv", deRecords, somRecords);
+    if (deRecords.empty() && somRecords.empty()) {
+        std::cerr << "Warning: Could not read records from " << deFile << " or " << somFile << std::endl;
+    }
 
-    std::cout << "Successfully exported CSV files:" << std::endl;
-    std::cout << "  - results_30_runs_de.csv (" << deRecords.size() << " records)" << std::endl;
-    std::cout << "  - results_30_runs_som.csv (" << somRecords.size() << " records)" << std::endl;
-    std::cout << "  - results_30_runs_paired.csv (" << std::min(deRecords.size(), somRecords.size()) << " paired records for R Wilcoxon test)" << std::endl;
+    if (datasetName != "custom") {
+        std::string outDir = resolveResultsDir(datasetName);
+        std::string timestamp = getTimestampString();
+
+        writeSingleCSV(outDir + "/runs_30_de.csv", deRecords);
+        writeSingleCSV(outDir + "/runs_30_som.csv", somRecords);
+        writePairedCSV(outDir + "/runs_30_paired.csv", deRecords, somRecords);
+
+        writeSingleCSV(outDir + "/runs_30_de_" + timestamp + ".csv", deRecords);
+        writeSingleCSV(outDir + "/runs_30_som_" + timestamp + ".csv", somRecords);
+        writePairedCSV(outDir + "/runs_30_paired_" + timestamp + ".csv", deRecords, somRecords);
+
+        std::cout << "Successfully exported CSV files for " << datasetName << ":" << std::endl;
+        std::cout << "  - " << outDir << "/runs_30_de.csv (" << deRecords.size() << " records)" << std::endl;
+        std::cout << "  - " << outDir << "/runs_30_som.csv (" << somRecords.size() << " records)" << std::endl;
+        std::cout << "  - " << outDir << "/runs_30_paired.csv (" << std::min(deRecords.size(), somRecords.size()) << " paired records for Wilcoxon test)" << std::endl;
+    } else {
+        writeSingleCSV("results_30_runs_de.csv", deRecords);
+        writeSingleCSV("results_30_runs_som.csv", somRecords);
+        writePairedCSV("results_30_runs_paired.csv", deRecords, somRecords);
+
+        std::cout << "Successfully exported CSV files:" << std::endl;
+        std::cout << "  - results_30_runs_de.csv (" << deRecords.size() << " records)" << std::endl;
+        std::cout << "  - results_30_runs_som.csv (" << somRecords.size() << " records)" << std::endl;
+        std::cout << "  - results_30_runs_paired.csv (" << std::min(deRecords.size(), somRecords.size()) << " paired records for Wilcoxon test)" << std::endl;
+    }
 
     return 0;
 }

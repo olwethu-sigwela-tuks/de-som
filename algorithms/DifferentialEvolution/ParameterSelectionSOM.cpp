@@ -6,6 +6,9 @@
 #include <numeric>
 #include <algorithm>
 #include <ctime>
+#include <string>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <gsl/gsl_rng.h>
 #include "DifferentialEvolution.h"
@@ -176,8 +179,42 @@ struct SOMParams {
     bool isHexa;
 };
 
-void selectParametersSOM(char* dataFile, char* namesFile, char* outFile) {
-    auto dataset = loadDataSet(dataFile, namesFile);
+std::string getTimestampString() {
+    std::time_t t = std::time(nullptr);
+    std::tm tm = *std::localtime(&t);
+    char buf[64];
+    std::strftime(buf, sizeof(buf), "%Y-%m-%d_%H%M%S", &tm);
+    return std::string(buf);
+}
+
+std::string resolveFile(const std::string& filename) {
+    if (access(filename.c_str(), F_OK) == 0) return filename;
+    std::string parentPath = "../../" + filename;
+    if (access(parentPath.c_str(), F_OK) == 0) return parentPath;
+    return filename;
+}
+
+std::string resolveResultsDir(const std::string& datasetName) {
+    if (access("../../iris.dat", F_OK) == 0) {
+        mkdir("../../results", 0777);
+        std::string dir = "../../results/" + datasetName;
+        mkdir(dir.c_str(), 0777);
+        return dir;
+    }
+    mkdir("results", 0777);
+    std::string dir = "results/" + datasetName;
+    mkdir(dir.c_str(), 0777);
+    return dir;
+}
+
+void selectParametersSOM(const std::string& dataFile, const std::string& namesFile, const std::string& datasetName) {
+    std::string resolvedData = resolveFile(dataFile);
+    std::string resolvedNames = resolveFile(namesFile);
+
+    auto dataset = loadDataSet((char*)resolvedData.c_str(), (char*)resolvedNames.c_str());
+    if (datasetName == "glass") {
+        dataset = minMaxNormalize(dataset);
+    }
     auto folds = create5Folds(dataset);
 
     std::vector<std::pair<int, int>> gridSizes = {{6, 4}, {8, 6}};
@@ -191,7 +228,13 @@ void selectParametersSOM(char* dataFile, char* namesFile, char* outFile) {
     double bestCvError = DBL_MAX;
     SOMParams bestParams = {0, 0, 0, 0.0, 0.0, 0.0, 0.0, true};
 
-    std::ofstream out(outFile);
+    std::string outDir = resolveResultsDir(datasetName);
+    std::string timestamp = getTimestampString();
+    std::string timestampedFile = outDir + "/best_params_som_" + timestamp + ".txt";
+    std::string activeFile = outDir + "/best_params_som.txt";
+
+    std::ofstream outTime(timestampedFile);
+    std::ofstream outActive(activeFile);
 
     for (auto grid : gridSizes) {
         for (int epochs : epochCandidates) {
@@ -223,16 +266,28 @@ void selectParametersSOM(char* dataFile, char* namesFile, char* outFile) {
                                           << " | 5-Fold Test Error: " << avgTestError 
                                           << std::endl;
 
-                                if (out.is_open()) {
-                                    out << "Grid: " << grid.first << "x" << grid.second 
-                                        << " | Epochs: " << epochs 
-                                        << " | LRate: " << lrate 
-                                        << " | LRDecay: " << lrateDecay 
-                                        << " | Radius: " << radius 
-                                        << " | RadiusDecay: " << radiusDecay 
-                                        << " | Train Error: " << avgTrainError 
-                                        << " | 5-Fold Test Error: " << avgTestError 
-                                        << std::endl;
+                                if (outTime.is_open()) {
+                                    outTime << "Grid: " << grid.first << "x" << grid.second 
+                                            << " | Epochs: " << epochs 
+                                            << " | LRate: " << lrate 
+                                            << " | LRDecay: " << lrateDecay 
+                                            << " | Radius: " << radius 
+                                            << " | RadiusDecay: " << radiusDecay 
+                                            << " | Train Error: " << avgTrainError 
+                                            << " | 5-Fold Test Error: " << avgTestError 
+                                            << std::endl;
+                                }
+
+                                if (outActive.is_open()) {
+                                    outActive << "Grid: " << grid.first << "x" << grid.second 
+                                              << " | Epochs: " << epochs 
+                                              << " | LRate: " << lrate 
+                                              << " | LRDecay: " << lrateDecay 
+                                              << " | Radius: " << radius 
+                                              << " | RadiusDecay: " << radiusDecay 
+                                              << " | Train Error: " << avgTrainError 
+                                              << " | 5-Fold Test Error: " << avgTestError 
+                                              << std::endl;
                                 }
 
                                 if (avgTestError < bestCvError) {
@@ -259,39 +314,64 @@ void selectParametersSOM(char* dataFile, char* namesFile, char* outFile) {
     std::cout << "Best Topology: " << (bestParams.isHexa ? "hexa" : "rect") << std::endl;
     std::cout << "Best 5-Fold Test Quantization Error: " << bestCvError << std::endl;
 
-    if (out.is_open()) {
-        out << std::endl << std::endl;
-        out << "=== Best Hyperparameters for Conventional SOM from 5-Fold Cross-Validation ===" << std::endl;
-        out << "Best Grid Width: " << bestParams.width << std::endl;
-        out << "Best Grid Height: " << bestParams.height << std::endl;
-        out << "Best Epochs: " << bestParams.epochs << std::endl;
-        out << "Best Learning Rate: " << bestParams.lrate << std::endl;
-        out << "Best Learning Rate Decay: " << bestParams.lrateDecay << std::endl;
-        out << "Best Radius: " << bestParams.radius << std::endl;
-        out << "Best Radius Decay: " << bestParams.radiusDecay << std::endl;
-        out << "Best Topology: " << (bestParams.isHexa ? "hexa" : "rect") << std::endl;
-        out << "Best 5-Fold Test Quantization Error: " << bestCvError << std::endl;
-        out.close();
+    if (outTime.is_open()) {
+        outTime << std::endl << std::endl;
+        outTime << "=== Best Hyperparameters for Conventional SOM from 5-Fold Cross-Validation ===" << std::endl;
+        outTime << "Best Grid Width: " << bestParams.width << std::endl;
+        outTime << "Best Grid Height: " << bestParams.height << std::endl;
+        outTime << "Best Epochs: " << bestParams.epochs << std::endl;
+        outTime << "Best Learning Rate: " << bestParams.lrate << std::endl;
+        outTime << "Best Learning Rate Decay: " << bestParams.lrateDecay << std::endl;
+        outTime << "Best Radius: " << bestParams.radius << std::endl;
+        outTime << "Best Radius Decay: " << bestParams.radiusDecay << std::endl;
+        outTime << "Best Topology: " << (bestParams.isHexa ? "hexa" : "rect") << std::endl;
+        outTime << "Best 5-Fold Test Quantization Error: " << bestCvError << std::endl;
+        outTime.close();
+    }
+
+    if (outActive.is_open()) {
+        outActive << std::endl << std::endl;
+        outActive << "=== Best Hyperparameters for Conventional SOM from 5-Fold Cross-Validation ===" << std::endl;
+        outActive << "Best Grid Width: " << bestParams.width << std::endl;
+        outActive << "Best Grid Height: " << bestParams.height << std::endl;
+        outActive << "Best Epochs: " << bestParams.epochs << std::endl;
+        outActive << "Best Learning Rate: " << bestParams.lrate << std::endl;
+        outActive << "Best Learning Rate Decay: " << bestParams.lrateDecay << std::endl;
+        outActive << "Best Radius: " << bestParams.radius << std::endl;
+        outActive << "Best Radius Decay: " << bestParams.radiusDecay << std::endl;
+        outActive << "Best Topology: " << (bestParams.isHexa ? "hexa" : "rect") << std::endl;
+        outActive << "Best 5-Fold Test Quantization Error: " << bestCvError << std::endl;
+        outActive.close();
     }
 }
 
 int main(int argc, char** argv) {
-    char defaultData[] = "iris.dat";
-    char defaultNames[] = "iris.som.names";
-    char defaultOut[] = "best_parameters_som.txt";
-    char* dataFile = defaultData;
-    char* namesFile = defaultNames;
-    char* outFile = defaultOut;
+    std::string datasetName = "iris";
+    std::string dataFile = "iris.dat";
+    std::string namesFile = "iris.som.names";
 
-    if (argc >= 3) {
-        dataFile = argv[1];
-        namesFile = argv[2];
-    }
-    if (argc >= 4) {
-        outFile = argv[3];
+    if (argc >= 2) {
+        std::string arg1 = argv[1];
+        if (arg1 == "iris" || arg1 == "glass" || arg1 == "ionosphere") {
+            datasetName = arg1;
+            dataFile = arg1 + ".dat";
+            namesFile = arg1 + ".som.names";
+        } else {
+            dataFile = arg1;
+            datasetName = arg1;
+            size_t slash = datasetName.find_last_of("/\\");
+            if (slash != std::string::npos) datasetName = datasetName.substr(slash + 1);
+            size_t dot = datasetName.find_last_of(".");
+            if (dot != std::string::npos) datasetName = datasetName.substr(0, dot);
+            if (argc >= 3) {
+                namesFile = argv[2];
+            } else {
+                namesFile = datasetName + ".som.names";
+            }
+        }
     }
 
-    selectParametersSOM(dataFile, namesFile, outFile);
+    selectParametersSOM(dataFile, namesFile, datasetName);
 
     return 0;
 }

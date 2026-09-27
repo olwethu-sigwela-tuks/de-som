@@ -1,7 +1,23 @@
-csv_file <- "results_30_runs_paired.csv"
+args <- commandArgs(trailingOnly = TRUE)
+dataset <- ifelse(length(args) > 0, args[1], "iris")
 
-if (!file.exists(csv_file)) {
-  stop(paste("File not found:", csv_file, "- Please run ./ConvertToCSV first."))
+csv_candidates <- c(
+  sprintf("results/%s/runs_30_paired.csv", dataset),
+  sprintf("../../results/%s/runs_30_paired.csv", dataset),
+  "results_30_runs_paired.csv",
+  "../../results_30_runs_paired.csv"
+)
+
+csv_file <- ""
+for (f in csv_candidates) {
+  if (file.exists(f)) {
+    csv_file <- f
+    break
+  }
+}
+
+if (csv_file == "") {
+  stop(paste("File not found for dataset:", dataset, sprintf("- Please run ./ConvertToCSV %s first.", dataset)))
 }
 
 df <- read.csv(csv_file)
@@ -9,8 +25,10 @@ df <- read.csv(csv_file)
 alpha <- 0.05
 
 cat("\n==================================================================\n")
-cat("       WILCOXON SIGNED-RANK HYPOTHESIS TEST (30 PAIRED RUNS)       \n")
+cat(sprintf("       WILCOXON SIGNED-RANK HYPOTHESIS TEST: %s (30 PAIRED RUNS)       \n", toupper(dataset)))
 cat("==================================================================\n")
+cat(sprintf("Dataset:                    %s\n", dataset))
+cat(sprintf("CSV Source:                 %s\n", csv_file))
 cat(sprintf("Significance Level (alpha): %.2f\n", alpha))
 cat(sprintf("Sample Size (n):            %d runs\n\n", nrow(df)))
 

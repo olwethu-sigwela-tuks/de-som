@@ -1,5 +1,6 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
 #include <vector>
 #include <cmath>
 #include <numeric>
@@ -7,6 +8,9 @@
 #include <iomanip>
 #include <cfloat>
 #include <ctime>
+#include <string>
+#include <sys/stat.h>
+#include <sys/types.h>
 #include <unistd.h>
 #include <gsl/gsl_rng.h>
 #include "DifferentialEvolution.h"
@@ -42,6 +46,63 @@ Stats computeStats(const std::vector<double>& values) {
         s.stddev = std::sqrt(varSum / (values.size() - 1));
     }
     return s;
+}
+
+std::string getTimestampString() {
+    std::time_t t = std::time(nullptr);
+    std::tm tm = *std::localtime(&t);
+    char buf[64];
+    std::strftime(buf, sizeof(buf), "%Y-%m-%d_%H%M%S", &tm);
+    return std::string(buf);
+}
+
+std::string resolveFile(const std::string& filename) {
+    if (access(filename.c_str(), F_OK) == 0) return filename;
+    std::string parentPath = "../../" + filename;
+    if (access(parentPath.c_str(), F_OK) == 0) return parentPath;
+    return filename;
+}
+
+std::string resolveResultsDir(const std::string& datasetName) {
+    if (access("../../iris.dat", F_OK) == 0) {
+        mkdir("../../results", 0777);
+        std::string dir = "../../results/" + datasetName;
+        mkdir(dir.c_str(), 0777);
+        return dir;
+    }
+    mkdir("results", 0777);
+    std::string dir = "results/" + datasetName;
+    mkdir(dir.c_str(), 0777);
+    return dir;
+}
+
+bool loadBestSOMParams(const std::string& filename, int& width, int& height, int& epochs, double& lrate, double& lrateDecay, double& radius, double& radiusDecay, bool& isHexa) {
+    std::ifstream file(filename);
+    if (!file.is_open()) return false;
+
+    std::string line;
+    while (std::getline(file, line)) {
+        if (line.find("Best Grid Width:") != std::string::npos) {
+            width = std::stoi(line.substr(line.find(":") + 1));
+        } else if (line.find("Best Grid Height:") != std::string::npos) {
+            height = std::stoi(line.substr(line.find(":") + 1));
+        } else if (line.find("Best Epochs:") != std::string::npos) {
+            epochs = std::stoi(line.substr(line.find(":") + 1));
+        } else if (line.find("Best Learning Rate:") != std::string::npos && line.find("Decay") == std::string::npos) {
+            lrate = std::stod(line.substr(line.find(":") + 1));
+        } else if (line.find("Best Learning Rate Decay:") != std::string::npos) {
+            lrateDecay = std::stod(line.substr(line.find(":") + 1));
+        } else if (line.find("Best Radius:") != std::string::npos && line.find("Decay") == std::string::npos) {
+            radius = std::stod(line.substr(line.find(":") + 1));
+        } else if (line.find("Best Radius Decay:") != std::string::npos) {
+            radiusDecay = std::stod(line.substr(line.find(":") + 1));
+        } else if (line.find("Best Topology:") != std::string::npos) {
+            std::string topo = line.substr(line.find(":") + 1);
+            if (topo.find("hexa") != std::string::npos) isHexa = true;
+            else if (topo.find("rect") != std::string::npos) isHexa = false;
+        }
+    }
+    return true;
 }
 
 struct SOMGrid {
@@ -214,22 +275,31 @@ double evaluateSOMTopographicError(const SOMGrid& grid, const std::vector<std::v
 }
 
 int main(int argc, char** argv) {
-    char defaultData[] = "iris.dat";
-    char defaultNames[] = "iris.som.names";
-    char defaultOut[] = "results_30_runs_som.txt";
-    char* dataFile = defaultData;
-    char* namesFile = defaultNames;
-    char* outFile = defaultOut;
+    std::string datasetName = "iris";
+    std::string dataFile = "iris.dat";
+    std::string namesFile = "iris.som.names";
 
-    if (argc >= 3) {
-        dataFile = argv[1];
-        namesFile = argv[2];
-    }
-    if (argc >= 4) {
-        outFile = argv[3];
+    if (argc >= 2) {
+        std::string arg1 = argv[1];
+        if (arg1 == "iris" || arg1 == "glass" || arg1 == "ionosphere") {
+            datasetName = arg1;
+            dataFile = arg1 + ".dat";
+            namesFile = arg1 + ".som.names";
+        } else {
+            dataFile = arg1;
+            datasetName = arg1;
+            size_t slash = datasetName.find_last_of("/\\");
+            if (slash != std::string::npos) datasetName = datasetName.substr(slash + 1);
+            size_t dot = datasetName.find_last_of(".");
+            if (dot != std::string::npos) datasetName = datasetName.substr(0, dot);
+            if (argc >= 3) {
+                namesFile = argv[2];
+            } else {
+                namesFile = datasetName + ".som.names";
+            }
+        }
     }
 
-    auto dataset = loadDataSet(dataFile, namesFile);
     int width = 8;
     int height = 6;
     int epochs = 1000;
@@ -239,12 +309,37 @@ int main(int argc, char** argv) {
     double radiusDecay = 0.99;
     bool isHexa = true;
 
+    std::string outDir = resolveResultsDir(datasetName);
+    std::string paramsFile = outDir + "/best_params_som.txt";
+
+    if (loadBestSOMParams(paramsFile, width, height, epochs, lrate, lrateDecay, radius, radiusDecay, isHexa)) {
+        std::cout << "Loaded optimal parameters from: " << paramsFile << std::endl;
+    } else {
+        std::cout << "Using default parameters for Conventional SOM." << std::endl;
+    }
+
+    std::cout << "Running Conventional SOM 30 runs with:" << std::endl;
+    std::cout << "  Dataset: " << datasetName << " (" << dataFile << ", " << namesFile << ")" << std::endl;
+    std::cout << "  Grid: " << width << "x" << height << " | Epochs: " << epochs << " | LRate: " << lrate << " | LRDecay: " << lrateDecay << " | Radius: " << radius << " | RadiusDecay: " << radiusDecay << " | Topology: " << (isHexa ? "hexa" : "rect") << std::endl;
+
+    std::string resolvedData = resolveFile(dataFile);
+    std::string resolvedNames = resolveFile(namesFile);
+    auto dataset = loadDataSet((char*)resolvedData.c_str(), (char*)resolvedNames.c_str());
+    if (datasetName == "glass") {
+        dataset = minMaxNormalize(dataset);
+    }
+
     std::vector<double> trainQEs;
     std::vector<double> testQEs;
     std::vector<double> trainTEs;
     std::vector<double> testTEs;
 
-    std::ofstream out(outFile);
+    std::string timestamp = getTimestampString();
+    std::string timestampedFile = outDir + "/runs_30_som_" + timestamp + ".txt";
+    std::string activeFile = outDir + "/runs_30_som.txt";
+
+    std::ofstream outTime(timestampedFile);
+    std::ofstream outActive(activeFile);
 
     for (unsigned long run = 1; run <= 30; ++run) {
         sleep(1);
@@ -290,21 +385,31 @@ int main(int argc, char** argv) {
         testTEs.push_back(testTE);
 
         std::cout << "Run: " << std::setw(2) << run 
-                  << " | Seed: " << std::setw(2) << seed 
+                  << " | Seed: " << seed 
                   << " | Train QE: " << std::fixed << std::setprecision(6) << trainQE 
                   << " | Test QE: " << testQE 
                   << " | Train TE: " << trainTE 
                   << " | Test TE: " << testTE 
                   << std::endl;
 
-        if (out.is_open()) {
-            out << "Run: " << std::setw(2) << run 
-                << " | Seed: " << std::setw(2) << seed 
-                << " | Train QE: " << std::fixed << std::setprecision(6) << trainQE 
-                << " | Test QE: " << testQE 
-                << " | Train TE: " << trainTE 
-                << " | Test TE: " << testTE 
-                << std::endl;
+        if (outTime.is_open()) {
+            outTime << "Run: " << std::setw(2) << run 
+                    << " | Seed: " << seed 
+                    << " | Train QE: " << std::fixed << std::setprecision(6) << trainQE 
+                    << " | Test QE: " << testQE 
+                    << " | Train TE: " << trainTE 
+                    << " | Test TE: " << testTE 
+                    << std::endl;
+        }
+
+        if (outActive.is_open()) {
+            outActive << "Run: " << std::setw(2) << run 
+                      << " | Seed: " << seed 
+                      << " | Train QE: " << std::fixed << std::setprecision(6) << trainQE 
+                      << " | Test QE: " << testQE 
+                      << " | Train TE: " << trainTE 
+                      << " | Test TE: " << testTE 
+                      << std::endl;
         }
     }
 
@@ -314,20 +419,30 @@ int main(int argc, char** argv) {
     Stats testTEStats = computeStats(testTEs);
 
     std::cout << std::endl;
-    std::cout << "=== 30-Run Summary for Conventional SOM ===" << std::endl;
+    std::cout << "=== 30-Run Summary for Conventional SOM (" << datasetName << ") ===" << std::endl;
     std::cout << "Train Quantization Error: Mean = " << trainQEStats.mean << " | StdDev = " << trainQEStats.stddev << " | Min = " << trainQEStats.min << " | Max = " << trainQEStats.max << std::endl;
     std::cout << "Test Quantization Error:  Mean = " << testQEStats.mean  << " | StdDev = " << testQEStats.stddev  << " | Min = " << testQEStats.min  << " | Max = " << testQEStats.max  << std::endl;
     std::cout << "Train Topographic Error:  Mean = " << trainTEStats.mean << " | StdDev = " << trainTEStats.stddev << " | Min = " << trainTEStats.min << " | Max = " << trainTEStats.max << std::endl;
     std::cout << "Test Topographic Error:   Mean = " << testTEStats.mean  << " | StdDev = " << testTEStats.stddev  << " | Min = " << testTEStats.min  << " | Max = " << testTEStats.max  << std::endl;
 
-    if (out.is_open()) {
-        out << std::endl << std::endl;
-        out << "=== 30-Run Summary for Conventional SOM ===" << std::endl;
-        out << "Train Quantization Error: Mean = " << trainQEStats.mean << " | StdDev = " << trainQEStats.stddev << " | Min = " << trainQEStats.min << " | Max = " << trainQEStats.max << std::endl;
-        out << "Test Quantization Error:  Mean = " << testQEStats.mean  << " | StdDev = " << testQEStats.stddev  << " | Min = " << testQEStats.min  << " | Max = " << testQEStats.max  << std::endl;
-        out << "Train Topographic Error:  Mean = " << trainTEStats.mean << " | StdDev = " << trainTEStats.stddev << " | Min = " << trainTEStats.min << " | Max = " << trainTEStats.max << std::endl;
-        out << "Test Topographic Error:   Mean = " << testTEStats.mean  << " | StdDev = " << testTEStats.stddev  << " | Min = " << testTEStats.min  << " | Max = " << testTEStats.max  << std::endl;
-        out.close();
+    if (outTime.is_open()) {
+        outTime << std::endl << std::endl;
+        outTime << "=== 30-Run Summary for Conventional SOM (" << datasetName << ") ===" << std::endl;
+        outTime << "Train Quantization Error: Mean = " << trainQEStats.mean << " | StdDev = " << trainQEStats.stddev << " | Min = " << trainQEStats.min << " | Max = " << trainQEStats.max << std::endl;
+        outTime << "Test Quantization Error:  Mean = " << testQEStats.mean  << " | StdDev = " << testQEStats.stddev  << " | Min = " << testQEStats.min  << " | Max = " << testQEStats.max  << std::endl;
+        outTime << "Train Topographic Error:  Mean = " << trainTEStats.mean << " | StdDev = " << trainTEStats.stddev << " | Min = " << trainTEStats.min << " | Max = " << trainTEStats.max << std::endl;
+        outTime << "Test Topographic Error:   Mean = " << testTEStats.mean  << " | StdDev = " << testTEStats.stddev  << " | Min = " << testTEStats.min  << " | Max = " << testTEStats.max  << std::endl;
+        outTime.close();
+    }
+
+    if (outActive.is_open()) {
+        outActive << std::endl << std::endl;
+        outActive << "=== 30-Run Summary for Conventional SOM (" << datasetName << ") ===" << std::endl;
+        outActive << "Train Quantization Error: Mean = " << trainQEStats.mean << " | StdDev = " << trainQEStats.stddev << " | Min = " << trainQEStats.min << " | Max = " << trainQEStats.max << std::endl;
+        outActive << "Test Quantization Error:  Mean = " << testQEStats.mean  << " | StdDev = " << testQEStats.stddev  << " | Min = " << testQEStats.min  << " | Max = " << testQEStats.max  << std::endl;
+        outActive << "Train Topographic Error:  Mean = " << trainTEStats.mean << " | StdDev = " << trainTEStats.stddev << " | Min = " << trainTEStats.min << " | Max = " << trainTEStats.max << std::endl;
+        outActive << "Test Topographic Error:   Mean = " << testTEStats.mean  << " | StdDev = " << testTEStats.stddev  << " | Min = " << testTEStats.min  << " | Max = " << testTEStats.max  << std::endl;
+        outActive.close();
     }
 
     return 0;

@@ -274,8 +274,37 @@ std::vector<std::vector<double>> loadDataSet(char* dataFileName, char* namesFile
 
     return dataset;
 
+}
 
+std::vector<std::vector<double>> minMaxNormalize(const std::vector<std::vector<double>>& dataset){
+    if (dataset.empty()){
+        return dataset;
+    }
+    size_t numSamples = dataset.size();
+    size_t numFeatures = dataset[0].size();
 
+    std::vector<double> minVals(numFeatures, DBL_MAX);
+    std::vector<double> maxVals(numFeatures, -DBL_MAX);
+
+    for (size_t i = 0; i < numSamples; ++i){
+        for (size_t j = 0; j < numFeatures; ++j){
+            if (dataset[i][j] < minVals[j]) minVals[j] = dataset[i][j];
+            if (dataset[i][j] > maxVals[j]) maxVals[j] = dataset[i][j];
+        }
+    }
+
+    std::vector<std::vector<double>> normalized(numSamples, std::vector<double>(numFeatures));
+    for (size_t i = 0; i < numSamples; ++i){
+        for (size_t j = 0; j < numFeatures; ++j){
+            double range = maxVals[j] - minVals[j];
+            if (range > 1e-12){
+                normalized[i][j] = (dataset[i][j] - minVals[j]) / range;
+            } else {
+                normalized[i][j] = 0.0;
+            }
+        }
+    }
+    return normalized;
 }
 
 std::vector<double> loadMapFile(const std::string& mapFileName){

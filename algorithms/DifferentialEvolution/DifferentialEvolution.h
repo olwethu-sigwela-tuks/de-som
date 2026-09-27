@@ -7,6 +7,8 @@ std::vector<double> runDE(std::vector<std::vector<double>>& trainingDataset, std
 
 std::vector<std::vector<double>> loadDataSet(char* dataFileName, char* namesFileName);
 
+std::vector<std::vector<double>> minMaxNormalize(const std::vector<std::vector<double>>& dataset);
+
 double quantizationError(const std::vector<double>& weights, const std::vector<std::vector<double>>& dataset);
 
 double topographicError(const std::vector<double>& weights, int width, int height, bool isHexa, const std::vector<std::vector<double>>& dataset);
