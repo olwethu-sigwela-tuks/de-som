@@ -71,11 +71,25 @@ void selectParameters(const std::string& dataFile, const std::string& namesFile,
     }
     auto folds = create5Folds(dataset);
 
-    std::vector<int> npCandidates = {20};
-    std::vector<int> genCandidates = {2000, 3000, 4000};
+    //v1
+    // std::vector<int> npCandidates = {20};
+    // std::vector<int> genCandidates = {2000, 3000, 4000};
+    // std::vector<int> neuronCandidates = {48};
+    // std::vector<double> crCandidates = {0.002, 0.005, 0.008, 0.010, 0.015};
+    // std::vector<double> fCandidates = {0.15, 0.20, 0.25, 0.30};
+
+    // std::vector<int> npCandidates = {20};
+    // std::vector<int> genCandidates = {2000};
+    // std::vector<int> neuronCandidates = {48};
+    // std::vector<double> crCandidates = {0.008, 0.0072, 0.0074, 0.0076, 0.0078, 0.007} ;
+    // std::vector<double> fCandidates = {0.20};
+
+
+      std::vector<int> npCandidates = {20};
+    std::vector<int> genCandidates = {2000};
     std::vector<int> neuronCandidates = {48};
-    std::vector<double> crCandidates = {0.002, 0.005, 0.008, 0.010, 0.015};
-    std::vector<double> fCandidates = {0.15, 0.20, 0.25, 0.30};
+    std::vector<double> crCandidates = {0.008, 0.0082, 0.0084, 0.0086, 0.0088, 0.009} ;
+    std::vector<double> fCandidates = {0.18, 0.19, 0.20, 0.21, 0.22};
 
     double bestCvError = DBL_MAX;
     int bestNP = 0;

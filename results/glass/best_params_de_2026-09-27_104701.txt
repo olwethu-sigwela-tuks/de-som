@@ -1,0 +1,15 @@
+NP: 20 | Gen: 2000 | Neurons: 48 | CR: 0.008 | F: 0.2 | Train Error: 0.187233 | 5-Fold Test Error: 0.255805
+NP: 20 | Gen: 2000 | Neurons: 48 | CR: 0.0082 | F: 0.2 | Train Error: 0.188048 | 5-Fold Test Error: 0.272739
+NP: 20 | Gen: 2000 | Neurons: 48 | CR: 0.0084 | F: 0.2 | Train Error: 0.191227 | 5-Fold Test Error: 0.27502
+NP: 20 | Gen: 2000 | Neurons: 48 | CR: 0.0086 | F: 0.2 | Train Error: 0.186652 | 5-Fold Test Error: 0.277369
+NP: 20 | Gen: 2000 | Neurons: 48 | CR: 0.0088 | F: 0.2 | Train Error: 0.185837 | 5-Fold Test Error: 0.285246
+NP: 20 | Gen: 2000 | Neurons: 48 | CR: 0.009 | F: 0.2 | Train Error: 0.184889 | 5-Fold Test Error: 0.272932
+
+
+=== Best Hyperparameters from 5-Fold Cross-Validation ===
+Best NP: 20
+Best Generations: 2000
+Best Neurons: 48
+Best CR: 0.008
+Best F: 0.2
+Best 5-Fold Test Quantization Error: 0.255805
