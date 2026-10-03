@@ -85,7 +85,14 @@ void selectParameters(const std::string& dataFile, const std::string& namesFile,
     // std::vector<double> fCandidates = {0.20};
 
 
-      std::vector<int> npCandidates = {20};
+
+    //   std::vector<int> npCandidates = {20};
+    // std::vector<int> genCandidates = {2000};
+    // std::vector<int> neuronCandidates = {48};
+    // std::vector<double> crCandidates = {0.008, 0.0082, 0.0084, 0.0086, 0.0088, 0.009} ;
+    // std::vector<double> fCandidates = {0.18, 0.19, 0.20, 0.21, 0.22};
+
+      std::vector<int> npCandidates = {50};
     std::vector<int> genCandidates = {2000};
     std::vector<int> neuronCandidates = {48};
     std::vector<double> crCandidates = {0.008, 0.0082, 0.0084, 0.0086, 0.0088, 0.009} ;
