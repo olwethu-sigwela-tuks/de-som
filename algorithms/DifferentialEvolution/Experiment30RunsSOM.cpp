@@ -274,6 +274,12 @@ double evaluateSOMTopographicError(const SOMGrid& grid, const std::vector<std::v
     return (double)errorCount / dataset.size();
 }
 
+const unsigned long RUN_SEEDS[30] = {
+    1001, 1002, 1003, 1004, 1005, 1006, 1007, 1008, 1009, 1010,
+    1011, 1012, 1013, 1014, 1015, 1016, 1017, 1018, 1019, 1020,
+    1021, 1022, 1023, 1024, 1025, 1026, 1027, 1028, 1029, 1030
+};
+
 int main(int argc, char** argv) {
     std::string datasetName = "iris";
     std::string dataFile = "iris.dat";
@@ -325,9 +331,6 @@ int main(int argc, char** argv) {
     std::string resolvedData = resolveFile(dataFile);
     std::string resolvedNames = resolveFile(namesFile);
     auto dataset = loadDataSet((char*)resolvedData.c_str(), (char*)resolvedNames.c_str());
-    if (datasetName == "glass") {
-        dataset = minMaxNormalize(dataset);
-    }
 
     std::vector<double> trainQEs;
     std::vector<double> testQEs;
@@ -342,8 +345,7 @@ int main(int argc, char** argv) {
     std::ofstream outActive(activeFile);
 
     for (unsigned long run = 1; run <= 30; ++run) {
-        sleep(1);
-        unsigned long seed = (unsigned long)time(NULL);
+        unsigned long seed = RUN_SEEDS[run - 1];
 
         gsl_rng* rng = gsl_rng_alloc(gsl_rng_mt19937);
         gsl_rng_set(rng, seed);
@@ -369,6 +371,10 @@ int main(int argc, char** argv) {
             } else {
                 testSet.push_back(dataset[indices[i]]);
             }
+        }
+
+        if (datasetName == "glass") {
+            normalizeTrainTest(trainSet, testSet);
         }
 
         SOMGrid som = initSOMGrid(width, height, trainSet, seed);

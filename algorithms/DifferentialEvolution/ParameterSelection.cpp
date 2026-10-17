@@ -3,11 +3,13 @@
 #include <vector>
 #include <cfloat>
 #include <algorithm>
+#include <numeric>
 #include <string>
 #include <ctime>
 #include <sys/stat.h>
 #include <sys/types.h>
 #include <unistd.h>
+#include <gsl/gsl_rng.h>
 #include "DifferentialEvolution.h"
 
 struct Fold {
@@ -15,18 +17,27 @@ struct Fold {
     std::vector<std::vector<double>> test;
 };
 
-std::vector<Fold> create5Folds(const std::vector<std::vector<double>>& dataset) {
+std::vector<Fold> create5Folds(const std::vector<std::vector<double>>& dataset, unsigned long seed = 42) {
     std::vector<Fold> folds(5);
     size_t n = dataset.size();
+    std::vector<size_t> indices(n);
+    std::iota(indices.begin(), indices.end(), 0);
+    gsl_rng* rng = gsl_rng_alloc(gsl_rng_mt19937);
+    gsl_rng_set(rng, seed);
+    for (size_t i = n - 1; i > 0; --i) {
+        size_t j = gsl_rng_uniform_int(rng, i + 1);
+        std::swap(indices[i], indices[j]);
+    }
+    gsl_rng_free(rng);
     size_t foldSize = n / 5;
     for (size_t k = 0; k < 5; ++k) {
         size_t testStart = k * foldSize;
         size_t testEnd = (k == 4) ? n : (k + 1) * foldSize;
         for (size_t i = 0; i < n; ++i) {
             if (i >= testStart && i < testEnd) {
-                folds[k].test.push_back(dataset[i]);
+                folds[k].test.push_back(dataset[indices[i]]);
             } else {
-                folds[k].train.push_back(dataset[i]);
+                folds[k].train.push_back(dataset[indices[i]]);
             }
         }
     }
@@ -66,37 +77,18 @@ void selectParameters(const std::string& dataFile, const std::string& namesFile,
     std::string resolvedNames = resolveFile(namesFile);
 
     auto dataset = loadDataSet((char*)resolvedData.c_str(), (char*)resolvedNames.c_str());
-    if (datasetName == "glass") {
-        dataset = minMaxNormalize(dataset);
-    }
     auto folds = create5Folds(dataset);
+    if (datasetName == "glass") {
+        for (size_t k = 0; k < 5; ++k) {
+            normalizeTrainTest(folds[k].train, folds[k].test);
+        }
+    }
 
-    //v1
-    // std::vector<int> npCandidates = {20};
-    // std::vector<int> genCandidates = {2000, 3000, 4000};
-    // std::vector<int> neuronCandidates = {48};
-    // std::vector<double> crCandidates = {0.002, 0.005, 0.008, 0.010, 0.015};
-    // std::vector<double> fCandidates = {0.15, 0.20, 0.25, 0.30};
-
-    // std::vector<int> npCandidates = {20};
-    // std::vector<int> genCandidates = {2000};
-    // std::vector<int> neuronCandidates = {48};
-    // std::vector<double> crCandidates = {0.008, 0.0072, 0.0074, 0.0076, 0.0078, 0.007} ;
-    // std::vector<double> fCandidates = {0.20};
-
-
-
-    //   std::vector<int> npCandidates = {20};
-    // std::vector<int> genCandidates = {2000};
-    // std::vector<int> neuronCandidates = {48};
-    // std::vector<double> crCandidates = {0.008, 0.0082, 0.0084, 0.0086, 0.0088, 0.009} ;
-    // std::vector<double> fCandidates = {0.18, 0.19, 0.20, 0.21, 0.22};
-
-      std::vector<int> npCandidates = {50};
-    std::vector<int> genCandidates = {2000};
+    std::vector<int> npCandidates = {20, 50};
+    std::vector<int> genCandidates = {2000, 3000, 4000};
     std::vector<int> neuronCandidates = {48};
-    std::vector<double> crCandidates = {0.008, 0.0082, 0.0084, 0.0086, 0.0088, 0.009} ;
-    std::vector<double> fCandidates = {0.18, 0.19, 0.20, 0.21, 0.22};
+    std::vector<double> crCandidates = {0.002, 0.005, 0.008, 0.010, 0.015};
+    std::vector<double> fCandidates = {0.15, 0.20, 0.25, 0.30};
 
     double bestCvError = DBL_MAX;
     int bestNP = 0;

@@ -18,18 +18,27 @@ struct Fold {
     std::vector<std::vector<double>> test;
 };
 
-std::vector<Fold> create5Folds(const std::vector<std::vector<double>>& dataset) {
+std::vector<Fold> create5Folds(const std::vector<std::vector<double>>& dataset, unsigned long seed = 42) {
     std::vector<Fold> folds(5);
     size_t n = dataset.size();
+    std::vector<size_t> indices(n);
+    std::iota(indices.begin(), indices.end(), 0);
+    gsl_rng* rng = gsl_rng_alloc(gsl_rng_mt19937);
+    gsl_rng_set(rng, seed);
+    for (size_t i = n - 1; i > 0; --i) {
+        size_t j = gsl_rng_uniform_int(rng, i + 1);
+        std::swap(indices[i], indices[j]);
+    }
+    gsl_rng_free(rng);
     size_t foldSize = n / 5;
     for (size_t k = 0; k < 5; ++k) {
         size_t testStart = k * foldSize;
         size_t testEnd = (k == 4) ? n : (k + 1) * foldSize;
         for (size_t i = 0; i < n; ++i) {
             if (i >= testStart && i < testEnd) {
-                folds[k].test.push_back(dataset[i]);
+                folds[k].test.push_back(dataset[indices[i]]);
             } else {
-                folds[k].train.push_back(dataset[i]);
+                folds[k].train.push_back(dataset[indices[i]]);
             }
         }
     }
@@ -212,10 +221,12 @@ void selectParametersSOM(const std::string& dataFile, const std::string& namesFi
     std::string resolvedNames = resolveFile(namesFile);
 
     auto dataset = loadDataSet((char*)resolvedData.c_str(), (char*)resolvedNames.c_str());
-    if (datasetName == "glass") {
-        dataset = minMaxNormalize(dataset);
-    }
     auto folds = create5Folds(dataset);
+    if (datasetName == "glass") {
+        for (size_t k = 0; k < 5; ++k) {
+            normalizeTrainTest(folds[k].train, folds[k].test);
+        }
+    }
 
     std::vector<std::pair<int, int>> gridSizes = {{6, 4}, {8, 6}};
     std::vector<int> epochCandidates = {1000, 2000};

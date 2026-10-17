@@ -307,6 +307,41 @@ std::vector<std::vector<double>> minMaxNormalize(const std::vector<std::vector<d
     return normalized;
 }
 
+void normalizeTrainTest(std::vector<std::vector<double>>& trainSet, std::vector<std::vector<double>>& testSet){
+    if (trainSet.empty()){
+        return;
+    }
+    size_t numFeatures = trainSet[0].size();
+    std::vector<double> minVals(numFeatures, DBL_MAX);
+    std::vector<double> maxVals(numFeatures, -DBL_MAX);
+    for (size_t i = 0; i < trainSet.size(); ++i){
+        for (size_t j = 0; j < numFeatures; ++j){
+            if (trainSet[i][j] < minVals[j]) minVals[j] = trainSet[i][j];
+            if (trainSet[i][j] > maxVals[j]) maxVals[j] = trainSet[i][j];
+        }
+    }
+    for (size_t i = 0; i < trainSet.size(); ++i){
+        for (size_t j = 0; j < numFeatures; ++j){
+            double range = maxVals[j] - minVals[j];
+            if (range > 1e-12){
+                trainSet[i][j] = (trainSet[i][j] - minVals[j]) / range;
+            } else {
+                trainSet[i][j] = 0.0;
+            }
+        }
+    }
+    for (size_t i = 0; i < testSet.size(); ++i){
+        for (size_t j = 0; j < numFeatures; ++j){
+            double range = maxVals[j] - minVals[j];
+            if (range > 1e-12){
+                testSet[i][j] = (testSet[i][j] - minVals[j]) / range;
+            } else {
+                testSet[i][j] = 0.0;
+            }
+        }
+    }
+}
+
 std::vector<double> loadMapFile(const std::string& mapFileName){
     std::ifstream file(mapFileName);
     std::string line;

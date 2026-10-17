@@ -9,6 +9,8 @@ std::vector<std::vector<double>> loadDataSet(char* dataFileName, char* namesFile
 
 std::vector<std::vector<double>> minMaxNormalize(const std::vector<std::vector<double>>& dataset);
 
+void normalizeTrainTest(std::vector<std::vector<double>>& trainSet, std::vector<std::vector<double>>& testSet);
+
 double quantizationError(const std::vector<double>& weights, const std::vector<std::vector<double>>& dataset);
 
 double topographicError(const std::vector<double>& weights, int width, int height, bool isHexa, const std::vector<std::vector<double>>& dataset);
