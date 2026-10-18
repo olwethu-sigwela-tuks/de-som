@@ -1,37 +1,37 @@
-Run:  1 | Seed: 1790720052 | Train QE: 0.256808 | Test QE: 0.333347 | Train TE: 0.883333 | Test TE: 0.900000
-Run:  2 | Seed: 1790720069 | Train QE: 0.243975 | Test QE: 0.354331 | Train TE: 0.941667 | Test TE: 0.966667
-Run:  3 | Seed: 1790720085 | Train QE: 0.236831 | Test QE: 0.329432 | Train TE: 0.725000 | Test TE: 0.766667
-Run:  4 | Seed: 1790720102 | Train QE: 0.252540 | Test QE: 0.386070 | Train TE: 0.766667 | Test TE: 0.566667
-Run:  5 | Seed: 1790720118 | Train QE: 0.258899 | Test QE: 0.354709 | Train TE: 0.858333 | Test TE: 0.666667
-Run:  6 | Seed: 1790720134 | Train QE: 0.259875 | Test QE: 0.293853 | Train TE: 0.941667 | Test TE: 0.966667
-Run:  7 | Seed: 1790720151 | Train QE: 0.258988 | Test QE: 0.297159 | Train TE: 0.883333 | Test TE: 0.933333
-Run:  8 | Seed: 1790720167 | Train QE: 0.268406 | Test QE: 0.335889 | Train TE: 0.941667 | Test TE: 0.933333
-Run:  9 | Seed: 1790720184 | Train QE: 0.249367 | Test QE: 0.346670 | Train TE: 0.908333 | Test TE: 0.833333
-Run: 10 | Seed: 1790720200 | Train QE: 0.252838 | Test QE: 0.336794 | Train TE: 0.908333 | Test TE: 0.800000
-Run: 11 | Seed: 1790720216 | Train QE: 0.239820 | Test QE: 0.371246 | Train TE: 0.941667 | Test TE: 0.933333
-Run: 12 | Seed: 1790720233 | Train QE: 0.247218 | Test QE: 0.329409 | Train TE: 0.883333 | Test TE: 0.900000
-Run: 13 | Seed: 1790720250 | Train QE: 0.255640 | Test QE: 0.352735 | Train TE: 0.916667 | Test TE: 0.933333
-Run: 14 | Seed: 1790720266 | Train QE: 0.256582 | Test QE: 0.379253 | Train TE: 0.933333 | Test TE: 0.966667
-Run: 15 | Seed: 1790720282 | Train QE: 0.258237 | Test QE: 0.349473 | Train TE: 0.950000 | Test TE: 0.900000
-Run: 16 | Seed: 1790720298 | Train QE: 0.249571 | Test QE: 0.342739 | Train TE: 0.941667 | Test TE: 0.933333
-Run: 17 | Seed: 1790720315 | Train QE: 0.247369 | Test QE: 0.375781 | Train TE: 0.858333 | Test TE: 0.900000
-Run: 18 | Seed: 1790720331 | Train QE: 0.254529 | Test QE: 0.375849 | Train TE: 0.900000 | Test TE: 0.966667
-Run: 19 | Seed: 1790720347 | Train QE: 0.252084 | Test QE: 0.366044 | Train TE: 0.866667 | Test TE: 0.866667
-Run: 20 | Seed: 1790720363 | Train QE: 0.246424 | Test QE: 0.350328 | Train TE: 0.833333 | Test TE: 0.700000
-Run: 21 | Seed: 1790720379 | Train QE: 0.248811 | Test QE: 0.331600 | Train TE: 0.875000 | Test TE: 0.700000
-Run: 22 | Seed: 1790720395 | Train QE: 0.254663 | Test QE: 0.335067 | Train TE: 0.925000 | Test TE: 0.933333
-Run: 23 | Seed: 1790720411 | Train QE: 0.248963 | Test QE: 0.355577 | Train TE: 0.816667 | Test TE: 0.733333
-Run: 24 | Seed: 1790720428 | Train QE: 0.254283 | Test QE: 0.310363 | Train TE: 0.933333 | Test TE: 0.900000
-Run: 25 | Seed: 1790720444 | Train QE: 0.254538 | Test QE: 0.344460 | Train TE: 0.933333 | Test TE: 0.800000
-Run: 26 | Seed: 1790720461 | Train QE: 0.260004 | Test QE: 0.340293 | Train TE: 0.916667 | Test TE: 0.966667
-Run: 27 | Seed: 1790720477 | Train QE: 0.247953 | Test QE: 0.377140 | Train TE: 0.866667 | Test TE: 0.900000
-Run: 28 | Seed: 1790720493 | Train QE: 0.246926 | Test QE: 0.336370 | Train TE: 0.841667 | Test TE: 0.933333
-Run: 29 | Seed: 1790720510 | Train QE: 0.250819 | Test QE: 0.336829 | Train TE: 0.791667 | Test TE: 0.700000
-Run: 30 | Seed: 1790720526 | Train QE: 0.248247 | Test QE: 0.371432 | Train TE: 0.958333 | Test TE: 0.966667
+Run:  1 | Seed: 1001 | Train QE: 0.241475 | Test QE: 0.378861 | Train TE: 0.991667 | Test TE: 1.000000
+Run:  2 | Seed: 1002 | Train QE: 0.243964 | Test QE: 0.344399 | Train TE: 0.925000 | Test TE: 0.933333
+Run:  3 | Seed: 1003 | Train QE: 0.246060 | Test QE: 0.336436 | Train TE: 0.883333 | Test TE: 0.800000
+Run:  4 | Seed: 1004 | Train QE: 0.230824 | Test QE: 0.363552 | Train TE: 0.875000 | Test TE: 0.800000
+Run:  5 | Seed: 1005 | Train QE: 0.228801 | Test QE: 0.375903 | Train TE: 0.900000 | Test TE: 0.933333
+Run:  6 | Seed: 1006 | Train QE: 0.240718 | Test QE: 0.320752 | Train TE: 0.983333 | Test TE: 0.966667
+Run:  7 | Seed: 1007 | Train QE: 0.239532 | Test QE: 0.340633 | Train TE: 0.808333 | Test TE: 0.866667
+Run:  8 | Seed: 1008 | Train QE: 0.239115 | Test QE: 0.350265 | Train TE: 0.833333 | Test TE: 0.900000
+Run:  9 | Seed: 1009 | Train QE: 0.241391 | Test QE: 0.357665 | Train TE: 0.900000 | Test TE: 0.800000
+Run: 10 | Seed: 1010 | Train QE: 0.231551 | Test QE: 0.346797 | Train TE: 0.925000 | Test TE: 0.966667
+Run: 11 | Seed: 1011 | Train QE: 0.247151 | Test QE: 0.326900 | Train TE: 0.925000 | Test TE: 0.933333
+Run: 12 | Seed: 1012 | Train QE: 0.231608 | Test QE: 0.304748 | Train TE: 0.908333 | Test TE: 0.966667
+Run: 13 | Seed: 1013 | Train QE: 0.230338 | Test QE: 0.368068 | Train TE: 0.975000 | Test TE: 0.966667
+Run: 14 | Seed: 1014 | Train QE: 0.238646 | Test QE: 0.310127 | Train TE: 0.891667 | Test TE: 0.966667
+Run: 15 | Seed: 1015 | Train QE: 0.243478 | Test QE: 0.353780 | Train TE: 0.858333 | Test TE: 0.866667
+Run: 16 | Seed: 1016 | Train QE: 0.240242 | Test QE: 0.325942 | Train TE: 0.975000 | Test TE: 0.933333
+Run: 17 | Seed: 1017 | Train QE: 0.241225 | Test QE: 0.331149 | Train TE: 0.883333 | Test TE: 0.933333
+Run: 18 | Seed: 1018 | Train QE: 0.232984 | Test QE: 0.404375 | Train TE: 0.916667 | Test TE: 0.966667
+Run: 19 | Seed: 1019 | Train QE: 0.229852 | Test QE: 0.349237 | Train TE: 0.833333 | Test TE: 0.866667
+Run: 20 | Seed: 1020 | Train QE: 0.241671 | Test QE: 0.329398 | Train TE: 0.983333 | Test TE: 0.966667
+Run: 21 | Seed: 1021 | Train QE: 0.249859 | Test QE: 0.299377 | Train TE: 0.925000 | Test TE: 0.900000
+Run: 22 | Seed: 1022 | Train QE: 0.251048 | Test QE: 0.354604 | Train TE: 0.833333 | Test TE: 0.833333
+Run: 23 | Seed: 1023 | Train QE: 0.234859 | Test QE: 0.363866 | Train TE: 0.916667 | Test TE: 0.933333
+Run: 24 | Seed: 1024 | Train QE: 0.241610 | Test QE: 0.360721 | Train TE: 0.891667 | Test TE: 0.933333
+Run: 25 | Seed: 1025 | Train QE: 0.246107 | Test QE: 0.347140 | Train TE: 0.800000 | Test TE: 0.866667
+Run: 26 | Seed: 1026 | Train QE: 0.246075 | Test QE: 0.337837 | Train TE: 0.883333 | Test TE: 0.833333
+Run: 27 | Seed: 1027 | Train QE: 0.241219 | Test QE: 0.375718 | Train TE: 0.900000 | Test TE: 0.966667
+Run: 28 | Seed: 1028 | Train QE: 0.243564 | Test QE: 0.369458 | Train TE: 0.925000 | Test TE: 0.933333
+Run: 29 | Seed: 1029 | Train QE: 0.245423 | Test QE: 0.282828 | Train TE: 0.900000 | Test TE: 0.900000
+Run: 30 | Seed: 1030 | Train QE: 0.231691 | Test QE: 0.369887 | Train TE: 0.941667 | Test TE: 1.000000
 
 
 === 30-Run Summary for Differential Evolution SOM (iris) ===
-Train Quantization Error: Mean = 0.252040 | StdDev = 0.006492 | Min = 0.236831 | Max = 0.268406
-Test Quantization Error:  Mean = 0.346675 | StdDev = 0.022943 | Min = 0.293853 | Max = 0.386070
-Train Topographic Error:  Mean = 0.888056 | StdDev = 0.057846 | Min = 0.725000 | Max = 0.958333
-Test Topographic Error:   Mean = 0.862222 | StdDev = 0.109591 | Min = 0.566667 | Max = 0.966667
+Train Quantization Error: Mean = 0.239736 | StdDev = 0.006318 | Min = 0.228801 | Max = 0.251048
+Test Quantization Error:  Mean = 0.346014 | StdDev = 0.026432 | Min = 0.282828 | Max = 0.404375
+Train Topographic Error:  Mean = 0.903056 | StdDev = 0.050452 | Min = 0.800000 | Max = 0.991667
+Test Topographic Error:   Mean = 0.914444 | StdDev = 0.059166 | Min = 0.800000 | Max = 1.000000

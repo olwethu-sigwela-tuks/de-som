@@ -1,0 +1,40 @@
+Loaded optimal parameters from: results/glass/best_params_som.txt
+Running Conventional SOM 30 runs with:
+  Dataset: glass (glass.dat, glass.som.names)
+  Grid: 8x6 | Epochs: 1000 | LRate: 0.5 | LRDecay: 0.995 | Radius: 4 | RadiusDecay: 0.99 | Topology: hexa
+Run:  1 | Seed: 1001 | Train QE: 0.132815 | Test QE: 0.204795 | Train TE: 0.023392 | Test TE: 0.093023
+Run:  2 | Seed: 1002 | Train QE: 0.131861 | Test QE: 0.164013 | Train TE: 0.052632 | Test TE: 0.209302
+Run:  3 | Seed: 1003 | Train QE: 0.130733 | Test QE: 0.202503 | Train TE: 0.070175 | Test TE: 0.116279
+Run:  4 | Seed: 1004 | Train QE: 0.127165 | Test QE: 0.171914 | Train TE: 0.064327 | Test TE: 0.093023
+Run:  5 | Seed: 1005 | Train QE: 0.129982 | Test QE: 0.146139 | Train TE: 0.029240 | Test TE: 0.093023
+Run:  6 | Seed: 1006 | Train QE: 0.127164 | Test QE: 0.182277 | Train TE: 0.052632 | Test TE: 0.046512
+Run:  7 | Seed: 1007 | Train QE: 0.126757 | Test QE: 0.155755 | Train TE: 0.040936 | Test TE: 0.139535
+Run:  8 | Seed: 1008 | Train QE: 0.128083 | Test QE: 0.190062 | Train TE: 0.070175 | Test TE: 0.116279
+Run:  9 | Seed: 1009 | Train QE: 0.132790 | Test QE: 0.201225 | Train TE: 0.081871 | Test TE: 0.116279
+Run: 10 | Seed: 1010 | Train QE: 0.126587 | Test QE: 0.157630 | Train TE: 0.116959 | Test TE: 0.162791
+Run: 11 | Seed: 1011 | Train QE: 0.132868 | Test QE: 0.156925 | Train TE: 0.093567 | Test TE: 0.186047
+Run: 12 | Seed: 1012 | Train QE: 0.132408 | Test QE: 0.154919 | Train TE: 0.081871 | Test TE: 0.069767
+Run: 13 | Seed: 1013 | Train QE: 0.134181 | Test QE: 0.192450 | Train TE: 0.046784 | Test TE: 0.093023
+Run: 14 | Seed: 1014 | Train QE: 0.123818 | Test QE: 0.199541 | Train TE: 0.070175 | Test TE: 0.139535
+Run: 15 | Seed: 1015 | Train QE: 0.129319 | Test QE: 0.184295 | Train TE: 0.081871 | Test TE: 0.186047
+Run: 16 | Seed: 1016 | Train QE: 0.127464 | Test QE: 0.166152 | Train TE: 0.046784 | Test TE: 0.162791
+Run: 17 | Seed: 1017 | Train QE: 0.135935 | Test QE: 0.144717 | Train TE: 0.035088 | Test TE: 0.116279
+Run: 18 | Seed: 1018 | Train QE: 0.136231 | Test QE: 0.248198 | Train TE: 0.128655 | Test TE: 0.255814
+Run: 19 | Seed: 1019 | Train QE: 0.134524 | Test QE: 0.192039 | Train TE: 0.040936 | Test TE: 0.069767
+Run: 20 | Seed: 1020 | Train QE: 0.126460 | Test QE: 0.175074 | Train TE: 0.087719 | Test TE: 0.069767
+Run: 21 | Seed: 1021 | Train QE: 0.136574 | Test QE: 0.176054 | Train TE: 0.058480 | Test TE: 0.116279
+Run: 22 | Seed: 1022 | Train QE: 0.131706 | Test QE: 0.211666 | Train TE: 0.070175 | Test TE: 0.093023
+Run: 23 | Seed: 1023 | Train QE: 0.131966 | Test QE: 0.234094 | Train TE: 0.052632 | Test TE: 0.069767
+Run: 24 | Seed: 1024 | Train QE: 0.134414 | Test QE: 0.237975 | Train TE: 0.052632 | Test TE: 0.139535
+Run: 25 | Seed: 1025 | Train QE: 0.131472 | Test QE: 0.186266 | Train TE: 0.052632 | Test TE: 0.139535
+Run: 26 | Seed: 1026 | Train QE: 0.132426 | Test QE: 0.154795 | Train TE: 0.116959 | Test TE: 0.116279
+Run: 27 | Seed: 1027 | Train QE: 0.131150 | Test QE: 0.166607 | Train TE: 0.105263 | Test TE: 0.255814
+Run: 28 | Seed: 1028 | Train QE: 0.126890 | Test QE: 0.169883 | Train TE: 0.023392 | Test TE: 0.069767
+Run: 29 | Seed: 1029 | Train QE: 0.131970 | Test QE: 0.150078 | Train TE: 0.029240 | Test TE: 0.046512
+Run: 30 | Seed: 1030 | Train QE: 0.130649 | Test QE: 0.150210 | Train TE: 0.040936 | Test TE: 0.116279
+
+=== 30-Run Summary for Conventional SOM (glass) ===
+Train Quantization Error: Mean = 0.130879 | StdDev = 0.003295 | Min = 0.123818 | Max = 0.136574
+Test Quantization Error:  Mean = 0.180942 | StdDev = 0.027684 | Min = 0.144717 | Max = 0.248198
+Train Topographic Error:  Mean = 0.063938 | StdDev = 0.028440 | Min = 0.023392 | Max = 0.128655
+Test Topographic Error:   Mean = 0.123256 | StdDev = 0.054334 | Min = 0.046512 | Max = 0.255814

@@ -1,0 +1,80 @@
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.008 | F: 0.2 | Train Error: 0.230347 | 5-Fold Test Error: 0.342125
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.008 | F: 0.25 | Train Error: 0.234851 | 5-Fold Test Error: 0.338402
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.008 | F: 0.3 | Train Error: 0.2402 | 5-Fold Test Error: 0.352324
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.01 | F: 0.15 | Train Error: 0.226269 | 5-Fold Test Error: 0.345707
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.01 | F: 0.2 | Train Error: 0.233922 | 5-Fold Test Error: 0.33793
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.01 | F: 0.25 | Train Error: 0.238284 | 5-Fold Test Error: 0.360278
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.01 | F: 0.3 | Train Error: 0.242793 | 5-Fold Test Error: 0.351741
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.015 | F: 0.15 | Train Error: 0.22363 | 5-Fold Test Error: 0.341208
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.015 | F: 0.2 | Train Error: 0.233516 | 5-Fold Test Error: 0.347498
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.015 | F: 0.25 | Train Error: 0.242034 | 5-Fold Test Error: 0.346496
+NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.015 | F: 0.3 | Train Error: 0.250024 | 5-Fold Test Error: 0.344045
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.002 | F: 0.15 | Train Error: 0.265262 | 5-Fold Test Error: 0.356935
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.002 | F: 0.2 | Train Error: 0.270228 | 5-Fold Test Error: 0.3543
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.002 | F: 0.25 | Train Error: 0.270265 | 5-Fold Test Error: 0.368022
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.002 | F: 0.3 | Train Error: 0.273764 | 5-Fold Test Error: 0.366363
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.005 | F: 0.15 | Train Error: 0.264564 | 5-Fold Test Error: 0.365264
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.005 | F: 0.2 | Train Error: 0.268702 | 5-Fold Test Error: 0.373751
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.005 | F: 0.25 | Train Error: 0.269875 | 5-Fold Test Error: 0.353638
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.005 | F: 0.3 | Train Error: 0.279405 | 5-Fold Test Error: 0.3689
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.008 | F: 0.15 | Train Error: 0.265122 | 5-Fold Test Error: 0.364084
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.008 | F: 0.2 | Train Error: 0.269569 | 5-Fold Test Error: 0.359687
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.008 | F: 0.25 | Train Error: 0.274984 | 5-Fold Test Error: 0.365229
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.008 | F: 0.3 | Train Error: 0.27928 | 5-Fold Test Error: 0.374663
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.01 | F: 0.15 | Train Error: 0.267933 | 5-Fold Test Error: 0.362608
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.01 | F: 0.2 | Train Error: 0.273986 | 5-Fold Test Error: 0.363109
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.01 | F: 0.25 | Train Error: 0.273923 | 5-Fold Test Error: 0.35534
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.01 | F: 0.3 | Train Error: 0.278752 | 5-Fold Test Error: 0.372047
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.015 | F: 0.15 | Train Error: 0.273613 | 5-Fold Test Error: 0.360315
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.015 | F: 0.2 | Train Error: 0.27337 | 5-Fold Test Error: 0.369658
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.015 | F: 0.25 | Train Error: 0.280335 | 5-Fold Test Error: 0.364583
+NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.015 | F: 0.3 | Train Error: 0.285636 | 5-Fold Test Error: 0.370448
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.002 | F: 0.15 | Train Error: 0.241903 | 5-Fold Test Error: 0.348757
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.002 | F: 0.2 | Train Error: 0.244385 | 5-Fold Test Error: 0.349489
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.002 | F: 0.25 | Train Error: 0.245695 | 5-Fold Test Error: 0.357608
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.002 | F: 0.3 | Train Error: 0.248009 | 5-Fold Test Error: 0.348655
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.005 | F: 0.15 | Train Error: 0.242489 | 5-Fold Test Error: 0.336594
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.005 | F: 0.2 | Train Error: 0.245771 | 5-Fold Test Error: 0.348547
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.005 | F: 0.25 | Train Error: 0.249466 | 5-Fold Test Error: 0.350135
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.005 | F: 0.3 | Train Error: 0.254977 | 5-Fold Test Error: 0.348812
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.008 | F: 0.15 | Train Error: 0.243734 | 5-Fold Test Error: 0.340818
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.008 | F: 0.2 | Train Error: 0.249441 | 5-Fold Test Error: 0.344639
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.008 | F: 0.25 | Train Error: 0.254214 | 5-Fold Test Error: 0.355173
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.008 | F: 0.3 | Train Error: 0.256396 | 5-Fold Test Error: 0.358717
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.01 | F: 0.15 | Train Error: 0.246921 | 5-Fold Test Error: 0.340695
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.01 | F: 0.2 | Train Error: 0.253759 | 5-Fold Test Error: 0.358992
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.01 | F: 0.25 | Train Error: 0.254257 | 5-Fold Test Error: 0.358176
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.01 | F: 0.3 | Train Error: 0.257886 | 5-Fold Test Error: 0.355983
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.015 | F: 0.15 | Train Error: 0.253565 | 5-Fold Test Error: 0.34981
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.015 | F: 0.2 | Train Error: 0.256289 | 5-Fold Test Error: 0.358834
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.015 | F: 0.25 | Train Error: 0.263667 | 5-Fold Test Error: 0.360116
+NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.015 | F: 0.3 | Train Error: 0.268122 | 5-Fold Test Error: 0.365712
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.002 | F: 0.15 | Train Error: 0.224023 | 5-Fold Test Error: 0.346357
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.002 | F: 0.2 | Train Error: 0.230104 | 5-Fold Test Error: 0.340979
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.002 | F: 0.25 | Train Error: 0.229027 | 5-Fold Test Error: 0.356566
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.002 | F: 0.3 | Train Error: 0.233613 | 5-Fold Test Error: 0.345705
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.005 | F: 0.15 | Train Error: 0.228966 | 5-Fold Test Error: 0.343496
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.005 | F: 0.2 | Train Error: 0.23169 | 5-Fold Test Error: 0.339846
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.005 | F: 0.25 | Train Error: 0.234407 | 5-Fold Test Error: 0.340638
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.005 | F: 0.3 | Train Error: 0.239643 | 5-Fold Test Error: 0.347369
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.008 | F: 0.15 | Train Error: 0.229856 | 5-Fold Test Error: 0.343334
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.008 | F: 0.2 | Train Error: 0.234265 | 5-Fold Test Error: 0.347863
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.008 | F: 0.25 | Train Error: 0.238538 | 5-Fold Test Error: 0.355542
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.008 | F: 0.3 | Train Error: 0.24336 | 5-Fold Test Error: 0.343187
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.01 | F: 0.15 | Train Error: 0.233437 | 5-Fold Test Error: 0.339685
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.01 | F: 0.2 | Train Error: 0.2403 | 5-Fold Test Error: 0.35129
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.01 | F: 0.25 | Train Error: 0.241949 | 5-Fold Test Error: 0.34988
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.01 | F: 0.3 | Train Error: 0.245982 | 5-Fold Test Error: 0.352636
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.015 | F: 0.15 | Train Error: 0.241537 | 5-Fold Test Error: 0.343456
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.015 | F: 0.2 | Train Error: 0.24533 | 5-Fold Test Error: 0.336547
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.015 | F: 0.25 | Train Error: 0.250181 | 5-Fold Test Error: 0.334471
+NP: 50 | Gen: 4000 | Neurons: 48 | CR: 0.015 | F: 0.3 | Train Error: 0.254439 | 5-Fold Test Error: 0.359509
+
+
+=== Best Hyperparameters from 5-Fold Cross-Validation ===
+Best NP: 20
+Best Generations: 3000
+Best Neurons: 48
+Best CR: 0.005
+Best F: 0.15
+Best 5-Fold Test Quantization Error: 0.33433

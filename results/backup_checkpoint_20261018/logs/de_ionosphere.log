@@ -1,0 +1,4 @@
+Loaded optimal parameters from: results/ionosphere/best_params_de.txt
+Running DE 30 runs with:
+  Dataset: ionosphere (ionosphere.dat, ionosphere.som.names)
+  NP: 20 | Gen: 4000 | Neurons: 48 | CR: 0.005 | F: 0.15

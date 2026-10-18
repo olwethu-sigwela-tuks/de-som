@@ -1,0 +1,4 @@
+Loaded optimal parameters from: results/glass/best_params_de.txt
+Running DE 30 runs with:
+  Dataset: glass (glass.dat, glass.som.names)
+  NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.0082 | F: 0.19

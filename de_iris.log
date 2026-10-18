@@ -1,0 +1,6 @@
+Loaded optimal parameters from: results/iris/best_params_de.txt
+Running DE 30 runs with:
+  Dataset: iris (iris.dat, iris.som.names)
+  NP: 20 | Gen: 3000 | Neurons: 48 | CR: 0.0005 | F: 0.15
+Run:  1 | Seed: 1001 | Train QE: 0.245379 | Test QE: 0.387147 | Train TE: 0.825000 | Test TE: 0.700000
+Run:  2 | Seed: 1002 | Train QE: 0.248612 | Test QE: 0.362643 | Train TE: 0.766667 | Test TE: 0.700000

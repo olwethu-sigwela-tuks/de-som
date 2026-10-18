@@ -1,0 +1,14 @@
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.99 | Radius: 2 | RadiusDecay: 0.99 | Train Error: 0.180938 | 5-Fold Test Error: 0.207711
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.99 | Radius: 2 | RadiusDecay: 0.995 | Train Error: 0.182149 | 5-Fold Test Error: 0.209903
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.99 | Radius: 4 | RadiusDecay: 0.99 | Train Error: 0.181525 | 5-Fold Test Error: 0.208978
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.99 | Radius: 4 | RadiusDecay: 0.995 | Train Error: 0.194345 | 5-Fold Test Error: 0.215931
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.99 | Radius: 6 | RadiusDecay: 0.99 | Train Error: 0.185594 | 5-Fold Test Error: 0.208755
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.99 | Radius: 6 | RadiusDecay: 0.995 | Train Error: 0.206288 | 5-Fold Test Error: 0.225541
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.995 | Radius: 2 | RadiusDecay: 0.99 | Train Error: 0.179265 | 5-Fold Test Error: 0.209106
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.995 | Radius: 2 | RadiusDecay: 0.995 | Train Error: 0.180223 | 5-Fold Test Error: 0.208279
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.995 | Radius: 4 | RadiusDecay: 0.99 | Train Error: 0.182469 | 5-Fold Test Error: 0.209199
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.995 | Radius: 4 | RadiusDecay: 0.995 | Train Error: 0.182806 | 5-Fold Test Error: 0.210364
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.995 | Radius: 6 | RadiusDecay: 0.99 | Train Error: 0.181396 | 5-Fold Test Error: 0.208768
+Grid: 6x4 | Epochs: 1000 | LRate: 0.05 | LRDecay: 0.995 | Radius: 6 | RadiusDecay: 0.995 | Train Error: 0.183333 | 5-Fold Test Error: 0.210269
+Grid: 6x4 | Epochs: 1000 | LRate: 0.1 | LRDecay: 0.99 | Radius: 2 | RadiusDecay: 0.99 | Train Error: 0.182976 | 5-Fold Test Error: 0.206287
+Grid: 6x4 | Epochs: 1000 | LRate: 0.1 | LRDecay: 0.99 | Radius: 2 | RadiusDecay: 0.995 | Train Error: 0.184279 | 5-Fold Test Error: 0.210165

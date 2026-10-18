@@ -1,0 +1,37 @@
+Run:  1 | Seed: 1001 | Train QE: 1.407402 | Test QE: 1.422413 | Train TE: 0.046429 | Test TE: 0.070423
+Run:  2 | Seed: 1002 | Train QE: 1.374171 | Test QE: 1.508859 | Train TE: 0.042857 | Test TE: 0.112676
+Run:  3 | Seed: 1003 | Train QE: 1.358831 | Test QE: 1.609752 | Train TE: 0.075000 | Test TE: 0.169014
+Run:  4 | Seed: 1004 | Train QE: 1.316103 | Test QE: 1.805544 | Train TE: 0.025000 | Test TE: 0.126761
+Run:  5 | Seed: 1005 | Train QE: 1.400072 | Test QE: 1.430238 | Train TE: 0.078571 | Test TE: 0.126761
+Run:  6 | Seed: 1006 | Train QE: 1.391379 | Test QE: 1.473210 | Train TE: 0.057143 | Test TE: 0.070423
+Run:  7 | Seed: 1007 | Train QE: 1.371464 | Test QE: 1.600455 | Train TE: 0.046429 | Test TE: 0.154930
+Run:  8 | Seed: 1008 | Train QE: 1.342270 | Test QE: 1.594448 | Train TE: 0.057143 | Test TE: 0.112676
+Run:  9 | Seed: 1009 | Train QE: 1.312374 | Test QE: 1.779406 | Train TE: 0.032143 | Test TE: 0.169014
+Run: 10 | Seed: 1010 | Train QE: 1.345578 | Test QE: 1.600161 | Train TE: 0.071429 | Test TE: 0.084507
+Run: 11 | Seed: 1011 | Train QE: 1.298729 | Test QE: 1.869848 | Train TE: 0.025000 | Test TE: 0.070423
+Run: 12 | Seed: 1012 | Train QE: 1.364541 | Test QE: 1.561441 | Train TE: 0.039286 | Test TE: 0.126761
+Run: 13 | Seed: 1013 | Train QE: 1.407681 | Test QE: 1.390448 | Train TE: 0.053571 | Test TE: 0.070423
+Run: 14 | Seed: 1014 | Train QE: 1.306658 | Test QE: 1.859403 | Train TE: 0.035714 | Test TE: 0.098592
+Run: 15 | Seed: 1015 | Train QE: 1.417845 | Test QE: 1.376425 | Train TE: 0.060714 | Test TE: 0.070423
+Run: 16 | Seed: 1016 | Train QE: 1.384928 | Test QE: 1.629563 | Train TE: 0.064286 | Test TE: 0.112676
+Run: 17 | Seed: 1017 | Train QE: 1.280526 | Test QE: 1.939389 | Train TE: 0.071429 | Test TE: 0.140845
+Run: 18 | Seed: 1018 | Train QE: 1.373193 | Test QE: 1.561797 | Train TE: 0.042857 | Test TE: 0.140845
+Run: 19 | Seed: 1019 | Train QE: 1.419966 | Test QE: 1.352595 | Train TE: 0.039286 | Test TE: 0.098592
+Run: 20 | Seed: 1020 | Train QE: 1.363976 | Test QE: 1.594520 | Train TE: 0.053571 | Test TE: 0.112676
+Run: 21 | Seed: 1021 | Train QE: 1.328930 | Test QE: 1.734388 | Train TE: 0.025000 | Test TE: 0.056338
+Run: 22 | Seed: 1022 | Train QE: 1.364019 | Test QE: 1.592712 | Train TE: 0.071429 | Test TE: 0.154930
+Run: 23 | Seed: 1023 | Train QE: 1.336762 | Test QE: 1.674917 | Train TE: 0.075000 | Test TE: 0.140845
+Run: 24 | Seed: 1024 | Train QE: 1.401550 | Test QE: 1.431586 | Train TE: 0.046429 | Test TE: 0.098592
+Run: 25 | Seed: 1025 | Train QE: 1.345378 | Test QE: 1.638267 | Train TE: 0.032143 | Test TE: 0.084507
+Run: 26 | Seed: 1026 | Train QE: 1.322135 | Test QE: 1.741063 | Train TE: 0.092857 | Test TE: 0.112676
+Run: 27 | Seed: 1027 | Train QE: 1.357263 | Test QE: 1.588893 | Train TE: 0.053571 | Test TE: 0.126761
+Run: 28 | Seed: 1028 | Train QE: 1.325308 | Test QE: 1.771045 | Train TE: 0.050000 | Test TE: 0.112676
+Run: 29 | Seed: 1029 | Train QE: 1.351102 | Test QE: 1.654615 | Train TE: 0.078571 | Test TE: 0.154930
+Run: 30 | Seed: 1030 | Train QE: 1.416216 | Test QE: 1.398512 | Train TE: 0.046429 | Test TE: 0.112676
+
+
+=== 30-Run Summary for Conventional SOM (ionosphere) ===
+Train Quantization Error: Mean = 1.359545 | StdDev = 0.038143 | Min = 1.280526 | Max = 1.419966
+Test Quantization Error:  Mean = 1.606197 | StdDev = 0.157437 | Min = 1.352595 | Max = 1.939389
+Train Topographic Error:  Mean = 0.052976 | StdDev = 0.017994 | Min = 0.025000 | Max = 0.092857
+Test Topographic Error:   Mean = 0.113146 | StdDev = 0.031707 | Min = 0.056338 | Max = 0.169014

@@ -1,0 +1,40 @@
+Loaded optimal parameters from: results/ionosphere/best_params_som.txt
+Running Conventional SOM 30 runs with:
+  Dataset: ionosphere (ionosphere.dat, ionosphere.som.names)
+  Grid: 8x6 | Epochs: 1000 | LRate: 0.5 | LRDecay: 0.99 | Radius: 2 | RadiusDecay: 0.99 | Topology: hexa
+Run:  1 | Seed: 1001 | Train QE: 1.391855 | Test QE: 1.443642 | Train TE: 0.071429 | Test TE: 0.154930
+Run:  2 | Seed: 1002 | Train QE: 1.359883 | Test QE: 1.526262 | Train TE: 0.092857 | Test TE: 0.084507
+Run:  3 | Seed: 1003 | Train QE: 1.334428 | Test QE: 1.603644 | Train TE: 0.060714 | Test TE: 0.112676
+Run:  4 | Seed: 1004 | Train QE: 1.286514 | Test QE: 1.801826 | Train TE: 0.082143 | Test TE: 0.112676
+Run:  5 | Seed: 1005 | Train QE: 1.370722 | Test QE: 1.432290 | Train TE: 0.053571 | Test TE: 0.169014
+Run:  6 | Seed: 1006 | Train QE: 1.371777 | Test QE: 1.484706 | Train TE: 0.057143 | Test TE: 0.098592
+Run:  7 | Seed: 1007 | Train QE: 1.336429 | Test QE: 1.578844 | Train TE: 0.078571 | Test TE: 0.112676
+Run:  8 | Seed: 1008 | Train QE: 1.324793 | Test QE: 1.608195 | Train TE: 0.078571 | Test TE: 0.169014
+Run:  9 | Seed: 1009 | Train QE: 1.296741 | Test QE: 1.748546 | Train TE: 0.064286 | Test TE: 0.126761
+Run: 10 | Seed: 1010 | Train QE: 1.338959 | Test QE: 1.574230 | Train TE: 0.089286 | Test TE: 0.084507
+Run: 11 | Seed: 1011 | Train QE: 1.265537 | Test QE: 1.861336 | Train TE: 0.078571 | Test TE: 0.211268
+Run: 12 | Seed: 1012 | Train QE: 1.353117 | Test QE: 1.555855 | Train TE: 0.078571 | Test TE: 0.112676
+Run: 13 | Seed: 1013 | Train QE: 1.395160 | Test QE: 1.432503 | Train TE: 0.071429 | Test TE: 0.112676
+Run: 14 | Seed: 1014 | Train QE: 1.271560 | Test QE: 1.840684 | Train TE: 0.060714 | Test TE: 0.183099
+Run: 15 | Seed: 1015 | Train QE: 1.380868 | Test QE: 1.408305 | Train TE: 0.096429 | Test TE: 0.070423
+Run: 16 | Seed: 1016 | Train QE: 1.336544 | Test QE: 1.547182 | Train TE: 0.060714 | Test TE: 0.169014
+Run: 17 | Seed: 1017 | Train QE: 1.264639 | Test QE: 1.933124 | Train TE: 0.042857 | Test TE: 0.197183
+Run: 18 | Seed: 1018 | Train QE: 1.362387 | Test QE: 1.571026 | Train TE: 0.071429 | Test TE: 0.197183
+Run: 19 | Seed: 1019 | Train QE: 1.388966 | Test QE: 1.338357 | Train TE: 0.067857 | Test TE: 0.070423
+Run: 20 | Seed: 1020 | Train QE: 1.342601 | Test QE: 1.577214 | Train TE: 0.057143 | Test TE: 0.098592
+Run: 21 | Seed: 1021 | Train QE: 1.307240 | Test QE: 1.750254 | Train TE: 0.064286 | Test TE: 0.126761
+Run: 22 | Seed: 1022 | Train QE: 1.341277 | Test QE: 1.577302 | Train TE: 0.082143 | Test TE: 0.126761
+Run: 23 | Seed: 1023 | Train QE: 1.331266 | Test QE: 1.653635 | Train TE: 0.078571 | Test TE: 0.084507
+Run: 24 | Seed: 1024 | Train QE: 1.379687 | Test QE: 1.409199 | Train TE: 0.092857 | Test TE: 0.084507
+Run: 25 | Seed: 1025 | Train QE: 1.331716 | Test QE: 1.631107 | Train TE: 0.075000 | Test TE: 0.112676
+Run: 26 | Seed: 1026 | Train QE: 1.297071 | Test QE: 1.754725 | Train TE: 0.096429 | Test TE: 0.098592
+Run: 27 | Seed: 1027 | Train QE: 1.333721 | Test QE: 1.567561 | Train TE: 0.046429 | Test TE: 0.056338
+Run: 28 | Seed: 1028 | Train QE: 1.305711 | Test QE: 1.776379 | Train TE: 0.078571 | Test TE: 0.211268
+Run: 29 | Seed: 1029 | Train QE: 1.318433 | Test QE: 1.639818 | Train TE: 0.057143 | Test TE: 0.140845
+Run: 30 | Seed: 1030 | Train QE: 1.397584 | Test QE: 1.382875 | Train TE: 0.064286 | Test TE: 0.154930
+
+=== 30-Run Summary for Conventional SOM (ionosphere) ===
+Train Quantization Error: Mean = 1.337240 | StdDev = 0.038579 | Min = 1.264639 | Max = 1.397584
+Test Quantization Error:  Mean = 1.600354 | StdDev = 0.153130 | Min = 1.338357 | Max = 1.933124
+Train Topographic Error:  Mean = 0.071667 | StdDev = 0.014284 | Min = 0.042857 | Max = 0.096429
+Test Topographic Error:   Mean = 0.128169 | StdDev = 0.044130 | Min = 0.056338 | Max = 0.211268

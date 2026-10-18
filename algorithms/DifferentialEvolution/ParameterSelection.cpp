@@ -1,5 +1,9 @@
 #include <iostream>
 #include <fstream>
+#include <sstream>
+#include <iomanip>
+#include <cstdio>
+#include <set>
 #include <vector>
 #include <cfloat>
 #include <algorithm>
@@ -11,6 +15,13 @@
 #include <unistd.h>
 #include <gsl/gsl_rng.h>
 #include "DifferentialEvolution.h"
+
+std::string makeParamKey(int NP, int numGenerations, int numNeurons, double CR, double F) {
+    std::ostringstream oss;
+    oss << NP << "_" << numGenerations << "_" << numNeurons << "_" 
+        << std::fixed << std::setprecision(5) << CR << "_" << F;
+    return oss.str();
+}
 
 struct Fold {
     std::vector<std::vector<double>> train;
@@ -102,14 +113,43 @@ void selectParameters(const std::string& dataFile, const std::string& namesFile,
     std::string timestampedFile = outDir + "/best_params_de_" + timestamp + ".txt";
     std::string activeFile = outDir + "/best_params_de.txt";
 
-    std::ofstream outTime(timestampedFile);
-    std::ofstream outActive(activeFile);
+    std::set<std::string> evaluated;
+    if (access(activeFile.c_str(), F_OK) == 0) {
+        std::ifstream inFile(activeFile);
+        std::string line;
+        while (std::getline(inFile, line)) {
+            if (line.find("NP:") != std::string::npos && line.find("5-Fold Test Error:") != std::string::npos) {
+                int eNP = 0, eGen = 0, eNeurons = 0;
+                double eCR = 0.0, eF = 0.0, eTrain = 0.0, eTest = 0.0;
+                if (sscanf(line.c_str(), "NP: %d | Gen: %d | Neurons: %d | CR: %lf | F: %lf | Train Error: %lf | 5-Fold Test Error: %lf",
+                           &eNP, &eGen, &eNeurons, &eCR, &eF, &eTrain, &eTest) == 7) {
+                    evaluated.insert(makeParamKey(eNP, eGen, eNeurons, eCR, eF));
+                    if (eTest < bestCvError) {
+                        bestCvError = eTest;
+                        bestNP = eNP;
+                        bestGen = eGen;
+                        bestNeurons = eNeurons;
+                        bestCR = eCR;
+                        bestF = eF;
+                    }
+                }
+            }
+        }
+    }
+
+    std::ofstream outTime(timestampedFile, std::ios::app);
+    std::ofstream outActive(activeFile, std::ios::app);
 
     for (int NP : npCandidates) {
         for (int numGenerations : genCandidates) {
             for (int numNeurons : neuronCandidates) {
                 for (double CR : crCandidates) {
                     for (double F : fCandidates) {
+                        std::string key = makeParamKey(NP, numGenerations, numNeurons, CR, F);
+                        if (evaluated.count(key)) {
+                            continue;
+                        }
+
                         double totalTestError = 0.0;
                         double totalTrainError = 0.0;
 
