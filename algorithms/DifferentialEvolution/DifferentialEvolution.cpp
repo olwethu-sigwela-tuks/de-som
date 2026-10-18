@@ -9,14 +9,13 @@
 #include <sstream>
 #include <fstream>
 #include <iomanip>
+#include <numeric>
 #include "DataFileReader.h"
 #include "DataPattern.h"
 #include "DifferentialEvolution.h"
 
-std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, int numNeurons, std::vector<std::vector<double>>& dataset){
+std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, int numNeurons, std::vector<std::vector<double>>& dataset, std::mt19937& generator){
     
-    
-    std::mt19937 gen(42); 
 
     std::vector<double> minVal(neuronSize, DBL_MAX);
     std::vector<double> maxVal(neuronSize, -DBL_MAX);
@@ -47,7 +46,7 @@ std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, 
     
     for (int n = 0; n < NP; ++n){
         for (int i = 0; i < totalNumWeights; ++i){
-            population[n][i] = distributions[i %  neuronSize](gen);
+            population[n][i] = distributions[i %  neuronSize](generator);
         }
     }
 
@@ -145,11 +144,11 @@ std::string vector2dToString(const std::vector<std::vector<double>>& vect){
     return output;
 }
 
-std::vector<double> differentialEvolution(std::vector<std::vector<double>>& dataset, int neuronSize, int numNeurons, int NP,  int nGenerations, double CR, double F){
-    auto population = generateInitPopulation(NP, neuronSize, numNeurons, dataset);
+std::vector<double> differentialEvolution(std::vector<std::vector<double>>& dataset, int neuronSize, int numNeurons, int NP,  int nGenerations, double CR, double F, std::mt19937& gen){
 
-    std::random_device rd;
-    std::mt19937 gen(42);
+    auto population = generateInitPopulation(NP, neuronSize, numNeurons, dataset, gen);
+
+    
     std::uniform_int_distribution<int> distribVector(0, (neuronSize * numNeurons) - 1);
     std::uniform_real_distribution<double> distribDouble(0.0, 1.0);
     
@@ -225,6 +224,75 @@ std::vector<double> differentialEvolution(std::vector<std::vector<double>>& data
 
 }
 
+struct TrainTestSplit {
+    std::vector<std::vector<double>> train;
+    std::vector<std::vector<double>> test;
+};
+
+TrainTestSplit trainTestSplit(std::vector<std::vector<double>>& dataset, double testRatio, std::mt19937& g){
+
+
+    std::vector<size_t> indices(dataset.size());
+    std::iota(indices.begin(), indices.end(), 0);
+    std::shuffle(indices.begin(), indices.end(), g);
+
+    TrainTestSplit split;
+
+
+    int trainDatasetSize = std::round((1 - testRatio) * dataset.size());
+
+    for (int i = 0; i < indices.size(); ++i){
+
+        if (i < trainDatasetSize){
+            split.train.push_back(dataset[indices[i]]);
+        }
+        else{
+            split.test.push_back(dataset[indices[i]]);
+        }
+    }
+    
+    return split; 
+
+}
+
+std::vector<std::vector<std::vector<double>>> kFoldSplit(std::vector<std::vector<double>>& dataset, int numFolds, std::mt19937& g){
+
+    std::vector<size_t> indices(dataset.size());
+    std::iota(indices.begin(), indices.end(), 0);
+    std::shuffle(indices.begin(), indices.end(), g);
+
+
+
+    std::vector<std::vector<std::vector<double>>> folds;
+
+    
+    for (int n = 0; n < numFolds; ++n){
+        std::vector<std::vector<double>> fold(0);
+        folds.push_back(fold);
+    }
+
+
+    int foldSize = dataset.size() / numFolds; //integer division, remainder goes to last fold
+    int foldIdx = 0;
+
+
+    for (int i = 0; i < indices.size(); ++i){
+
+        folds[foldIdx].push_back(dataset[indices[i]]);
+
+        if ((foldIdx < numFolds - 1) && ((i + 1) % foldSize == 0)){
+            ++foldIdx;
+        }
+
+    }
+    
+    return folds;
+
+}
+
+
+
+
 std::vector<std::vector<double>> loadDataSet(char* dataFileName, char* namesFileName){
 
     DataFileReader reader(dataFileName, namesFileName);
@@ -274,9 +342,9 @@ std::vector<double> loadMapFile(const std::string& mapFileName){
     return weights;
 }
 
-std::vector<double> runDE(std::vector<std::vector<double>>& trainingDataset, std::vector<std::vector<double>>& testDataset, int numGenerations, int numNeurons, int NP, double F, double CR){
+TrainTestError runDE(std::vector<std::vector<double>>& trainingDataset, std::vector<std::vector<double>>& testDataset, int numGenerations, int numNeurons, int NP, double F, double CR, std::mt19937& generator){
 
-    auto bestWeights = differentialEvolution(trainingDataset, neuronSize, numNeurons, NP, numGenerations, CR, F);
+    auto bestWeights = differentialEvolution(trainingDataset, neuronSize, numNeurons, NP, numGenerations, CR, F, generator);
 
     double trainingError = quantizationError(bestWeights, trainingDataset);
     double testError = quantizationError(bestWeights, testDataset);
@@ -284,15 +352,69 @@ std::vector<double> runDE(std::vector<std::vector<double>>& trainingDataset, std
     std::cout << "Best training error: " << quantizationError(bestWeights, trainingDataset) << std::endl;
     std::cout << "Best test error: " << quantizationError(bestWeights, testDataset) << std::endl;
 
-    std::vector<double> trainTestError(2);
+    TrainTestError trainTestError;
 
-    trainTestError[0] = trainingError;
-    trainTestError[1] = testError;
+    trainTestError.trainingError = trainingError;
+    trainTestError.testError = testError;
 
     return trainTestError;
 
+}
+
+
+CrossValError crossValidation(std::vector<std::vector<double>>& dataset,  int numFolds, int numGenerations, int numNeurons, int NP, double F, double CR, std::mt19937& generator){
+
+    auto folds = kFoldSplit(dataset, numFolds, generator);
+
+    std::vector<double> trainingErrors(0);
+    std::vector<double> testErrors(0);
+
+    for (int i = 0; i < numFolds; ++i){
+        auto testFold = folds[i]
+
+         std::vector<std::vector<double>> trainingFold(0)
+
+         for (int j = 0; j < numFolds; ++j){
+            if (j != i){
+                trainingFold.insert(trainingFold.end(), folds[j].begin(), folds[j].end());
+            }
+         }
+
+         TrainTestError trainTestError = runDE(trainFold, testFold, numGenerations, numNeurons, NP, F, CR, generator);
+
+         trainingErrors.push_back(trainTestError.trainingError);
+         testErrors.push_back(trainTestError.testError);
+         
+    }
+
+
+    double sumTrain = std::accumulate(trainingErrors.begin(), trainingErrors.end(), 0.0);
+    double meanTrain = sumTrain / trainingErrors.size();
+
+    double sq_sumTrain = std::inner_product(trainingErrors.begin(), trainingErrors.end(), trainingErrors.begin(), 0.0);
+    double stdevTrain = std::sqrt(sq_sumTrain / trainingErrors.size() - meanTrain * meanTrain);
+
+
+    double sumTest = std::accumulate(testErrors.begin(), testErrors.end(), 0.0);
+    double meanTest = sumTest / testErrors.size();
+
+    double sq_sumTest = std::inner_product(testErrors.begin(), testErrors.end(), testErrors.begin(), 0.0);
+    double stdevTest = std::sqrt(sq_sumTest / testErrors.size() - meanTest * meanTest);
+
+    CrossValError cve;
+
+    cve.meanTrainingError = meanTrain;
+    cve.stdTrainingError = stddevTrain;
+    cve.meanTestError = meanTest;
+    cve.stdTestError = stdevTest;
+
+    return cve;
+
 
 }
+
+
+
 
 
 int main(int argc, char** argv){
@@ -314,7 +436,10 @@ int main(int argc, char** argv){
     double F = std::stod(argv[7]);
     std::string baselineWeightsFileName = argv[8];
 
-    auto bestWeights = differentialEvolution(dataset, neuronSize, numNeurons, NP, numGenerations, CR, F);
+    int seed = 42;
+    std::mt19937 gen(seed);
+
+    auto bestWeights = differentialEvolution(dataset, neuronSize, numNeurons, NP, numGenerations, CR, F, gen);
 
     std::cout << std::endl << std::endl;
 
