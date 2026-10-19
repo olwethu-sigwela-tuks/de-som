@@ -1,5 +1,7 @@
 #include "DifferentialEvolution.h"
 #include <vector>
+#include <gsl/gsl_rng.h>
+#include <cmath>
 
 struct Parameters{
     int NP;
@@ -60,4 +62,35 @@ void selectParametersDE(std::vector<double>& NPs, std::vector<int>& numGeneratio
         }
     }
 
+}
+
+// double sampleUniform(gsl_rng* rng, double minVal, double maxVal){
+//     return minVal + gsl_rng_uniform(rng) * (maxVal - minVal);
+// }
+
+// double sampleLogUniform(gsl_rng* rng, double MinVal, double maxVal){
+//     double logMin = std::log10(minVal);
+//     double logMax = std::log10(maxVal);
+
+//     double logSample = logMin + gsl_rng_uniform(rng) * (logMax - logMin);
+//     return std::pow(10.0, logSample);
+// }
+
+// int sampleChoice(gsl_rng* rng, const std::vector<int>& list){
+//     size_t idx = gsl_rng_uniform_int(rng, options.size());
+//     return options[idx];
+// }
+void randomSearchDE(std::mt19937 rng, std::vector<int> NPChoices, std::vector<int> generationChoices, std::vector<double> FChoices, std::vector<double> CRChoices){
+    std::uniform_int_distribution<int> distNP(NPChoices[0], NPChoices[NPChoices.size() - 1]);
+    std::uniform_int_distribution<int> distGen(generationChoices[0], generationChoices[generationChoices.size() - 1]);
+    std::uniform_int_distribution<int> distF(FChoices[0], FChoices[FChoices.size() - 1]);
+    std::uniform_int_distribution<int> distLogCR(CRChoices[0], CRChoices[CRChoices.size() - 1]);
+
+    //not sure if this is the right place to put these or if they should be in some kind of for loop
+    int NP = (distNP(rng) == 0) ? 20 : 50;
+    int genChoices[] = {2000, 3000, 4000};
+    int numGen = genChoices[distGen(rng)];
+
+    double F = distF(rng);
+    double CR = std::pow(10.0, distLogCR(rng));
 }
