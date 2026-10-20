@@ -26,6 +26,8 @@ TrainTestError runDE(std::vector<std::vector<double>>& trainingDataset, std::vec
 
 std::vector<std::vector<double>> loadDataSet(char* dataFileName, char* namesFileName);
 
+void loadDataSetWithLabels(char* dataFileName, char* namesFileName, std::vector<std::vector<double>>& dataset, std::vector<std::string>& labels);
+
 std::vector<std::vector<std::vector<double>>> kFoldSplit(std::vector<std::vector<double>>& dataset, int numFolds, std::mt19937& g);
 
 CrossValError crossValidation(std::vector<std::vector<double>>& dataset, int numFolds, int numGenerations, int numNeurons, int NP, double F, double CR, std::mt19937& generator, const std::string& datasetName = "");
@@ -36,7 +38,7 @@ double quantizationError(const std::vector<double>& weights, const std::vector<s
 
 double topographicError(const std::vector<double>& weights, int width, int height, bool isHexa, const std::vector<std::vector<double>>& dataset);
 
-void normalizeTrainTest(std::vector<std::vector<double>>& trainSet, std::vector<std::vector<double>>& testSet);
+void minMaxScaleTrainTest(std::vector<std::vector<double>>& trainSet, std::vector<std::vector<double>>& testSet);
 
 double euclideanDistance(const std::vector<double>& vect1, const std::vector<double>& vect2);
 

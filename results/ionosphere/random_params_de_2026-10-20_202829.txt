@@ -1,0 +1,6 @@
+# Random Search Hyperparameter Tuning for Differential Evolution (ionosphere)
+Trial:  1 | NP: 50 | Gen: 3000 | Neurons: 48 | CR: 0.03519 | F: 0.239 | Train Error: 1.093055 | 5-Fold Test Error: 1.119847
+Trial:  2 | NP: 20 | Gen: 2000 | Neurons: 48 | CR: 0.04307 | F: 0.133 | Train Error: 1.048159 | 5-Fold Test Error: 1.079701
+Trial:  3 | NP: 20 | Gen: 3000 | Neurons: 48 | CR: 0.00130 | F: 0.166 | Train Error: 1.050543 | 5-Fold Test Error: 1.119251
+Trial:  4 | NP: 20 | Gen: 3000 | Neurons: 48 | CR: 0.00113 | F: 0.331 | Train Error: 1.075207 | 5-Fold Test Error: 1.152017
+Trial:  5 | NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.00807 | F: 0.153 | Train Error: 1.040539 | 5-Fold Test Error: 1.076074

@@ -1,0 +1,5 @@
+Run:  1 | Seed: 1792513996 | Train QE: 1.931319 | Test QE: 2.014410 | Train TE: 0.950000 | Test TE: 0.957746
+Run:  2 | Seed: 1792514033 | Train QE: 1.934241 | Test QE: 1.899091 | Train TE: 0.889286 | Test TE: 0.915493
+Run:  3 | Seed: 1792514066 | Train QE: 1.960814 | Test QE: 1.886186 | Train TE: 0.942857 | Test TE: 0.901408
+Run:  4 | Seed: 1792514100 | Train QE: 1.964426 | Test QE: 1.960627 | Train TE: 0.978571 | Test TE: 0.971831
+Run:  5 | Seed: 1792514135 | Train QE: 1.901736 | Test QE: 1.992088 | Train TE: 0.975000 | Test TE: 0.971831

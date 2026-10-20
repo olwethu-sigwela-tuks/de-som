@@ -61,7 +61,7 @@ int main(int argc, char** argv) {
     std::string dataFile = "iris.dat";
     std::string namesFile = "iris.som.names";
     int totalTrials = 30;
-    unsigned int masterSeed = 42;
+    unsigned long masterSeed = (unsigned long)std::time(nullptr);
 
     if (argc >= 2) {
         std::string arg1 = argv[1];
@@ -175,7 +175,8 @@ int main(int argc, char** argv) {
         double F = distF(searchRng);
         double CR = std::pow(10.0, distLogCR(searchRng));
 
-        std::mt19937 cvRng(masterSeed + trial * 100);
+        unsigned int evalSeed = 42;
+        std::mt19937 cvRng(evalSeed);
         CrossValError cve = crossValidation(dataset, 5, numGenerations, numNeurons, NP, F, CR, cvRng, datasetName);
 
         std::cout << "Trial: " << std::setw(2) << trial 

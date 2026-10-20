@@ -1,0 +1,1 @@
+Trial:  6 | NP: 50 | Gen: 2000 | Neurons: 48 | CR: 0.00755 | F: 0.287 | Train Error: 1.057142 | 5-Fold Test Error: 1.110390

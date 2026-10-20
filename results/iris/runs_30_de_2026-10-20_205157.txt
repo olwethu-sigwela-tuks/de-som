@@ -1,0 +1,42 @@
+Run: 1 | Seed: 1792529518 | Train QE: 0.069801 | Test QE: 0.092985 | Train TE: 0.883333 | Test TE: 0.900000 | Accuracy: 1.000000 | Precision: 1.000000 | Recall: 1.000000 | F1: 1.000000
+Run: 2 | Seed: 1792529522 | Train QE: 0.065641 | Test QE: 0.105640 | Train TE: 0.916667 | Test TE: 0.966667 | Accuracy: 0.966667 | Precision: 0.962963 | Recall: 0.969697 | F1: 0.964519
+Run: 3 | Seed: 1792529528 | Train QE: 0.070371 | Test QE: 0.115322 | Train TE: 0.941667 | Test TE: 0.866667 | Accuracy: 0.866667 | Precision: 0.882051 | Recall: 0.882051 | F1: 0.882051
+Run: 4 | Seed: 1792529533 | Train QE: 0.066910 | Test QE: 0.122296 | Train TE: 0.866667 | Test TE: 0.900000 | Accuracy: 0.900000 | Precision: 0.916667 | Recall: 0.875000 | F1: 0.875458
+Run: 5 | Seed: 1792529540 | Train QE: 0.067630 | Test QE: 0.097141 | Train TE: 0.841667 | Test TE: 0.833333 | Accuracy: 0.900000 | Precision: 0.914141 | Recall: 0.900000 | F1: 0.895000
+Run: 6 | Seed: 1792529545 | Train QE: 0.068680 | Test QE: 0.104391 | Train TE: 0.933333 | Test TE: 0.900000 | Accuracy: 0.966667 | Precision: 0.962963 | Recall: 0.966667 | F1: 0.962848
+Run: 7 | Seed: 1792529550 | Train QE: 0.067046 | Test QE: 0.105889 | Train TE: 0.966667 | Test TE: 1.000000 | Accuracy: 0.966667 | Precision: 0.969697 | Recall: 0.969697 | F1: 0.968254
+Run: 8 | Seed: 1792529555 | Train QE: 0.070803 | Test QE: 0.106554 | Train TE: 0.783333 | Test TE: 0.833333 | Accuracy: 0.966667 | Precision: 0.966667 | Recall: 0.966667 | F1: 0.964912
+Run: 9 | Seed: 1792529560 | Train QE: 0.065945 | Test QE: 0.112654 | Train TE: 0.883333 | Test TE: 0.900000 | Accuracy: 0.800000 | Precision: 0.821825 | Recall: 0.815385 | F1: 0.808310
+Run: 10 | Seed: 1792529565 | Train QE: 0.067634 | Test QE: 0.113997 | Train TE: 0.925000 | Test TE: 1.000000 | Accuracy: 0.933333 | Precision: 0.866667 | Recall: 0.944444 | F1: 0.886364
+Run: 11 | Seed: 1792529570 | Train QE: 0.067811 | Test QE: 0.110035 | Train TE: 0.958333 | Test TE: 0.966667 | Accuracy: 0.933333 | Precision: 0.932692 | Recall: 0.941026 | F1: 0.934593
+Run: 12 | Seed: 1792529575 | Train QE: 0.069937 | Test QE: 0.104569 | Train TE: 0.966667 | Test TE: 0.966667 | Accuracy: 0.966667 | Precision: 0.962963 | Recall: 0.972222 | F1: 0.965899
+Run: 13 | Seed: 1792529580 | Train QE: 0.069936 | Test QE: 0.093944 | Train TE: 0.991667 | Test TE: 1.000000 | Accuracy: 0.933333 | Precision: 0.936364 | Recall: 0.936364 | F1: 0.936364
+Run: 14 | Seed: 1792529587 | Train QE: 0.066358 | Test QE: 0.110269 | Train TE: 1.000000 | Test TE: 1.000000 | Accuracy: 0.866667 | Precision: 0.866667 | Recall: 0.875000 | F1: 0.865320
+Run: 15 | Seed: 1792529592 | Train QE: 0.067148 | Test QE: 0.109750 | Train TE: 0.875000 | Test TE: 1.000000 | Accuracy: 1.000000 | Precision: 1.000000 | Recall: 1.000000 | F1: 1.000000
+Run: 16 | Seed: 1792529597 | Train QE: 0.065538 | Test QE: 0.116881 | Train TE: 0.958333 | Test TE: 0.966667 | Accuracy: 0.966667 | Precision: 0.966667 | Recall: 0.977778 | F1: 0.970962
+Run: 17 | Seed: 1792529602 | Train QE: 0.069325 | Test QE: 0.091822 | Train TE: 0.958333 | Test TE: 0.933333 | Accuracy: 0.966667 | Precision: 0.958333 | Recall: 0.962963 | F1: 0.958170
+Run: 18 | Seed: 1792529606 | Train QE: 0.066852 | Test QE: 0.106891 | Train TE: 0.825000 | Test TE: 0.933333 | Accuracy: 0.933333 | Precision: 0.925926 | Recall: 0.939153 | F1: 0.926380
+Run: 19 | Seed: 1792529611 | Train QE: 0.067712 | Test QE: 0.108061 | Train TE: 0.916667 | Test TE: 0.933333 | Accuracy: 0.833333 | Precision: 0.874074 | Recall: 0.861111 | F1: 0.858907
+Run: 20 | Seed: 1792529616 | Train QE: 0.068037 | Test QE: 0.094373 | Train TE: 0.925000 | Test TE: 0.933333 | Accuracy: 0.900000 | Precision: 0.906061 | Recall: 0.906061 | F1: 0.904762
+Run: 21 | Seed: 1792529622 | Train QE: 0.068310 | Test QE: 0.101389 | Train TE: 0.858333 | Test TE: 0.966667 | Accuracy: 1.000000 | Precision: 1.000000 | Recall: 1.000000 | F1: 1.000000
+Run: 22 | Seed: 1792529626 | Train QE: 0.070595 | Test QE: 0.099894 | Train TE: 0.916667 | Test TE: 0.966667 | Accuracy: 1.000000 | Precision: 1.000000 | Recall: 1.000000 | F1: 1.000000
+Run: 23 | Seed: 1792529631 | Train QE: 0.067271 | Test QE: 0.112992 | Train TE: 0.941667 | Test TE: 1.000000 | Accuracy: 0.933333 | Precision: 0.955556 | Recall: 0.925926 | F1: 0.934524
+Run: 24 | Seed: 1792529636 | Train QE: 0.068577 | Test QE: 0.095782 | Train TE: 0.808333 | Test TE: 0.866667 | Accuracy: 0.966667 | Precision: 0.966667 | Recall: 0.944444 | F1: 0.952153
+Run: 25 | Seed: 1792529640 | Train QE: 0.069707 | Test QE: 0.094473 | Train TE: 0.891667 | Test TE: 0.933333 | Accuracy: 0.933333 | Precision: 0.933333 | Recall: 0.944444 | F1: 0.932660
+Run: 26 | Seed: 1792529646 | Train QE: 0.067033 | Test QE: 0.107707 | Train TE: 0.850000 | Test TE: 0.800000 | Accuracy: 1.000000 | Precision: 1.000000 | Recall: 1.000000 | F1: 1.000000
+Run: 27 | Seed: 1792529650 | Train QE: 0.070923 | Test QE: 0.103040 | Train TE: 0.841667 | Test TE: 0.900000 | Accuracy: 1.000000 | Precision: 1.000000 | Recall: 1.000000 | F1: 1.000000
+Run: 28 | Seed: 1792529655 | Train QE: 0.063452 | Test QE: 0.112374 | Train TE: 0.775000 | Test TE: 0.833333 | Accuracy: 0.866667 | Precision: 0.878788 | Recall: 0.886040 | F1: 0.872205
+Run: 29 | Seed: 1792529659 | Train QE: 0.068620 | Test QE: 0.108803 | Train TE: 0.991667 | Test TE: 0.900000 | Accuracy: 0.933333 | Precision: 0.904762 | Recall: 0.933333 | F1: 0.907407
+Run: 30 | Seed: 1792529663 | Train QE: 0.066392 | Test QE: 0.100737 | Train TE: 0.933333 | Test TE: 0.866667 | Accuracy: 0.933333 | Precision: 0.925926 | Recall: 0.952381 | F1: 0.932692
+
+=============================================
+DE 30-Run Summary for: iris
+Train QE  : Mean = 0.0679999 | StdDev = 0.00179328 | Min = 0.0634516 | Max = 0.0709229
+Test QE   : Mean = 0.105355 | StdDev = 0.00785053 | Min = 0.0918223 | Max = 0.122296
+Train TE  : Mean = 0.904167 | StdDev = 0.0615396 | Min = 0.775 | Max = 1
+Test TE   : Mean = 0.925556 | StdDev = 0.058515 | Min = 0.8 | Max = 1
+Accuracy  : Mean = 0.937778 | StdDev = 0.0523277 | Min = 0.8 | Max = 1
+Precision : Mean = 0.938614 | StdDev = 0.0480673 | Min = 0.821825 | Max = 1
+Recall    : Mean = 0.941595 | StdDev = 0.0482081 | Min = 0.815385 | Max = 1
+F1-Score  : Mean = 0.935357 | StdDev = 0.0507832 | Min = 0.80831 | Max = 1
+=============================================

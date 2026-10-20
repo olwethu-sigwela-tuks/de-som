@@ -31,7 +31,13 @@ std::vector<std::vector<double>> generateInitPopulation(int NP, int neuronSize, 
     
     std::vector<std::uniform_real_distribution<double>> distributions;
     for (int k = 0; k < neuronSize; ++k){
-        distributions.emplace_back(minVal[k], maxVal[k]);
+        double low = minVal[k];
+        double high = maxVal[k];
+        if (high - low < 1e-12){
+            low -= 1e-6;
+            high += 1e-6;
+        }
+        distributions.emplace_back(low, high);
     }
 
     int totalNumWeights = neuronSize * numNeurons;
@@ -150,24 +156,25 @@ double topographicError(const std::vector<double>& weights, int width, int heigh
     return (double)errorCount / dataset.size();
 }
 
-void normalizeTrainTest(std::vector<std::vector<double>>& trainSet, std::vector<std::vector<double>>& testSet){
+void minMaxScaleTrainTest(std::vector<std::vector<double>>& trainSet, std::vector<std::vector<double>>& testSet){
     if (trainSet.empty()){
         return;
     }
     size_t numFeatures = trainSet[0].size();
-    std::vector<double> minVals(numFeatures, DBL_MAX);
-    std::vector<double> maxVals(numFeatures, -DBL_MAX);
-    for (size_t i = 0; i < trainSet.size(); ++i){
+    size_t nTrain = trainSet.size();
+    std::vector<double> minVal(numFeatures, DBL_MAX);
+    std::vector<double> maxVal(numFeatures, -DBL_MAX);
+    for (size_t i = 0; i < nTrain; ++i){
         for (size_t j = 0; j < numFeatures; ++j){
-            if (trainSet[i][j] < minVals[j]) minVals[j] = trainSet[i][j];
-            if (trainSet[i][j] > maxVals[j]) maxVals[j] = trainSet[i][j];
+            if (trainSet[i][j] < minVal[j]) minVal[j] = trainSet[i][j];
+            if (trainSet[i][j] > maxVal[j]) maxVal[j] = trainSet[i][j];
         }
     }
-    for (size_t i = 0; i < trainSet.size(); ++i){
+    for (size_t i = 0; i < nTrain; ++i){
         for (size_t j = 0; j < numFeatures; ++j){
-            double range = maxVals[j] - minVals[j];
+            double range = maxVal[j] - minVal[j];
             if (range > 1e-12){
-                trainSet[i][j] = (trainSet[i][j] - minVals[j]) / range;
+                trainSet[i][j] = (trainSet[i][j] - minVal[j]) / range;
             } else {
                 trainSet[i][j] = 0.0;
             }
@@ -175,9 +182,9 @@ void normalizeTrainTest(std::vector<std::vector<double>>& trainSet, std::vector<
     }
     for (size_t i = 0; i < testSet.size(); ++i){
         for (size_t j = 0; j < numFeatures; ++j){
-            double range = maxVals[j] - minVals[j];
+            double range = maxVal[j] - minVal[j];
             if (range > 1e-12){
-                testSet[i][j] = (testSet[i][j] - minVals[j]) / range;
+                testSet[i][j] = (testSet[i][j] - minVal[j]) / range;
             } else {
                 testSet[i][j] = 0.0;
             }
@@ -323,6 +330,27 @@ std::vector<std::vector<double>> loadDataSet(char* dataFileName, char* namesFile
     return dataset;
 }
 
+void loadDataSetWithLabels(char* dataFileName, char* namesFileName, std::vector<std::vector<double>>& dataset, std::vector<std::string>& labels){
+    DataFileReader reader(dataFileName, namesFileName);
+    unsigned int numRecords = reader.getRecordCount();
+    unsigned int numFeatures = reader.getAttributeCount();
+
+    dataset.clear();
+    labels.clear();
+    dataset.reserve(numRecords);
+    labels.reserve(numRecords);
+
+    for (unsigned int i = 0; i < numRecords; ++i){
+        DataPattern record = reader.getRecord(i);
+        std::vector<double> recordVector(numFeatures);
+        for (unsigned int j = 0; j < numFeatures; ++j){
+            recordVector[j] = record.getComponent(j);
+        }
+        dataset.push_back(recordVector);
+        labels.push_back(record.getLabel());
+    }
+}
+
 std::vector<double> loadMapFile(const std::string& mapFileName){
     std::ifstream file(mapFileName);
     std::string line;
@@ -331,7 +359,7 @@ std::vector<double> loadMapFile(const std::string& mapFileName){
     std::getline(file, line);
 
     while(std::getline(file, line)){
-        if (line.empty()){
+        if (line.empty() || line[0] == '#'){
             continue;
         }
         std::istringstream iss(line);
@@ -374,9 +402,7 @@ CrossValError crossValidation(std::vector<std::vector<double>>& dataset, int num
             }
         }
 
-        if (datasetName == "glass"){
-            normalizeTrainTest(trainingFold, testFold);
-        }
+        minMaxScaleTrainTest(trainingFold, testFold);
 
         TrainTestError trainTestError = runDE(trainingFold, testFold, numGenerations, numNeurons, NP, F, CR, generator);
         trainingErrors.push_back(trainTestError.trainingError);

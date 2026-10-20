@@ -1,0 +1,7 @@
+Best Grid: 8x6
+Best Neurons: 48
+Best Initial LR: 1.80199
+Best LR Decay: 236.369
+Best Initial Radius: 1.69377
+Best Radius Decay: 10.9403
+Best 5-Fold Test QE: 0.858906

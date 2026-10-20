@@ -1,0 +1,37 @@
+Run:  1 | Seed: 1792513922 | Train QE: 0.189410 | Test QE: 0.328220 | Train TE: 0.200000 | Test TE: 0.233333
+Run:  2 | Seed: 1792513923 | Train QE: 0.162012 | Test QE: 0.376763 | Train TE: 0.141667 | Test TE: 0.366667
+Run:  3 | Seed: 1792513924 | Train QE: 0.187733 | Test QE: 0.293466 | Train TE: 0.166667 | Test TE: 0.133333
+Run:  4 | Seed: 1792513925 | Train QE: 0.180349 | Test QE: 0.335212 | Train TE: 0.125000 | Test TE: 0.200000
+Run:  5 | Seed: 1792513926 | Train QE: 0.183505 | Test QE: 0.324319 | Train TE: 0.258333 | Test TE: 0.300000
+Run:  6 | Seed: 1792513927 | Train QE: 0.186151 | Test QE: 0.313183 | Train TE: 0.133333 | Test TE: 0.266667
+Run:  7 | Seed: 1792513929 | Train QE: 0.177706 | Test QE: 0.317985 | Train TE: 0.225000 | Test TE: 0.366667
+Run:  8 | Seed: 1792513930 | Train QE: 0.191384 | Test QE: 0.323324 | Train TE: 0.216667 | Test TE: 0.266667
+Run:  9 | Seed: 1792513931 | Train QE: 0.187958 | Test QE: 0.370234 | Train TE: 0.216667 | Test TE: 0.300000
+Run: 10 | Seed: 1792513932 | Train QE: 0.180342 | Test QE: 0.391241 | Train TE: 0.183333 | Test TE: 0.166667
+Run: 11 | Seed: 1792513933 | Train QE: 0.183307 | Test QE: 0.338451 | Train TE: 0.208333 | Test TE: 0.433333
+Run: 12 | Seed: 1792513934 | Train QE: 0.189172 | Test QE: 0.307438 | Train TE: 0.216667 | Test TE: 0.233333
+Run: 13 | Seed: 1792513935 | Train QE: 0.183848 | Test QE: 0.341988 | Train TE: 0.208333 | Test TE: 0.233333
+Run: 14 | Seed: 1792513937 | Train QE: 0.188712 | Test QE: 0.334269 | Train TE: 0.183333 | Test TE: 0.433333
+Run: 15 | Seed: 1792513938 | Train QE: 0.190182 | Test QE: 0.295932 | Train TE: 0.225000 | Test TE: 0.266667
+Run: 16 | Seed: 1792513939 | Train QE: 0.182245 | Test QE: 0.313813 | Train TE: 0.283333 | Test TE: 0.300000
+Run: 17 | Seed: 1792513940 | Train QE: 0.184172 | Test QE: 0.315040 | Train TE: 0.283333 | Test TE: 0.233333
+Run: 18 | Seed: 1792513941 | Train QE: 0.197349 | Test QE: 0.313725 | Train TE: 0.166667 | Test TE: 0.300000
+Run: 19 | Seed: 1792513942 | Train QE: 0.193145 | Test QE: 0.276682 | Train TE: 0.183333 | Test TE: 0.300000
+Run: 20 | Seed: 1792513944 | Train QE: 0.175148 | Test QE: 0.320270 | Train TE: 0.275000 | Test TE: 0.200000
+Run: 21 | Seed: 1792513945 | Train QE: 0.178324 | Test QE: 0.322608 | Train TE: 0.241667 | Test TE: 0.333333
+Run: 22 | Seed: 1792513946 | Train QE: 0.181340 | Test QE: 0.331059 | Train TE: 0.158333 | Test TE: 0.133333
+Run: 23 | Seed: 1792513947 | Train QE: 0.187580 | Test QE: 0.324267 | Train TE: 0.091667 | Test TE: 0.266667
+Run: 24 | Seed: 1792513948 | Train QE: 0.179388 | Test QE: 0.337176 | Train TE: 0.125000 | Test TE: 0.300000
+Run: 25 | Seed: 1792513949 | Train QE: 0.179064 | Test QE: 0.352578 | Train TE: 0.208333 | Test TE: 0.333333
+Run: 26 | Seed: 1792513951 | Train QE: 0.194759 | Test QE: 0.321634 | Train TE: 0.208333 | Test TE: 0.300000
+Run: 27 | Seed: 1792513952 | Train QE: 0.183079 | Test QE: 0.335431 | Train TE: 0.200000 | Test TE: 0.400000
+Run: 28 | Seed: 1792513953 | Train QE: 0.182872 | Test QE: 0.328840 | Train TE: 0.258333 | Test TE: 0.333333
+Run: 29 | Seed: 1792513954 | Train QE: 0.176412 | Test QE: 0.341819 | Train TE: 0.208333 | Test TE: 0.466667
+Run: 30 | Seed: 1792513955 | Train QE: 0.197903 | Test QE: 0.283228 | Train TE: 0.175000 | Test TE: 0.133333
+
+
+=== 30-Run Summary for Conventional SOM (iris) ===
+Train Quantization Error: Mean = 0.184485 | StdDev = 0.007331 | Min = 0.162012 | Max = 0.197903
+Test Quantization Error:  Mean = 0.327007 | StdDev = 0.024793 | Min = 0.276682 | Max = 0.391241
+Train Topographic Error:  Mean = 0.199167 | StdDev = 0.047964 | Min = 0.091667 | Max = 0.283333
+Test Topographic Error:   Mean = 0.284444 | StdDev = 0.087421 | Min = 0.133333 | Max = 0.466667
