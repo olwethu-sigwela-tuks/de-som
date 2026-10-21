@@ -74,23 +74,6 @@ bool loadBestSOMParams(const std::string& filename, double& lr, double& lrDecay,
     return true;
 }
 
-std::vector<unsigned long> loadPairedSeeds(const std::string& deRunFile) {
-    std::vector<unsigned long> seeds;
-    std::ifstream in(deRunFile);
-    if (!in.is_open()) return seeds;
-    std::string line;
-    std::getline(in, line);
-    while (std::getline(in, line)) {
-        if (line.empty()) continue;
-        std::istringstream iss(line);
-        unsigned long run, seed;
-        if (iss >> run >> seed) {
-            seeds.push_back(seed);
-        }
-    }
-    return seeds;
-}
-
 int main(int argc, char** argv) {
     std::string datasetName = "iris";
     std::string dataFile = "iris.dat";
@@ -139,9 +122,6 @@ int main(int argc, char** argv) {
     int height = 6;
     bool isHexa = true;
 
-    std::string deFile = outDir + "/runs_30_de.txt";
-    auto pairedSeeds = loadPairedSeeds(deFile);
-
     std::string randinitBin = resolveSOMPAK("randinit");
     std::string vsomBin = resolveSOMPAK("vsom");
     pid_t myPid = getpid();
@@ -152,13 +132,8 @@ int main(int argc, char** argv) {
     out.flush();
 
     for (unsigned long run = 1; run <= 30; ++run) {
-        unsigned long seed;
-        if (run <= pairedSeeds.size()) {
-            seed = pairedSeeds[run - 1];
-        } else {
-            sleep(1);
-            seed = (unsigned long)std::time(nullptr);
-        }
+        sleep(1);
+        unsigned long seed = (unsigned long)std::time(nullptr);
 
         std::vector<size_t> indices(dataset.size());
         std::iota(indices.begin(), indices.end(), 0);

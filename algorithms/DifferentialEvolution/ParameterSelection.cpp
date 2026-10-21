@@ -5,6 +5,7 @@
 #include <iostream>
 #include <cfloat>
 #include <fstream>
+#include <iomanip>
 
 struct Parameters{
     int NP;
@@ -16,9 +17,6 @@ struct Parameters{
 };
 
 void selectParametersDE(std::vector<double>& NPs, std::vector<int>& numGenerations, std::vector<int>& populationSizes, std::vector<double>& CRs, std::vector<double> Fs, std::mt19937& generator){
-
-    //best hyperparameters found so far:
-    //./DifferentialEvolution iris.dat iris.som.names 100 2000 48 0.01 0.5 iris_trained.map
 
     auto dataset = loadDataSet("iris.dat", "iris.som.names");
 
@@ -66,22 +64,6 @@ void selectParametersDE(std::vector<double>& NPs, std::vector<int>& numGeneratio
 
 }
 
-// double sampleUniform(gsl_rng* rng, double minVal, double maxVal){
-//     return minVal + gsl_rng_uniform(rng) * (maxVal - minVal);
-// }
-
-// double sampleLogUniform(gsl_rng* rng, double MinVal, double maxVal){
-//     double logMin = std::log10(minVal);
-//     double logMax = std::log10(maxVal);
-
-//     double logSample = logMin + gsl_rng_uniform(rng) * (logMax - logMin);
-//     return std::pow(10.0, logSample);
-// }
-
-// int sampleChoice(gsl_rng* rng, const std::vector<int>& list){
-//     size_t idx = gsl_rng_uniform_int(rng, options.size());
-//     return options[idx];
-// }
 void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng, int numTrials, std::vector<int> NPChoices, std::vector<int> generationChoices, std::vector<double> FChoices, std::vector<double> CRChoices){
     std::uniform_int_distribution<int> distNP(0, NPChoices.size() - 1);
     std::uniform_int_distribution<int> distGen(0, generationChoices.size() - 1);
@@ -101,25 +83,26 @@ void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng
 
     
 
-    //not sure if this is the right place to put these or if they should be in some kind of for loop
     for (int n = 0; n < numTrials; ++n){
         int NP = NPChoices[distNP(rng)];
-        // int genChoices[] = {2000, 3000, 4000};
         int numGen = generationChoices[distGen(rng)];
 
         double F = distF(rng);
         double CR = std::pow(10.0, distLogCR(rng));
 
+        std::cout << "Candidate " << std::setw(2) << (n + 1) << "/" << numTrials
+                  << " | NP: " << std::setw(3) << NP
+                  << " | Gen: " << std::setw(4) << numGen
+                  << " | F: " << std::fixed << std::setprecision(4) << F
+                  << " | CR: " << std::fixed << std::setprecision(6) << CR
+                  << " | Evaluating 5 folds..." << std::flush;
+
         CrossValError cve = crossValidation(dataset, numFolds, numGen, numNeurons, NP, F, CR, rng);
 
-        std::cout << "{\nNP=" << NP 
-                        << "\n, numGen=" << numGen
-                        << "\n, numNeurons=" << numNeurons
-                        << "\n, CR=" << CR
-                        << "\n, F=" << F << "\n}" << std::endl;
-                        std::cout << numFolds << "-fold cross validation mean training quantisation error: " << cve.meanTrainingError << std::endl;
-                        std::cout << numFolds << "-fold cross validation mean test quantisation error: " << cve.meanTestError << std::endl; 
-        
+        std::cout << " Done! Test QE: " << std::fixed << std::setprecision(6) << cve.meanTestError
+                  << " (Train QE: " << std::fixed << std::setprecision(6) << cve.meanTrainingError << ")"
+                  << std::endl;
+
         logFile << (n + 1) << "\t" << NP << "\t" << numGen << "\t" << F << "\t" << CR << "\t" << cve.meanTestError << std::endl;
 
         if (cve.meanTestError < bestQE) {
@@ -137,11 +120,17 @@ void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng
             bestFile << "Best CR: " << bestCR << "\n";
             bestFile << "Best 5-Fold Test QE: " << bestQE << "\n";
             bestFile.close();
-            std::cout << "---> New best QE found and saved to file!" << std::endl;
+            std::cout << "  --> New Best DE-SOM Parameter Found!" << std::endl;
         }
-}
+    }
 
-
+    std::cout << "\nDE-SOM Best Parameters:" << std::endl;
+    std::cout << "  Grid: 8x6 (48 neurons)" << std::endl;
+    std::cout << "  NP: " << bestNP << std::endl;
+    std::cout << "  Generations: " << bestGen << std::endl;
+    std::cout << "  F: " << bestF << std::endl;
+    std::cout << "  CR: " << bestCR << std::endl;
+    std::cout << "  5-Fold Test QE: " << bestQE << std::endl;
 }
 
 

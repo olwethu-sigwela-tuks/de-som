@@ -261,10 +261,6 @@ std::vector<double> differentialEvolution(std::vector<std::vector<double>>& data
 
     for (int n = 0; n < nGenerations; n++){
 
-        std::cout << "GENERATION " << (n+1) << std::endl;
-        std::cout << "best error " << lowestQuantizationError << std::endl;
-        // std::cout << "Population: " << vector2dToString(population) << std::endl << std::endl;
-
         std::vector<std::vector<double>> newPopulation;
 
         for (int i = 0; i < population.size(); i++){
@@ -371,7 +367,7 @@ std::vector<std::vector<std::vector<double>>> kFoldSplit(std::vector<std::vector
     }
 
 
-    int foldSize = dataset.size() / numFolds; //integer division, remainder goes to last fold
+    int foldSize = dataset.size() / numFolds;
     int foldIdx = 0;
 
 
@@ -424,7 +420,6 @@ std::vector<double> loadMapFile(const std::string& mapFileName){
     std::string line;
     std::vector<double> weights;
 
-    //skip first (header) line
     std::getline(file, line);
 
     while(std::getline(file, line)){
@@ -449,9 +444,6 @@ TrainTestError runDE(std::vector<std::vector<double>>& trainingDataset, std::vec
 
     double trainingError = quantizationError(bestWeights, trainingDataset);
     double testError = quantizationError(bestWeights, testDataset);
-
-    std::cout << "Best training error: " << quantizationError(bestWeights, trainingDataset) << std::endl;
-    std::cout << "Best test error: " << quantizationError(bestWeights, testDataset) << std::endl;
 
     TrainTestError trainTestError;
 
@@ -481,6 +473,7 @@ CrossValError crossValidation(std::vector<std::vector<double>>& dataset,  int nu
             }
          }
 
+         minMaxScaleTrainTest(trainingFold, testFold);
          TrainTestError trainTestError = runDE(trainingFold, testFold, numGenerations, numNeurons, NP, F, CR, generator);
 
          trainingErrors.push_back(trainTestError.trainingError);
@@ -523,9 +516,6 @@ int main(int argc, char** argv){
         std::cerr << "Usage: " << argv[0] << " <datasetFileName> <namesFileName> <NP> <numGenerations> <numNeurons> <CR> <F> <baselineWeightsFileName>" << std::endl;
         return 1;
     }
-
-    //best hyperparameters found so far:
-    //./DifferentialEvolution iris.dat iris.som.names 100 2000 48 0.01 0.5 iris_trained.map
 
     auto dataset = loadDataSet(argv[1], argv[2]);
     int neuronSize = dataset[0].size();
