@@ -127,6 +127,110 @@ std::string vectorToString(const std::vector<double>& vect){
     return oss.str();
 }
 
+
+void minMaxScaleTrainTest(std::vector<std::vector<double>>& trainSet, std::vector<std::vector<double>>& testSet){
+    if (trainSet.empty()){
+        return;
+    }
+    size_t numFeatures = trainSet[0].size();
+    size_t nTrain = trainSet.size();
+    std::vector<double> minVal(numFeatures, DBL_MAX);
+    std::vector<double> maxVal(numFeatures, -DBL_MAX);
+
+    for (size_t i = 0; i < nTrain; ++i){
+        for (size_t j = 0; j < numFeatures; ++j){
+            if (trainSet[i][j] < minVal[j]){
+                minVal[j] = trainSet[i][j];
+            }
+            if (trainSet[i][j] > maxVal[j]){
+                maxVal[j] = trainSet[i][j];
+            }
+        }
+    }
+
+    for (size_t i = 0; i < nTrain; ++i){
+        for (size_t j = 0; j < numFeatures; ++j){
+            if (minVal[j] == maxVal[j]){
+                trainSet[i][j] = minVal[j];
+            } else {
+                trainSet[i][j] = (trainSet[i][j] - minVal[j]) / (maxVal[j] - minVal[j]);
+            }
+        }
+    }
+
+    for (size_t i = 0; i < testSet.size(); ++i){
+        for (size_t j = 0; j < numFeatures; ++j){
+            if (minVal[j] == maxVal[j]){
+                testSet[i][j] = minVal[j];
+            } else {
+                testSet[i][j] = (testSet[i][j] - minVal[j]) / (maxVal[j] - minVal[j]);
+            }
+        }
+    }
+}
+
+double topographicError(const std::vector<double>& weights, int width, int height, bool isHexa, const std::vector<std::vector<double>>& dataset){
+    size_t neuronSize = dataset[0].size();
+    size_t numNeurons = width * height;
+    int errorCount = 0;
+
+    for (size_t d = 0; d < dataset.size(); ++d){
+        const double* x = dataset[d].data();
+        int bmu1 = -1;
+        int bmu2 = -1;
+        double minDistSq1 = DBL_MAX;
+        double minDistSq2 = DBL_MAX;
+
+        for (size_t i = 0; i < numNeurons; ++i){
+            const double* w = weights.data() + i * neuronSize;
+            double distSq = 0.0;
+            for (size_t k = 0; k < neuronSize; ++k){
+                double diff = x[k] - w[k];
+                distSq += diff * diff;
+            }
+            if (distSq < minDistSq1){
+                minDistSq2 = minDistSq1;
+                bmu2 = bmu1;
+                minDistSq1 = distSq;
+                bmu1 = i;
+            } else if (distSq < minDistSq2){
+                minDistSq2 = distSq;
+                bmu2 = i;
+            }
+        }
+
+        int y1 = bmu1 / width;
+        int x1 = bmu1 % width;
+        int y2 = bmu2 / width;
+        int x2 = bmu2 % width;
+        double dx = x1 - x2;
+        double dy = y1 - y2;
+        if (isHexa && (y1 % 2 != y2 % 2)){
+            if (y1 % 2 == 1) dx += 0.5;
+            else dx -= 0.5;
+        }
+        double gridDist = std::sqrt(dx * dx + dy * dy * (isHexa ? 0.75 : 1.0));
+
+        if (gridDist > 1.05){
+            errorCount++;
+        }
+    }
+
+    return (double)errorCount / dataset.size();
+}
+
+void saveMapFile(const std::string& mapFileName, const std::vector<double>& weights, int width, int height, bool isHexa, int neuronSize){
+    std::ofstream file(mapFileName);
+    file << neuronSize << (isHexa ? " hexa " : " rect ") << width << " " << height << " gaussian\n";
+    for (size_t i = 0; i < weights.size(); i += neuronSize){
+        for (size_t k = 0; k < neuronSize; ++k){
+            if (k > 0) file << " ";
+            file << std::setprecision(15) << weights[i + k];
+        }
+        file << "\n";
+    }
+}
+
 std::string vector2dToString(const std::vector<std::vector<double>>& vect){
     std::string output;
 
@@ -223,11 +327,6 @@ std::vector<double> differentialEvolution(std::vector<std::vector<double>>& data
     return bestWeights;
 
 }
-
-struct TrainTestSplit {
-    std::vector<std::vector<double>> train;
-    std::vector<std::vector<double>> test;
-};
 
 TrainTestSplit trainTestSplit(std::vector<std::vector<double>>& dataset, double testRatio, std::mt19937& g){
 
@@ -344,6 +443,8 @@ std::vector<double> loadMapFile(const std::string& mapFileName){
 
 TrainTestError runDE(std::vector<std::vector<double>>& trainingDataset, std::vector<std::vector<double>>& testDataset, int numGenerations, int numNeurons, int NP, double F, double CR, std::mt19937& generator){
 
+    int neuronSize = trainingDataset[0].size();
+
     auto bestWeights = differentialEvolution(trainingDataset, neuronSize, numNeurons, NP, numGenerations, CR, F, generator);
 
     double trainingError = quantizationError(bestWeights, trainingDataset);
@@ -370,9 +471,9 @@ CrossValError crossValidation(std::vector<std::vector<double>>& dataset,  int nu
     std::vector<double> testErrors(0);
 
     for (int i = 0; i < numFolds; ++i){
-        auto testFold = folds[i]
+        auto testFold = folds[i];
 
-         std::vector<std::vector<double>> trainingFold(0)
+         std::vector<std::vector<double>> trainingFold(0);
 
          for (int j = 0; j < numFolds; ++j){
             if (j != i){
@@ -380,7 +481,7 @@ CrossValError crossValidation(std::vector<std::vector<double>>& dataset,  int nu
             }
          }
 
-         TrainTestError trainTestError = runDE(trainFold, testFold, numGenerations, numNeurons, NP, F, CR, generator);
+         TrainTestError trainTestError = runDE(trainingFold, testFold, numGenerations, numNeurons, NP, F, CR, generator);
 
          trainingErrors.push_back(trainTestError.trainingError);
          testErrors.push_back(trainTestError.testError);
@@ -392,19 +493,18 @@ CrossValError crossValidation(std::vector<std::vector<double>>& dataset,  int nu
     double meanTrain = sumTrain / trainingErrors.size();
 
     double sq_sumTrain = std::inner_product(trainingErrors.begin(), trainingErrors.end(), trainingErrors.begin(), 0.0);
-    double stdevTrain = std::sqrt(sq_sumTrain / trainingErrors.size() - meanTrain * meanTrain);
+    double stdevTrain = std::sqrt(std::max(0.0, sq_sumTrain / trainingErrors.size() - meanTrain * meanTrain));
 
 
     double sumTest = std::accumulate(testErrors.begin(), testErrors.end(), 0.0);
     double meanTest = sumTest / testErrors.size();
 
     double sq_sumTest = std::inner_product(testErrors.begin(), testErrors.end(), testErrors.begin(), 0.0);
-    double stdevTest = std::sqrt(sq_sumTest / testErrors.size() - meanTest * meanTest);
-
+    double stdevTest = std::sqrt(std::max(0.0, sq_sumTest / testErrors.size() - meanTest * meanTest));
     CrossValError cve;
 
     cve.meanTrainingError = meanTrain;
-    cve.stdTrainingError = stddevTrain;
+    cve.stdTrainingError = stdevTrain;
     cve.meanTestError = meanTest;
     cve.stdTestError = stdevTest;
 
@@ -416,7 +516,7 @@ CrossValError crossValidation(std::vector<std::vector<double>>& dataset,  int nu
 
 
 
-
+#ifndef NO_MAIN
 int main(int argc, char** argv){
 
     if (argc < 9){
@@ -456,3 +556,4 @@ int main(int argc, char** argv){
     return 0;
 
 }
+#endif
