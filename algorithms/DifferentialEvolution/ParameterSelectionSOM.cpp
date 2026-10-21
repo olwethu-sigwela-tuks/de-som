@@ -111,7 +111,7 @@ int main(int argc, char** argv) {
     int width = 8;
     int height = 6;
     int numNeurons = width * height;
-    int numCandidates = 20;
+    int numCandidates = 30;
 
     std::uniform_real_distribution<double> distLR(0.1, 10.0);
     std::uniform_real_distribution<double> distLRDecay(50.0, 1500.0);
