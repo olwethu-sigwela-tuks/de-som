@@ -1,7 +1,7 @@
 Best Grid: 8x6
 Best Neurons: 48
 Best NP: 100
-Best Gen: 1000
-Best F: 0.124428
-Best CR: 0.663569
-Best 5-Fold Test QE: 0.098925
+Best Gen: 1500
+Best F: 0.255264
+Best CR: 0.749002
+Best 5-Fold Test QE: 0.101269

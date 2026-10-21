@@ -6,6 +6,8 @@
 #include <cfloat>
 #include <fstream>
 #include <iomanip>
+#include <sys/stat.h>
+#include <sys/types.h>
 
 struct Parameters{
     int NP;
@@ -64,7 +66,7 @@ void selectParametersDE(std::vector<double>& NPs, std::vector<int>& numGeneratio
 
 }
 
-void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng, int numTrials, std::vector<int> NPChoices, std::vector<int> generationChoices, std::vector<double> FChoices, std::vector<double> CRChoices){
+void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng, int numTrials, std::vector<int> NPChoices, std::vector<int> generationChoices, std::vector<double> FChoices, std::vector<double> CRChoices, const std::string& datasetName){
     std::uniform_int_distribution<int> distNP(0, NPChoices.size() - 1);
     std::uniform_int_distribution<int> distGen(0, generationChoices.size() - 1);
     std::uniform_real_distribution<double> distF(FChoices[0], FChoices[FChoices.size() - 1]);
@@ -74,14 +76,16 @@ void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng
     int numFolds = 5;
     int numNeurons = 48;
 
-
     int bestNP = 0;
     int bestGen = 0;
     double bestF = 0.0;
     double bestCR = 0.0;
-    std::ofstream logFile("random_trials_de.txt", std::ios_base::app);
 
-    
+    mkdir("results", 0777);
+    std::string outDir = "results/" + datasetName;
+    mkdir(outDir.c_str(), 0777);
+
+    std::ofstream logFile(outDir + "/random_trials_de.txt", std::ios_base::app);
 
     for (int n = 0; n < numTrials; ++n){
         int NP = NPChoices[distNP(rng)];
@@ -111,7 +115,7 @@ void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng
             bestGen = numGen;
             bestF = F;
             bestCR = CR;
-            std::ofstream bestFile("random_params_de.txt");
+            std::ofstream bestFile(outDir + "/random_params_de.txt");
             bestFile << "Best Grid: 8x6\n";
             bestFile << "Best Neurons: " << numNeurons << "\n";
             bestFile << "Best NP: " << bestNP << "\n";
@@ -120,35 +124,57 @@ void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng
             bestFile << "Best CR: " << bestCR << "\n";
             bestFile << "Best 5-Fold Test QE: " << bestQE << "\n";
             bestFile.close();
+
+            std::ofstream bestLocal("random_params_de.txt");
+            bestLocal << "Best Grid: 8x6\n";
+            bestLocal << "Best Neurons: " << numNeurons << "\n";
+            bestLocal << "Best NP: " << bestNP << "\n";
+            bestLocal << "Best Gen: " << bestGen << "\n";
+            bestLocal << "Best F: " << bestF << "\n";
+            bestLocal << "Best CR: " << bestCR << "\n";
+            bestLocal << "Best 5-Fold Test QE: " << bestQE << "\n";
+            bestLocal.close();
+
             std::cout << "  --> New Best DE-SOM Parameter Found!" << std::endl;
         }
     }
 
-    std::cout << "\nDE-SOM Best Parameters:" << std::endl;
+    std::cout << "\nDE-SOM Best Parameters for " << datasetName << ":" << std::endl;
     std::cout << "  Grid: 8x6 (48 neurons)" << std::endl;
     std::cout << "  NP: " << bestNP << std::endl;
     std::cout << "  Generations: " << bestGen << std::endl;
     std::cout << "  F: " << bestF << std::endl;
     std::cout << "  CR: " << bestCR << std::endl;
     std::cout << "  5-Fold Test QE: " << bestQE << std::endl;
+    std::cout << "Saved optimal parameters to: " << outDir + "/random_params_de.txt" << std::endl;
 }
 
 
 int main(int argc, char** argv){
     if (argc < 4){
-        std::cerr << "Usage: " << argv[0] << " <dataFile> <namesFile> <numTrials>" << std::endl;
+        std::cerr << "Usage: " << argv[0] << " <dataFile> <namesFile> <numTrials> [datasetName]" << std::endl;
         return 1;
     }
 
     auto dataset = loadDataSet(argv[1], argv[2]);
     int numTrials = std::stoi(argv[3]);
 
+    std::string datasetName = argv[1];
+    if (argc >= 5) {
+        datasetName = argv[4];
+    } else {
+        size_t slash = datasetName.find_last_of("/\\");
+        if (slash != std::string::npos) datasetName = datasetName.substr(slash + 1);
+        size_t dot = datasetName.find_last_of(".");
+        if (dot != std::string::npos) datasetName = datasetName.substr(0, dot);
+    }
+
     std::mt19937 rng(42);
     std::vector<int> NPChoices = {20, 30, 50, 100};
-    std::vector<int> generationChoices = {1000, 2000, 3000, 4000};
+    std::vector<int> generationChoices = {500, 1000, 1500};
     std::vector<double> FChoices = {0.1, 0.9};
     std::vector<double> CRChoices = {0.001, 0.9};
 
-    randomSearchDE(dataset, rng, numTrials, NPChoices, generationChoices, FChoices, CRChoices);
+    randomSearchDE(dataset, rng, numTrials, NPChoices, generationChoices, FChoices, CRChoices, datasetName);
     return 0;
 }

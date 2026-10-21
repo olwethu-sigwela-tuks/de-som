@@ -1,0 +1,94 @@
+==========================================================
+ Starting DE-SOM Pipeline for: vertebral
+==========================================================
+[Step 1/3] Running 5-fold CV Random Search for DE hyperparameters...
+Candidate  1/30 | NP:  30 | Gen: 1500 | F: 0.2467 | CR: 0.201093 | Evaluating 5 folds... Done! Test QE: 0.202170 (Train QE: 0.187450)
+  --> New Best DE-SOM Parameter Found!
+Candidate  2/30 | NP:  30 | Gen:  500 | F: 0.8590 | CR: 0.027673 | Evaluating 5 folds... Done! Test QE: 0.234933 (Train QE: 0.222099)
+Candidate  3/30 | NP:  50 | Gen: 1000 | F: 0.2823 | CR: 0.041369 | Evaluating 5 folds... Done! Test QE: 0.192996 (Train QE: 0.176476)
+  --> New Best DE-SOM Parameter Found!
+Candidate  4/30 | NP: 100 | Gen: 1500 | F: 0.5044 | CR: 0.128229 | Evaluating 5 folds... Done! Test QE: 0.228184 (Train QE: 0.221540)
+Candidate  5/30 | NP:  30 | Gen:  500 | F: 0.3451 | CR: 0.031328 | Evaluating 5 folds... Done! Test QE: 0.211847 (Train QE: 0.193018)
+Candidate  6/30 | NP:  20 | Gen: 1000 | F: 0.6109 | CR: 0.001753 | Evaluating 5 folds... Done! Test QE: 0.207320 (Train QE: 0.191805)
+Candidate  7/30 | NP:  30 | Gen: 1000 | F: 0.8767 | CR: 0.119205 | Evaluating 5 folds... Done! Test QE: 0.253505 (Train QE: 0.248233)
+Candidate  8/30 | NP:  20 | Gen:  500 | F: 0.2509 | CR: 0.010830 | Evaluating 5 folds... Done! Test QE: 0.202870 (Train QE: 0.188099)
+Candidate  9/30 | NP:  20 | Gen: 1500 | F: 0.8698 | CR: 0.003538 | Evaluating 5 folds... Done! Test QE: 0.203797 (Train QE: 0.184132)
+Candidate 10/30 | NP:  30 | Gen: 1500 | F: 0.2740 | CR: 0.063485 | Evaluating 5 folds... Done! Test QE: 0.190941 (Train QE: 0.175928)
+  --> New Best DE-SOM Parameter Found!
+Candidate 11/30 | NP:  20 | Gen: 1000 | F: 0.5874 | CR: 0.002755 | Evaluating 5 folds... Done! Test QE: 0.204214 (Train QE: 0.185608)
+Candidate 12/30 | NP:  50 | Gen: 1500 | F: 0.5392 | CR: 0.008936 | Evaluating 5 folds... Done! Test QE: 0.196253 (Train QE: 0.169717)
+Candidate 13/30 | NP:  20 | Gen: 1000 | F: 0.6262 | CR: 0.001079 | Evaluating 5 folds... Done! Test QE: 0.217301 (Train QE: 0.195573)
+Candidate 14/30 | NP:  50 | Gen: 1500 | F: 0.6683 | CR: 0.003867 | Evaluating 5 folds... Done! Test QE: 0.199108 (Train QE: 0.174162)
+Candidate 15/30 | NP: 100 | Gen: 1500 | F: 0.8742 | CR: 0.024039 | Evaluating 5 folds... Done! Test QE: 0.214636 (Train QE: 0.201087)
+Candidate 16/30 | NP:  20 | Gen: 1000 | F: 0.7153 | CR: 0.754624 | Evaluating 5 folds... Done! Test QE: 0.291465 (Train QE: 0.281781)
+Candidate 17/30 | NP: 100 | Gen:  500 | F: 0.4545 | CR: 0.235818 | Evaluating 5 folds... Done! Test QE: 0.246218 (Train QE: 0.242462)
+Candidate 18/30 | NP:  30 | Gen:  500 | F: 0.3869 | CR: 0.076798 | Evaluating 5 folds... Done! Test QE: 0.220232 (Train QE: 0.207892)
+Candidate 19/30 | NP: 100 | Gen:  500 | F: 0.6416 | CR: 0.344638 | Evaluating 5 folds... Done! Test QE: 0.283220 (Train QE: 0.277511)
+Candidate 20/30 | NP:  50 | Gen: 1000 | F: 0.4715 | CR: 0.016488 | Evaluating 5 folds... Done! Test QE: 0.198794 (Train QE: 0.177178)
+Candidate 21/30 | NP:  20 | Gen:  500 | F: 0.1186 | CR: 0.001192 | Evaluating 5 folds... Done! Test QE: 0.227811 (Train QE: 0.216241)
+Candidate 22/30 | NP:  20 | Gen:  500 | F: 0.8602 | CR: 0.098571 | Evaluating 5 folds... Done! Test QE: 0.256871 (Train QE: 0.248529)
+Candidate 23/30 | NP:  30 | Gen: 1500 | F: 0.6259 | CR: 0.001673 | Evaluating 5 folds... Done! Test QE: 0.197045 (Train QE: 0.174185)
+Candidate 24/30 | NP:  50 | Gen:  500 | F: 0.6624 | CR: 0.008900 | Evaluating 5 folds... Done! Test QE: 0.224519 (Train QE: 0.209000)
+Candidate 25/30 | NP:  50 | Gen:  500 | F: 0.7055 | CR: 0.507979 | Evaluating 5 folds... Done! Test QE: 0.309006 (Train QE: 0.303184)
+Candidate 26/30 | NP:  20 | Gen:  500 | F: 0.1597 | CR: 0.002728 | Evaluating 5 folds... Done! Test QE: 0.219301 (Train QE: 0.206269)
+Candidate 27/30 | NP:  50 | Gen:  500 | F: 0.5880 | CR: 0.017570 | Evaluating 5 folds... Done! Test QE: 0.219786 (Train QE: 0.202805)
+Candidate 28/30 | NP: 100 | Gen:  500 | F: 0.7529 | CR: 0.046741 | Evaluating 5 folds... Done! Test QE: 0.237497 (Train QE: 0.222320)
+Candidate 29/30 | NP:  50 | Gen: 1000 | F: 0.4793 | CR: 0.366401 | Evaluating 5 folds... Done! Test QE: 0.263704 (Train QE: 0.257915)
+Candidate 30/30 | NP:  20 | Gen:  500 | F: 0.1232 | CR: 0.629569 | Evaluating 5 folds... Done! Test QE: 0.193064 (Train QE: 0.182623)
+
+DE-SOM Best Parameters for vertebral:
+  Grid: 8x6 (48 neurons)
+  NP: 30
+  Generations: 1500
+  F: 0.274048
+  CR: 0.063485
+  5-Fold Test QE: 0.190941
+Saved optimal parameters to: results/vertebral/random_params_de.txt
+[Step 2/3] Running 30 Independent Experiments for DE...
+DE Parameters: NP=30, Gen=1500, Neurons=48, CR=0.0634847, F=0.274048
+Run  1/30 | Seed: 1792616454 | Test QE: 0.249985 | Test TE: 0.983871 | Time: 46.748s
+Run  2/30 | Seed: 1792616502 | Test QE: 0.233138 | Test TE: 0.951613 | Time: 42.8967s
+Run  3/30 | Seed: 1792616546 | Test QE: 0.249525 | Test TE: 0.935484 | Time: 50.1029s
+Run  4/30 | Seed: 1792616597 | Test QE: 0.189112 | Test TE: 0.951613 | Time: 49.1656s
+Run  5/30 | Seed: 1792616647 | Test QE: 0.179732 | Test TE: 0.903226 | Time: 51.7082s
+Run  6/30 | Seed: 1792616700 | Test QE: 0.18299 | Test TE: 0.935484 | Time: 52.3037s
+Run  7/30 | Seed: 1792616753 | Test QE: 0.176484 | Test TE: 0.774194 | Time: 42.7595s
+Run  8/30 | Seed: 1792616797 | Test QE: 0.239953 | Test TE: 0.903226 | Time: 44.0994s
+Run  9/30 | Seed: 1792616842 | Test QE: 0.170914 | Test TE: 0.951613 | Time: 45.9311s
+Run 10/30 | Seed: 1792616889 | Test QE: 0.191155 | Test TE: 0.903226 | Time: 47.9793s
+Run 11/30 | Seed: 1792616938 | Test QE: 0.194021 | Test TE: 0.903226 | Time: 45.7587s
+Run 12/30 | Seed: 1792616985 | Test QE: 0.198694 | Test TE: 0.935484 | Time: 42.2553s
+Run 13/30 | Seed: 1792617028 | Test QE: 0.17775 | Test TE: 0.967742 | Time: 42.122s
+Run 14/30 | Seed: 1792617071 | Test QE: 0.186598 | Test TE: 0.935484 | Time: 43.7774s
+Run 15/30 | Seed: 1792617116 | Test QE: 0.189324 | Test TE: 0.967742 | Time: 43.5522s
+Run 16/30 | Seed: 1792617160 | Test QE: 0.248209 | Test TE: 0.935484 | Time: 41.7046s
+Run 17/30 | Seed: 1792617203 | Test QE: 0.187201 | Test TE: 0.870968 | Time: 45.6606s
+Run 18/30 | Seed: 1792617250 | Test QE: 0.158725 | Test TE: 0.870968 | Time: 43.0858s
+Run 19/30 | Seed: 1792617294 | Test QE: 0.176603 | Test TE: 0.935484 | Time: 44.2826s
+Run 20/30 | Seed: 1792617339 | Test QE: 0.201481 | Test TE: 0.919355 | Time: 42.3855s
+Run 21/30 | Seed: 1792617383 | Test QE: 0.169429 | Test TE: 0.935484 | Time: 38.1356s
+Run 22/30 | Seed: 1792617422 | Test QE: 0.171465 | Test TE: 0.919355 | Time: 48.0116s
+Run 23/30 | Seed: 1792617471 | Test QE: 0.199215 | Test TE: 0.822581 | Time: 39.2239s
+Run 24/30 | Seed: 1792617511 | Test QE: 0.177075 | Test TE: 0.709677 | Time: 45.8476s
+Run 25/30 | Seed: 1792617558 | Test QE: 0.184184 | Test TE: 0.806452 | Time: 44.2444s
+Run 26/30 | Seed: 1792617603 | Test QE: 0.186572 | Test TE: 0.887097 | Time: 42.2496s
+Run 27/30 | Seed: 1792617646 | Test QE: 0.179948 | Test TE: 0.887097 | Time: 43.15s
+Run 28/30 | Seed: 1792617690 | Test QE: 0.178503 | Test TE: 0.758065 | Time: 39.4668s
+Run 29/30 | Seed: 1792617731 | Test QE: 0.194679 | Test TE: 0.870968 | Time: 41.0598s
+Run 30/30 | Seed: 1792617773 | Test QE: 0.168744 | Test TE: 0.951613 | Time: 35.1662s
+Finished 30 runs of DE-SOM. Saved to: results/vertebral/runs_30_de.txt
+[Step 3/3] Generating Unified Distance Matrix (U-Matrix)...
+DE Trained on vertebral.dat:
+  Quantization Error: 0.163089
+  Topographic Error:  0.906452
+Saved DE map to: vertebral_de.map
+GPL Ghostscript 10.06.0 (2025-09-09)
+Copyright (C) 2025 Artifex Software, Inc.  All rights reserved.
+This software is supplied under the GNU AGPLv3 and comes with NO WARRANTY:
+see the file COPYING for details.
+Loading NimbusSans-Regular font from /usr/share/ghostscript/10.06.0/Resource/Font/NimbusSans-Regular... 3632568 2207393 2017032 709421 2 done.
+U-Matrix successfully generated: vertebral_de_umat.png and .eps
+==========================================================
+ Pipeline Complete for DE-SOM on vertebral!
+ Results in: results/vertebral/ and workspace root
+==========================================================

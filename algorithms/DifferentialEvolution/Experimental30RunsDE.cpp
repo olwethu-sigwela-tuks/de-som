@@ -62,7 +62,7 @@ int main(int argc, char** argv) {
 
     if (argc >= 2) {
         std::string arg1 = argv[1];
-        if (arg1 == "iris" || arg1 == "glass" || arg1 == "ionosphere") {
+        if (arg1 == "iris" || arg1 == "glass" || arg1 == "ionosphere" || arg1 == "seeds" || arg1 == "haberman" || arg1 == "vertebral") {
             datasetName = arg1;
             dataFile = arg1 + ".dat";
             namesFile = arg1 + ".som.names";
