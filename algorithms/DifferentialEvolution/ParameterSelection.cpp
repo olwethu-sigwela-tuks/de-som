@@ -8,6 +8,20 @@
 #include <iomanip>
 #include <sys/stat.h>
 #include <sys/types.h>
+#include <unistd.h>
+
+std::string resolveResultsDir(const std::string& datasetName) {
+    if (access("../../iris.dat", F_OK) == 0) {
+        mkdir("../../results", 0777);
+        std::string dir = "../../results/" + datasetName;
+        mkdir(dir.c_str(), 0777);
+        return dir;
+    }
+    mkdir("results", 0777);
+    std::string dir = "results/" + datasetName;
+    mkdir(dir.c_str(), 0777);
+    return dir;
+}
 
 struct Parameters{
     int NP;
@@ -81,9 +95,12 @@ void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng
     double bestF = 0.0;
     double bestCR = 0.0;
 
-    mkdir("results", 0777);
-    std::string outDir = "results/" + datasetName;
-    mkdir(outDir.c_str(), 0777);
+    std::string outDir = resolveResultsDir(datasetName);
+    std::string partitionFile = outDir + "/fold_indices_5_tuning.txt";
+    auto tuningPartition = loadOrCreateFoldPartition(partitionFile, dataset.size(), numFolds, 42);
+
+    gsl_rng* deRng = gsl_rng_alloc(gsl_rng_mt19937);
+    gsl_rng_set(deRng, 42);
 
     std::ofstream logFile(outDir + "/random_trials_de.txt", std::ios_base::app);
 
@@ -101,7 +118,7 @@ void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng
                   << " | CR: " << std::fixed << std::setprecision(6) << CR
                   << " | Evaluating 5 folds..." << std::flush;
 
-        CrossValError cve = crossValidation(dataset, numFolds, numGen, numNeurons, NP, F, CR, rng);
+        CrossValError cve = crossValidationWithPartition(dataset, tuningPartition, numGen, numNeurons, NP, F, CR, deRng);
 
         std::cout << " Done! Test QE: " << std::fixed << std::setprecision(6) << cve.meanTestError
                   << " (Train QE: " << std::fixed << std::setprecision(6) << cve.meanTrainingError << ")"
@@ -147,6 +164,37 @@ void randomSearchDE(std::vector<std::vector<double>>& dataset, std::mt19937& rng
     std::cout << "  CR: " << bestCR << std::endl;
     std::cout << "  5-Fold Test QE: " << bestQE << std::endl;
     std::cout << "Saved optimal parameters to: " << outDir + "/random_params_de.txt" << std::endl;
+
+    std::cout << "\nTraining final DE-SOM map on reference tuning partition (folds 1-4)..." << std::endl;
+    auto finalSplit = getTrainTestFromPartition(dataset, tuningPartition, 0);
+    minMaxScaleTrainTest(finalSplit.train, finalSplit.test);
+
+    int neuronSize = dataset[0].size();
+    int width = 8;
+    int height = 6;
+    bool isHexa = true;
+    gsl_rng* finalRng = gsl_rng_alloc(gsl_rng_mt19937);
+    gsl_rng_set(finalRng, 42);
+
+    auto finalWeights = differentialEvolution(finalSplit.train, neuronSize, numNeurons, bestNP, bestGen, bestCR, bestF, finalRng);
+    gsl_rng_free(finalRng);
+
+    std::string outMapFile = outDir + "/" + datasetName + "_de.map";
+    saveMapFile(outMapFile, finalWeights, width, height, isHexa, neuronSize);
+    saveMapFile(datasetName + "_de.map", finalWeights, width, height, isHexa, neuronSize);
+    if (access("../../iris.dat", F_OK) == 0) {
+        saveMapFile("../../" + datasetName + "_de.map", finalWeights, width, height, isHexa, neuronSize);
+    }
+
+    double finalTrainQE = quantizationError(finalWeights, finalSplit.train);
+    double finalTestQE = quantizationError(finalWeights, finalSplit.test);
+    double finalTrainTE = topographicError(finalWeights, width, height, isHexa, finalSplit.train);
+    double finalTestTE = topographicError(finalWeights, width, height, isHexa, finalSplit.test);
+
+    std::cout << "Final DE-SOM Map Saved to: " << outMapFile << std::endl;
+    std::cout << "  Train QE: " << finalTrainQE << " | Test QE (Fold 0): " << finalTestQE
+              << " | Train TE: " << finalTrainTE << " | Test TE (Fold 0): " << finalTestTE << std::endl;
+    gsl_rng_free(deRng);
 }
 
 

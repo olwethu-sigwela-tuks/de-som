@@ -13,18 +13,23 @@ int main(int argc, char** argv) {
     std::ifstream somIn(argv[2]);
     std::ofstream csvOut(argv[3]);
 
-    csvOut << "Run,Seed,Method,Train_QE,Test_QE,Train_TE,Test_TE,Time_s\n";
+    csvOut << "Run,Fold,Seed,Method,Train_QE,Test_QE,Train_TE,Test_TE,Time_s\n";
 
     std::string line;
     std::getline(deIn, line);
     while (std::getline(deIn, line)) {
         if (line.empty()) continue;
         std::istringstream iss(line);
-        int run;
+        int run, fold = 0;
         unsigned long seed;
         double trQE, teQE, trTE, teTE, timeS;
-        if (iss >> run >> seed >> trQE >> teQE >> trTE >> teTE >> timeS) {
-            csvOut << run << "," << seed << ",DE," << trQE << "," << teQE << "," << trTE << "," << teTE << "," << timeS << "\n";
+        if (iss >> run >> fold >> seed >> trQE >> teQE >> trTE >> teTE >> timeS) {
+            csvOut << run << "," << fold << "," << seed << ",DE," << trQE << "," << teQE << "," << trTE << "," << teTE << "," << timeS << "\n";
+        } else {
+            std::istringstream issLegacy(line);
+            if (issLegacy >> run >> seed >> trQE >> teQE >> trTE >> teTE >> timeS) {
+                csvOut << run << "," << (30 - run) << "," << seed << ",DE," << trQE << "," << teQE << "," << trTE << "," << teTE << "," << timeS << "\n";
+            }
         }
     }
 
@@ -32,11 +37,16 @@ int main(int argc, char** argv) {
     while (std::getline(somIn, line)) {
         if (line.empty()) continue;
         std::istringstream iss(line);
-        int run;
+        int run, fold = 0;
         unsigned long seed;
         double trQE, teQE, trTE, teTE, timeS;
-        if (iss >> run >> seed >> trQE >> teQE >> trTE >> teTE >> timeS) {
-            csvOut << run << "," << seed << ",SOM," << trQE << "," << teQE << "," << trTE << "," << teTE << "," << timeS << "\n";
+        if (iss >> run >> fold >> seed >> trQE >> teQE >> trTE >> teTE >> timeS) {
+            csvOut << run << "," << fold << "," << seed << ",SOM," << trQE << "," << teQE << "," << trTE << "," << teTE << "," << timeS << "\n";
+        } else {
+            std::istringstream issLegacy(line);
+            if (issLegacy >> run >> seed >> trQE >> teQE >> trTE >> teTE >> timeS) {
+                csvOut << run << "," << (30 - run) << "," << seed << ",SOM," << trQE << "," << teQE << "," << trTE << "," << teTE << "," << timeS << "\n";
+            }
         }
     }
 

@@ -126,42 +126,27 @@ int main(int argc, char** argv) {
     std::string vsomBin = resolveSOMPAK("vsom");
     pid_t myPid = getpid();
 
+    std::string partitionFile = outDir + "/fold_indices_30_benchmark.txt";
+    auto benchmarkPartition = loadOrCreateFoldPartition(partitionFile, dataset.size(), 30, 42);
+
     std::string activeFile = outDir + "/runs_30_som.txt";
     std::ofstream out(activeFile);
-    out << "Run\tSeed\tTrain_QE\tTest_QE\tTrain_TE\tTest_TE\tTime_s\n";
+    out << "Run\tFold\tSeed\tTrain_QE\tTest_QE\tTrain_TE\tTest_TE\tTime_s\n";
     out.flush();
 
-    for (unsigned long run = 1; run <= 30; ++run) {
-        sleep(1);
-        unsigned long seed = (unsigned long)std::time(nullptr);
+    for (int run = 1; run <= 30; ++run) {
+        int testWindow = 30 - run; // Run 1 -> Window 29, Run 2 -> Window 28, ..., Run 30 -> Window 0
+        unsigned long seed = run;
 
-        std::vector<size_t> indices(dataset.size());
-        std::iota(indices.begin(), indices.end(), 0);
-        std::mt19937 shuffleRng(seed);
-        std::shuffle(indices.begin(), indices.end(), shuffleRng);
-
-        size_t trainSize = dataset.size() * 4 / 5;
-        std::vector<std::vector<double>> trainSet;
-        std::vector<std::vector<double>> testSet;
-        trainSet.reserve(trainSize);
-        testSet.reserve(dataset.size() - trainSize);
-
-        for (size_t i = 0; i < dataset.size(); ++i) {
-            if (i < trainSize) {
-                trainSet.push_back(dataset[indices[i]]);
-            } else {
-                testSet.push_back(dataset[indices[i]]);
-            }
-        }
-
-        minMaxScaleTrainTest(trainSet, testSet);
+        auto split = getTrainTestFromPartition(dataset, benchmarkPartition, testWindow);
+        minMaxScaleTrainTest(split.train, split.test);
 
         std::string tmpPrefix = "/tmp/sompak_run_" + std::to_string(myPid) + "_r" + std::to_string(run);
         std::string trainFile = tmpPrefix + "_train.som";
         std::string initMap = tmpPrefix + "_init.map";
         std::string outMap = tmpPrefix + "_out.map";
 
-        saveSOMDataFile(trainFile, trainSet);
+        saveSOMDataFile(trainFile, split.train);
 
         auto start = std::chrono::high_resolution_clock::now();
 
@@ -180,15 +165,15 @@ int main(int argc, char** argv) {
         std::remove(initMap.c_str());
         std::remove(outMap.c_str());
 
-        double trainQE = quantizationError(trainedWeights, trainSet);
-        double testQE = quantizationError(trainedWeights, testSet);
-        double trainTE = topographicError(trainedWeights, width, height, isHexa, trainSet);
-        double testTE = topographicError(trainedWeights, width, height, isHexa, testSet);
+        double trainQE = quantizationError(trainedWeights, split.train);
+        double testQE = quantizationError(trainedWeights, split.test);
+        double trainTE = topographicError(trainedWeights, width, height, isHexa, split.train);
+        double testTE = topographicError(trainedWeights, width, height, isHexa, split.test);
 
-        out << run << "\t" << seed << "\t" << trainQE << "\t" << testQE << "\t" << trainTE << "\t" << testTE << "\t" << elapsed << "\n";
+        out << run << "\t" << testWindow << "\t" << seed << "\t" << trainQE << "\t" << testQE << "\t" << trainTE << "\t" << testTE << "\t" << elapsed << "\n";
         out.flush();
 
-        std::cout << "Run " << std::setw(2) << run << "/30 | Seed: " << seed << " | Test QE: " << testQE << " | Test TE: " << testTE << " | Time: " << elapsed << "s" << std::endl;
+        std::cout << "Run " << std::setw(2) << run << "/30 (Fold " << std::setw(2) << testWindow << ") | Seed: " << seed << " | Test QE: " << testQE << " | Test TE: " << testTE << " | Time: " << elapsed << "s" << std::endl;
     }
 
     out.close();

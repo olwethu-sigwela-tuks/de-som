@@ -100,6 +100,7 @@ int main(int argc, char** argv) {
     }
 
     std::cout << "Starting SOM_PAK Random Search for: " << datasetName << std::endl;
+    std::string outDir = resolveResultsDir(datasetName);
     std::string resolvedData = resolveFile(dataFile);
     std::string resolvedNames = resolveFile(namesFile);
     auto dataset = loadDataSet((char*)resolvedData.c_str(), (char*)resolvedNames.c_str());
@@ -117,6 +118,7 @@ int main(int argc, char** argv) {
     std::uniform_real_distribution<double> distLRDecay(50.0, 1500.0);
     std::uniform_real_distribution<double> distRadius(1.0, 8.0);
     std::uniform_real_distribution<double> distRadiusDecay(5.0, 100.0);
+    std::uniform_int_distribution<unsigned long> distSeed(1, 1000000000UL);
 
     double bestTestQE = DBL_MAX;
     SOMCandidate bestCandidate = {0.0, 0.0, 0.0, 0.0, DBL_MAX};
@@ -125,13 +127,8 @@ int main(int argc, char** argv) {
     std::string vsomBin = resolveSOMPAK("vsom");
     pid_t myPid = getpid();
 
-    unsigned int evalSeed = 42;
-    std::mt19937 foldRng(evalSeed);
-    auto baseFolds = kFoldSplit(dataset, numFolds, foldRng);
-    std::vector<unsigned long> foldSeeds(numFolds);
-    for (int f = 0; f < numFolds; ++f) {
-        foldSeeds[f] = foldRng();
-    }
+    std::string partitionFile = outDir + "/fold_indices_5_tuning.txt";
+    auto tuningPartition = loadOrCreateFoldPartition(partitionFile, dataset.size(), numFolds, 42);
 
     for (int c = 1; c <= numCandidates; ++c) {
         double candLR = distLR(rng);
@@ -142,24 +139,17 @@ int main(int argc, char** argv) {
         std::vector<double> foldTestQEs;
 
         for (int f = 0; f < numFolds; ++f) {
-            auto testFold = baseFolds[f];
-            std::vector<std::vector<double>> trainFold;
-            for (int j = 0; j < numFolds; ++j) {
-                if (j != f) {
-                    trainFold.insert(trainFold.end(), baseFolds[j].begin(), baseFolds[j].end());
-                }
-            }
-
-            minMaxScaleTrainTest(trainFold, testFold);
+            auto split = getTrainTestFromPartition(dataset, tuningPartition, f);
+            minMaxScaleTrainTest(split.train, split.test);
 
             std::string tmpPrefix = "/tmp/sompak_param_" + std::to_string(myPid) + "_f" + std::to_string(f);
             std::string trainFile = tmpPrefix + "_train.som";
             std::string initMap = tmpPrefix + "_init.map";
             std::string outMap = tmpPrefix + "_out.map";
 
-            saveSOMDataFile(trainFile, trainFold);
+            saveSOMDataFile(trainFile, split.train);
 
-            unsigned long foldSeed = foldSeeds[f];
+            unsigned long foldSeed = distSeed(rng);
             std::string cmdInit = randinitBin + " -din " + trainFile + " -cout " + initMap + " -topol hexa -neigh gaussian -xdim " + std::to_string(width) + " -ydim " + std::to_string(height) + " -rand " + std::to_string(foldSeed) + " > /dev/null 2>&1";
             std::system(cmdInit.c_str());
 
@@ -173,7 +163,7 @@ int main(int argc, char** argv) {
             std::remove(outMap.c_str());
 
             if (!trainedWeights.empty()) {
-                double qe = quantizationError(trainedWeights, testFold);
+                double qe = quantizationError(trainedWeights, split.test);
                 foldTestQEs.push_back(qe);
             }
         }
@@ -203,7 +193,6 @@ int main(int argc, char** argv) {
     std::cout << "  Radius Decay: " << bestCandidate.radiusDecay << std::endl;
     std::cout << "  5-Fold Test QE: " << bestCandidate.meanTestQE << std::endl;
 
-    std::string outDir = resolveResultsDir(datasetName);
     std::string timestamp = getTimestampString();
     std::string activeFile = outDir + "/random_params_som.txt";
     std::string timestampedFile = outDir + "/random_params_som_" + timestamp + ".txt";
@@ -229,5 +218,45 @@ int main(int argc, char** argv) {
     outTime.close();
 
     std::cout << "Saved optimal parameters to: " << activeFile << std::endl;
+
+    std::cout << "\nTraining final SOM_PAK map on reference tuning partition (folds 1-4)..." << std::endl;
+    auto finalSplit = getTrainTestFromPartition(dataset, tuningPartition, 0);
+    minMaxScaleTrainTest(finalSplit.train, finalSplit.test);
+
+    std::string tmpPrefix = "/tmp/sompak_final_" + std::to_string(myPid);
+    std::string trainFile = tmpPrefix + "_train.som";
+    std::string initMap = tmpPrefix + "_init.map";
+    std::string outMap = tmpPrefix + "_out.map";
+
+    saveSOMDataFile(trainFile, finalSplit.train);
+
+    unsigned long finalSeed = 42;
+    std::string cmdInit = randinitBin + " -din " + trainFile + " -cout " + initMap + " -topol hexa -neigh gaussian -xdim " + std::to_string(width) + " -ydim " + std::to_string(height) + " -rand " + std::to_string(finalSeed) + " > /dev/null 2>&1";
+    std::system(cmdInit.c_str());
+
+    std::string cmdTrain = vsomBin + " -din " + trainFile + " -vin " + trainFile + " -cin " + initMap + " -cout " + outMap + " -lrate " + std::to_string(bestCandidate.lr) + " -lratedecay " + std::to_string(bestCandidate.lrDecay) + " -radius " + std::to_string(bestCandidate.radius) + " -radiusdecay " + std::to_string(bestCandidate.radiusDecay) + " -rand " + std::to_string(finalSeed) + " > /dev/null 2>&1";
+    std::system(cmdTrain.c_str());
+
+    auto finalWeights = loadMapFile(outMap);
+    std::remove(trainFile.c_str());
+    std::remove(initMap.c_str());
+    std::remove(outMap.c_str());
+
+    std::string outMapFile = outDir + "/" + datasetName + "_som.map";
+    saveMapFile(outMapFile, finalWeights, width, height, true, dataset[0].size());
+    saveMapFile(datasetName + "_som.map", finalWeights, width, height, true, dataset[0].size());
+    if (access("../../iris.dat", F_OK) == 0) {
+        saveMapFile("../../" + datasetName + "_som.map", finalWeights, width, height, true, dataset[0].size());
+    }
+
+    double finalTrainQE = quantizationError(finalWeights, finalSplit.train);
+    double finalTestQE = quantizationError(finalWeights, finalSplit.test);
+    double finalTrainTE = topographicError(finalWeights, width, height, true, finalSplit.train);
+    double finalTestTE = topographicError(finalWeights, width, height, true, finalSplit.test);
+
+    std::cout << "Final SOM_PAK Map Saved to: " << outMapFile << std::endl;
+    std::cout << "  Train QE: " << finalTrainQE << " | Test QE (Fold 0): " << finalTestQE
+              << " | Train TE: " << finalTrainTE << " | Test TE (Fold 0): " << finalTestTE << std::endl;
+
     return 0;
 }
