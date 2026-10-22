@@ -2,84 +2,84 @@
  Starting DE-SOM Pipeline for: glass
 ==========================================================
 [Step 1/3] Running 5-fold CV Random Search for DE hyperparameters...
-Candidate  1/30 | NP:  30 | Gen: 1500 | F: 0.2467 | CR: 0.201093 | Evaluating 5 folds... Done! Test QE: 0.228198 (Train QE: 0.202928)
+Candidate  1/30 | NP:  30 | Gen: 2000 | F: 0.2467 | CR: 0.201093 | Evaluating 5 folds... Done! Test QE: 0.229732 (Train QE: 0.184820)
   --> New Best DE-SOM Parameter Found!
-Candidate  2/30 | NP:  30 | Gen: 1000 | F: 0.5967 | CR: 0.005386 | Evaluating 5 folds... Done! Test QE: 0.307576 (Train QE: 0.275641)
-Candidate  3/30 | NP: 100 | Gen: 1500 | F: 0.1686 | CR: 0.320907 | Evaluating 5 folds... Done! Test QE: 0.219730 (Train QE: 0.160488)
+Candidate  2/30 | NP:  30 | Gen: 1500 | F: 0.5785 | CR: 0.019507 | Evaluating 5 folds... Done! Test QE: 0.284624 (Train QE: 0.260191)
+Candidate  3/30 | NP: 100 | Gen: 1500 | F: 0.5282 | CR: 0.202881 | Evaluating 5 folds... Done! Test QE: 0.363414 (Train QE: 0.358820)
+Candidate  4/30 | NP:  30 | Gen: 1000 | F: 0.4439 | CR: 0.034916 | Evaluating 5 folds... Done! Test QE: 0.294988 (Train QE: 0.268344)
+Candidate  5/30 | NP: 100 | Gen: 1000 | F: 0.4741 | CR: 0.001236 | Evaluating 5 folds... Done! Test QE: 0.319039 (Train QE: 0.298293)
+Candidate  6/30 | NP:  30 | Gen: 1500 | F: 0.3518 | CR: 0.043406 | Evaluating 5 folds... Done! Test QE: 0.264101 (Train QE: 0.242201)
+Candidate  7/30 | NP:  20 | Gen: 1000 | F: 0.5786 | CR: 0.014069 | Evaluating 5 folds... Done! Test QE: 0.293598 (Train QE: 0.272342)
+Candidate  8/30 | NP:  30 | Gen: 2000 | F: 0.5560 | CR: 0.001025 | Evaluating 5 folds... Done! Test QE: 0.286679 (Train QE: 0.261388)
+Candidate  9/30 | NP:  20 | Gen: 1000 | F: 0.3578 | CR: 0.001551 | Evaluating 5 folds... Done! Test QE: 0.344430 (Train QE: 0.308230)
+Candidate 10/30 | NP: 100 | Gen: 1500 | F: 0.7323 | CR: 0.705023 | Evaluating 5 folds... Done! Test QE: 0.487495 (Train QE: 0.479776)
+Candidate 11/30 | NP:  30 | Gen: 1000 | F: 0.3510 | CR: 0.055423 | Evaluating 5 folds... Done! Test QE: 0.277011 (Train QE: 0.262840)
+Candidate 12/30 | NP: 100 | Gen: 1500 | F: 0.7972 | CR: 0.058894 | Evaluating 5 folds... Done! Test QE: 0.353281 (Train QE: 0.335393)
+Candidate 13/30 | NP:  20 | Gen: 1000 | F: 0.8381 | CR: 0.001829 | Evaluating 5 folds... Done! Test QE: 0.349982 (Train QE: 0.331987)
+Candidate 14/30 | NP: 100 | Gen: 1000 | F: 0.4346 | CR: 0.157591 | Evaluating 5 folds... Done! Test QE: 0.346492 (Train QE: 0.339515)
+Candidate 15/30 | NP:  50 | Gen: 1000 | F: 0.8407 | CR: 0.038958 | Evaluating 5 folds... Done! Test QE: 0.339210 (Train QE: 0.322804)
+Candidate 16/30 | NP:  20 | Gen: 1000 | F: 0.6441 | CR: 0.850464 | Evaluating 5 folds... Done! Test QE: 0.306974 (Train QE: 0.282721)
+Candidate 17/30 | NP: 100 | Gen: 2000 | F: 0.5782 | CR: 0.016842 | Evaluating 5 folds... Done! Test QE: 0.266045 (Train QE: 0.243112)
+Candidate 18/30 | NP:  20 | Gen: 2000 | F: 0.5172 | CR: 0.008340 | Evaluating 5 folds... Done! Test QE: 0.264545 (Train QE: 0.227805)
+Candidate 19/30 | NP:  20 | Gen: 1500 | F: 0.6279 | CR: 0.035498 | Evaluating 5 folds... Done! Test QE: 0.307471 (Train QE: 0.278953)
+Candidate 20/30 | NP:  30 | Gen: 1500 | F: 0.2499 | CR: 0.020637 | Evaluating 5 folds... Done! Test QE: 0.257573 (Train QE: 0.217744)
+Candidate 21/30 | NP:  30 | Gen: 1000 | F: 0.1978 | CR: 0.002426 | Evaluating 5 folds... Done! Test QE: 0.314669 (Train QE: 0.286684)
+Candidate 22/30 | NP:  20 | Gen: 1000 | F: 0.2574 | CR: 0.003440 | Evaluating 5 folds... Done! Test QE: 0.298382 (Train QE: 0.278525)
+Candidate 23/30 | NP: 100 | Gen: 1500 | F: 0.2288 | CR: 0.011076 | Evaluating 5 folds... Done! Test QE: 0.248046 (Train QE: 0.216283)
+Candidate 24/30 | NP: 100 | Gen: 1500 | F: 0.4678 | CR: 0.120738 | Evaluating 5 folds... Done! Test QE: 0.329707 (Train QE: 0.315894)
+Candidate 25/30 | NP:  50 | Gen: 1000 | F: 0.3346 | CR: 0.001129 | Evaluating 5 folds... Done! Test QE: 0.340657 (Train QE: 0.307595)
+Candidate 26/30 | NP:  20 | Gen: 2000 | F: 0.1153 | CR: 0.076207 | Evaluating 5 folds... Done! Test QE: 0.204164 (Train QE: 0.154434)
   --> New Best DE-SOM Parameter Found!
-Candidate  4/30 | NP:  50 | Gen:  500 | F: 0.8560 | CR: 0.004072 | Evaluating 5 folds... Done! Test QE: 0.363396 (Train QE: 0.355416)
-Candidate  5/30 | NP:  20 | Gen: 1000 | F: 0.3915 | CR: 0.001203 | Evaluating 5 folds... Done! Test QE: 0.342799 (Train QE: 0.311518)
-Candidate  6/30 | NP:  50 | Gen:  500 | F: 0.7606 | CR: 0.016201 | Evaluating 5 folds... Done! Test QE: 0.342594 (Train QE: 0.329946)
-Candidate  7/30 | NP:  20 | Gen:  500 | F: 0.1596 | CR: 0.009412 | Evaluating 5 folds... Done! Test QE: 0.320707 (Train QE: 0.295981)
-Candidate  8/30 | NP:  50 | Gen:  500 | F: 0.6613 | CR: 0.003690 | Evaluating 5 folds... Done! Test QE: 0.389072 (Train QE: 0.341921)
-Candidate  9/30 | NP:  30 | Gen:  500 | F: 0.7225 | CR: 0.001262 | Evaluating 5 folds... Done! Test QE: 0.402743 (Train QE: 0.377595)
-Candidate 10/30 | NP:  50 | Gen: 1000 | F: 0.6726 | CR: 0.528809 | Evaluating 5 folds... Done! Test QE: 0.455623 (Train QE: 0.461114)
-Candidate 11/30 | NP:  50 | Gen:  500 | F: 0.4218 | CR: 0.002524 | Evaluating 5 folds... Done! Test QE: 0.368102 (Train QE: 0.343006)
-Candidate 12/30 | NP: 100 | Gen: 1500 | F: 0.3507 | CR: 0.009663 | Evaluating 5 folds... Done! Test QE: 0.272525 (Train QE: 0.230309)
-Candidate 13/30 | NP:  50 | Gen:  500 | F: 0.7055 | CR: 0.010955 | Evaluating 5 folds... Done! Test QE: 0.348490 (Train QE: 0.321594)
-Candidate 14/30 | NP: 100 | Gen: 1000 | F: 0.3681 | CR: 0.023000 | Evaluating 5 folds... Done! Test QE: 0.276847 (Train QE: 0.252241)
-Candidate 15/30 | NP:  20 | Gen:  500 | F: 0.8762 | CR: 0.021387 | Evaluating 5 folds... Done! Test QE: 0.340022 (Train QE: 0.335004)
-Candidate 16/30 | NP:  20 | Gen: 1500 | F: 0.7780 | CR: 0.104864 | Evaluating 5 folds... Done! Test QE: 0.377532 (Train QE: 0.353585)
-Candidate 17/30 | NP:  30 | Gen: 1000 | F: 0.2210 | CR: 0.047765 | Evaluating 5 folds... Done! Test QE: 0.255619 (Train QE: 0.236387)
-Candidate 18/30 | NP:  50 | Gen:  500 | F: 0.8212 | CR: 0.710701 | Evaluating 5 folds... Done! Test QE: 0.529845 (Train QE: 0.517094)
-Candidate 19/30 | NP: 100 | Gen:  500 | F: 0.2153 | CR: 0.002070 | Evaluating 5 folds... Done! Test QE: 0.346594 (Train QE: 0.336184)
-Candidate 20/30 | NP:  20 | Gen:  500 | F: 0.2434 | CR: 0.006026 | Evaluating 5 folds... Done! Test QE: 0.333300 (Train QE: 0.319247)
-Candidate 21/30 | NP:  30 | Gen:  500 | F: 0.6174 | CR: 0.002511 | Evaluating 5 folds... Done! Test QE: 0.379763 (Train QE: 0.362067)
-Candidate 22/30 | NP:  30 | Gen: 1500 | F: 0.5765 | CR: 0.005978 | Evaluating 5 folds... Done! Test QE: 0.273382 (Train QE: 0.248412)
-Candidate 23/30 | NP:  30 | Gen:  500 | F: 0.3333 | CR: 0.197771 | Evaluating 5 folds... Done! Test QE: 0.341766 (Train QE: 0.333512)
-Candidate 24/30 | NP:  30 | Gen:  500 | F: 0.1681 | CR: 0.025667 | Evaluating 5 folds... Done! Test QE: 0.298657 (Train QE: 0.266007)
-Candidate 25/30 | NP: 100 | Gen: 1000 | F: 0.7884 | CR: 0.005621 | Evaluating 5 folds... Done! Test QE: 0.319274 (Train QE: 0.294126)
-Candidate 26/30 | NP:  50 | Gen: 1500 | F: 0.6001 | CR: 0.088817 | Evaluating 5 folds... Done! Test QE: 0.334745 (Train QE: 0.319962)
-Candidate 27/30 | NP:  20 | Gen:  500 | F: 0.1351 | CR: 0.018948 | Evaluating 5 folds... Done! Test QE: 0.297655 (Train QE: 0.273428)
-Candidate 28/30 | NP:  50 | Gen: 1500 | F: 0.2214 | CR: 0.004248 | Evaluating 5 folds... Done! Test QE: 0.259112 (Train QE: 0.230020)
-Candidate 29/30 | NP:  50 | Gen: 1000 | F: 0.6829 | CR: 0.044181 | Evaluating 5 folds... Done! Test QE: 0.331071 (Train QE: 0.314191)
-Candidate 30/30 | NP:  30 | Gen: 1000 | F: 0.6930 | CR: 0.033210 | Evaluating 5 folds... Done! Test QE: 0.317242 (Train QE: 0.300627)
+Candidate 27/30 | NP:  20 | Gen: 1500 | F: 0.2817 | CR: 0.004632 | Evaluating 5 folds... Done! Test QE: 0.290974 (Train QE: 0.238067)
+Candidate 28/30 | NP:  20 | Gen: 1000 | F: 0.2460 | CR: 0.235831 | Evaluating 5 folds... Done! Test QE: 0.240758 (Train QE: 0.187168)
+Candidate 29/30 | NP:  30 | Gen: 1000 | F: 0.2130 | CR: 0.006832 | Evaluating 5 folds... Done! Test QE: 0.278186 (Train QE: 0.251492)
+Candidate 30/30 | NP:  30 | Gen: 1000 | F: 0.8053 | CR: 0.100047 | Evaluating 5 folds... Done! Test QE: 0.376156 (Train QE: 0.365131)
 
 DE-SOM Best Parameters for glass:
   Grid: 8x6 (48 neurons)
-  NP: 100
-  Generations: 1500
-  F: 0.168647
-  CR: 0.320907
-  5-Fold Test QE: 0.219730
+  NP: 20
+  Generations: 2000
+  F: 0.115287
+  CR: 0.076207
+  5-Fold Test QE: 0.204164
 Saved optimal parameters to: results/glass/random_params_de.txt
 [Step 2/3] Running 30 Independent Experiments for DE...
-DE Parameters: NP=100, Gen=1500, Neurons=48, CR=0.320907, F=0.168647
-Run  1/30 | Seed: 1792616212 | Test QE: 0.230187 | Test TE: 0.767442 | Time: 133.564s
-Run  2/30 | Seed: 1792616347 | Test QE: 0.334318 | Test TE: 0.976744 | Time: 145.418s
-Run  3/30 | Seed: 1792616493 | Test QE: 0.208706 | Test TE: 0.860465 | Time: 142.808s
-Run  4/30 | Seed: 1792616637 | Test QE: 0.214767 | Test TE: 1 | Time: 140.284s
-Run  5/30 | Seed: 1792616778 | Test QE: 0.204385 | Test TE: 0.976744 | Time: 129.034s
-Run  6/30 | Seed: 1792616908 | Test QE: 0.192598 | Test TE: 1 | Time: 132.151s
-Run  7/30 | Seed: 1792617041 | Test QE: 0.203254 | Test TE: 1 | Time: 127.409s
-Run  8/30 | Seed: 1792617170 | Test QE: 0.250934 | Test TE: 0.976744 | Time: 127.451s
-Run  9/30 | Seed: 1792617298 | Test QE: 0.412947 | Test TE: 0.953488 | Time: 127.498s
-Run 10/30 | Seed: 1792617427 | Test QE: 0.22358 | Test TE: 0.953488 | Time: 127.536s
-Run 11/30 | Seed: 1792617555 | Test QE: 0.21878 | Test TE: 1 | Time: 118.565s
-Run 12/30 | Seed: 1792617675 | Test QE: 0.204805 | Test TE: 0.906977 | Time: 121.356s
-Run 13/30 | Seed: 1792617797 | Test QE: 0.35035 | Test TE: 1 | Time: 106.752s
-Run 14/30 | Seed: 1792617905 | Test QE: 0.225319 | Test TE: 1 | Time: 95.0168s
-Run 15/30 | Seed: 1792618001 | Test QE: 0.273164 | Test TE: 0.930233 | Time: 93.5016s
-Run 16/30 | Seed: 1792618095 | Test QE: 0.232893 | Test TE: 1 | Time: 95.7026s
-Run 17/30 | Seed: 1792618192 | Test QE: 0.294845 | Test TE: 0.860465 | Time: 92.3746s
-Run 18/30 | Seed: 1792618285 | Test QE: 0.225415 | Test TE: 0.976744 | Time: 93.4336s
-Run 19/30 | Seed: 1792618380 | Test QE: 0.223693 | Test TE: 0.976744 | Time: 95.0908s
-Run 20/30 | Seed: 1792618476 | Test QE: 0.30303 | Test TE: 0.906977 | Time: 93.0738s
-Run 21/30 | Seed: 1792618570 | Test QE: 0.36771 | Test TE: 0.953488 | Time: 92.4807s
-Run 22/30 | Seed: 1792618664 | Test QE: 0.234731 | Test TE: 0.953488 | Time: 97.5768s
-Run 23/30 | Seed: 1792618762 | Test QE: 0.257326 | Test TE: 0.976744 | Time: 93.062s
-Run 24/30 | Seed: 1792618856 | Test QE: 0.257284 | Test TE: 1 | Time: 91.5996s
-Run 25/30 | Seed: 1792618949 | Test QE: 0.208635 | Test TE: 0.860465 | Time: 90.6799s
-Run 26/30 | Seed: 1792619040 | Test QE: 0.236328 | Test TE: 0.860465 | Time: 91.7199s
-Run 27/30 | Seed: 1792619133 | Test QE: 0.211811 | Test TE: 0.44186 | Time: 91.6232s
-Run 28/30 | Seed: 1792619226 | Test QE: 0.222083 | Test TE: 0.604651 | Time: 92.3032s
-Run 29/30 | Seed: 1792619319 | Test QE: 0.367733 | Test TE: 1 | Time: 92.1315s
-Run 30/30 | Seed: 1792619412 | Test QE: 0.212237 | Test TE: 1 | Time: 100.767s
+DE Parameters: NP=20, Gen=2000, Neurons=48, CR=0.0762065, F=0.115287
+Run  1/30 | Seed: 1792656815 | Test QE: 0.221991 | Test TE: 0.976744 | Time: 35.779s
+Run  2/30 | Seed: 1792656851 | Test QE: 0.244731 | Test TE: 1 | Time: 32.8869s
+Run  3/30 | Seed: 1792656885 | Test QE: 0.159461 | Test TE: 0.813953 | Time: 36.0497s
+Run  4/30 | Seed: 1792656922 | Test QE: 0.186859 | Test TE: 1 | Time: 32.9007s
+Run  5/30 | Seed: 1792656956 | Test QE: 0.218408 | Test TE: 0.953488 | Time: 35.2177s
+Run  6/30 | Seed: 1792656993 | Test QE: 0.194731 | Test TE: 0.976744 | Time: 34.6179s
+Run  7/30 | Seed: 1792657028 | Test QE: 0.181226 | Test TE: 0.976744 | Time: 34.9948s
+Run  8/30 | Seed: 1792657064 | Test QE: 0.19087 | Test TE: 0.860465 | Time: 35.275s
+Run  9/30 | Seed: 1792657100 | Test QE: 0.186796 | Test TE: 0.976744 | Time: 34.4019s
+Run 10/30 | Seed: 1792657136 | Test QE: 0.23256 | Test TE: 0.906977 | Time: 35.3703s
+Run 11/30 | Seed: 1792657172 | Test QE: 0.186034 | Test TE: 1 | Time: 35.6184s
+Run 12/30 | Seed: 1792657209 | Test QE: 0.225049 | Test TE: 0.953488 | Time: 33.4014s
+Run 13/30 | Seed: 1792657243 | Test QE: 0.233169 | Test TE: 0.790698 | Time: 34.8258s
+Run 14/30 | Seed: 1792657279 | Test QE: 0.240545 | Test TE: 1 | Time: 33.4465s
+Run 15/30 | Seed: 1792657314 | Test QE: 0.196807 | Test TE: 0.976744 | Time: 35.5007s
+Run 16/30 | Seed: 1792657350 | Test QE: 0.18466 | Test TE: 0.976744 | Time: 33.9112s
+Run 17/30 | Seed: 1792657385 | Test QE: 0.181845 | Test TE: 1 | Time: 34.8012s
+Run 18/30 | Seed: 1792657421 | Test QE: 0.235503 | Test TE: 0.837209 | Time: 35.3377s
+Run 19/30 | Seed: 1792657457 | Test QE: 0.181137 | Test TE: 0.930233 | Time: 32.2568s
+Run 20/30 | Seed: 1792657490 | Test QE: 0.194873 | Test TE: 0.976744 | Time: 31.9061s
+Run 21/30 | Seed: 1792657523 | Test QE: 0.181672 | Test TE: 0.976744 | Time: 37.5814s
+Run 22/30 | Seed: 1792657562 | Test QE: 0.242891 | Test TE: 0.930233 | Time: 33.4601s
+Run 23/30 | Seed: 1792657596 | Test QE: 0.216542 | Test TE: 0.72093 | Time: 34.7737s
+Run 24/30 | Seed: 1792657632 | Test QE: 0.200999 | Test TE: 0.883721 | Time: 34.2061s
+Run 25/30 | Seed: 1792657667 | Test QE: 0.33234 | Test TE: 0.883721 | Time: 38.1762s
+Run 26/30 | Seed: 1792657706 | Test QE: 0.22501 | Test TE: 0.790698 | Time: 35.2567s
+Run 27/30 | Seed: 1792657743 | Test QE: 0.238485 | Test TE: 0.953488 | Time: 31.7606s
+Run 28/30 | Seed: 1792657775 | Test QE: 0.236122 | Test TE: 0.813953 | Time: 33.1592s
+Run 29/30 | Seed: 1792657810 | Test QE: 0.189187 | Test TE: 0.813953 | Time: 31.3045s
+Run 30/30 | Seed: 1792657842 | Test QE: 0.195587 | Test TE: 0.953488 | Time: 32.1577s
 Finished 30 runs of DE-SOM. Saved to: results/glass/runs_30_de.txt
 [Step 3/3] Generating Unified Distance Matrix (U-Matrix)...
 DE Trained on glass.dat:
-  Quantization Error: 0.169474
-  Topographic Error:  0.775701
+  Quantization Error: 0.16734
+  Topographic Error:  0.948598
 Saved DE map to: glass_de.map
 GPL Ghostscript 10.06.0 (2025-09-09)
 Copyright (C) 2025 Artifex Software, Inc.  All rights reserved.

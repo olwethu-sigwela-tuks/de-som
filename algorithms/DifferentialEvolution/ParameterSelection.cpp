@@ -171,7 +171,7 @@ int main(int argc, char** argv){
 
     std::mt19937 rng(42);
     std::vector<int> NPChoices = {20, 30, 50, 100};
-    std::vector<int> generationChoices = {500, 1000, 1500};
+    std::vector<int> generationChoices = {1000, 1500, 2000};
     std::vector<double> FChoices = {0.1, 0.9};
     std::vector<double> CRChoices = {0.001, 0.9};
 
