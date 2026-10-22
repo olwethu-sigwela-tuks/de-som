@@ -2,4 +2,94 @@
  Starting DE-SOM Pipeline for: haberman
 ==========================================================
 [Step 1/3] Running 5-fold CV Random Search for DE hyperparameters...
-Candidate  1/30 | NP:  30 | Gen: 2000 | F: 0.2467 | CR: 0.201093 | Evaluating 5 folds...
+Candidate  1/30 | NP:  30 | Gen: 2000 | F: 0.2467 | CR: 0.201093 | Evaluating 5 folds... Done! Test QE: 0.103219 (Train QE: 0.091671)
+  --> New Best DE-SOM Parameter Found!
+Candidate  2/30 | NP:  50 | Gen: 1500 | F: 0.4567 | CR: 0.001974 | Evaluating 5 folds... Done! Test QE: 0.098732 (Train QE: 0.074195)
+  --> New Best DE-SOM Parameter Found!
+Candidate  3/30 | NP:  20 | Gen: 1500 | F: 0.3670 | CR: 0.002643 | Evaluating 5 folds... Done! Test QE: 0.097692 (Train QE: 0.074087)
+  --> New Best DE-SOM Parameter Found!
+Candidate  4/30 | NP:  50 | Gen: 1500 | F: 0.1451 | CR: 0.135819 | Evaluating 5 folds... Done! Test QE: 0.105148 (Train QE: 0.088457)
+Candidate  5/30 | NP: 100 | Gen: 2000 | F: 0.1006 | CR: 0.853559 | Evaluating 5 folds... Done! Test QE: 0.099798 (Train QE: 0.071088)
+Candidate  6/30 | NP:  20 | Gen: 1500 | F: 0.5893 | CR: 0.001049 | Evaluating 5 folds... Done! Test QE: 0.104513 (Train QE: 0.075840)
+Candidate  7/30 | NP:  30 | Gen: 1000 | F: 0.5198 | CR: 0.015181 | Evaluating 5 folds... Done! Test QE: 0.106892 (Train QE: 0.085538)
+Candidate  8/30 | NP:  20 | Gen: 1000 | F: 0.8790 | CR: 0.004872 | Evaluating 5 folds... Done! Test QE: 0.108233 (Train QE: 0.086619)
+Candidate  9/30 | NP:  30 | Gen: 1000 | F: 0.5947 | CR: 0.013486 | Evaluating 5 folds... Done! Test QE: 0.109482 (Train QE: 0.085224)
+Candidate 10/30 | NP:  50 | Gen: 2000 | F: 0.4734 | CR: 0.347114 | Evaluating 5 folds... Done! Test QE: 0.126604 (Train QE: 0.121424)
+Candidate 11/30 | NP:  50 | Gen: 2000 | F: 0.4604 | CR: 0.001094 | Evaluating 5 folds... Done! Test QE: 0.097331 (Train QE: 0.070977)
+  --> New Best DE-SOM Parameter Found!
+Candidate 12/30 | NP: 100 | Gen: 2000 | F: 0.5506 | CR: 0.013760 | Evaluating 5 folds... Done! Test QE: 0.101138 (Train QE: 0.078090)
+Candidate 13/30 | NP:  30 | Gen: 1000 | F: 0.2847 | CR: 0.005153 | Evaluating 5 folds... Done! Test QE: 0.099019 (Train QE: 0.078460)
+Candidate 14/30 | NP:  30 | Gen: 2000 | F: 0.5880 | CR: 0.289374 | Evaluating 5 folds... Done! Test QE: 0.130823 (Train QE: 0.127806)
+Candidate 15/30 | NP:  20 | Gen: 1000 | F: 0.4128 | CR: 0.003454 | Evaluating 5 folds... Done! Test QE: 0.105845 (Train QE: 0.079510)
+Candidate 16/30 | NP:  50 | Gen: 2000 | F: 0.4401 | CR: 0.004114 | Evaluating 5 folds... Done! Test QE: 0.097619 (Train QE: 0.072955)
+Candidate 17/30 | NP:  50 | Gen: 1500 | F: 0.1251 | CR: 0.307832 | Evaluating 5 folds... Done! Test QE: 0.103188 (Train QE: 0.086619)
+Candidate 18/30 | NP: 100 | Gen: 1500 | F: 0.4161 | CR: 0.546481 | Evaluating 5 folds... Done! Test QE: 0.132917 (Train QE: 0.123321)
+Candidate 19/30 | NP:  50 | Gen: 2000 | F: 0.3612 | CR: 0.048443 | Evaluating 5 folds... Done! Test QE: 0.106997 (Train QE: 0.085301)
+Candidate 20/30 | NP:  20 | Gen: 1500 | F: 0.8689 | CR: 0.312578 | Evaluating 5 folds... Done! Test QE: 0.143674 (Train QE: 0.139981)
+Candidate 21/30 | NP:  30 | Gen: 2000 | F: 0.5318 | CR: 0.054126 | Evaluating 5 folds... Done! Test QE: 0.104831 (Train QE: 0.091071)
+Candidate 22/30 | NP:  30 | Gen: 2000 | F: 0.5856 | CR: 0.006537 | Evaluating 5 folds... Done! Test QE: 0.101173 (Train QE: 0.075062)
+Candidate 23/30 | NP:  20 | Gen: 1000 | F: 0.2322 | CR: 0.001112 | Evaluating 5 folds... Done! Test QE: 0.107679 (Train QE: 0.077192)
+Candidate 24/30 | NP: 100 | Gen: 1500 | F: 0.4159 | CR: 0.007363 | Evaluating 5 folds... Done! Test QE: 0.099688 (Train QE: 0.075336)
+Candidate 25/30 | NP:  20 | Gen: 1000 | F: 0.2591 | CR: 0.126321 | Evaluating 5 folds... Done! Test QE: 0.104796 (Train QE: 0.092763)
+Candidate 26/30 | NP:  50 | Gen: 2000 | F: 0.5848 | CR: 0.545152 | Evaluating 5 folds... Done! Test QE: 0.144046 (Train QE: 0.138688)
+Candidate 27/30 | NP:  30 | Gen: 1500 | F: 0.8320 | CR: 0.324504 | Evaluating 5 folds... Done! Test QE: 0.150098 (Train QE: 0.141278)
+Candidate 28/30 | NP:  50 | Gen: 1500 | F: 0.1763 | CR: 0.012459 | Evaluating 5 folds... Done! Test QE: 0.102222 (Train QE: 0.075031)
+Candidate 29/30 | NP:  30 | Gen: 2000 | F: 0.6327 | CR: 0.055826 | Evaluating 5 folds... Done! Test QE: 0.112242 (Train QE: 0.097020)
+Candidate 30/30 | NP:  50 | Gen: 1000 | F: 0.5490 | CR: 0.013529 | Evaluating 5 folds... Done! Test QE: 0.102622 (Train QE: 0.084438)
+
+DE-SOM Best Parameters for haberman:
+  Grid: 8x6 (48 neurons)
+  NP: 50
+  Generations: 2000
+  F: 0.460399
+  CR: 0.001094
+  5-Fold Test QE: 0.097331
+Saved optimal parameters to: results/haberman/random_params_de.txt
+
+Training final DE-SOM map on reference tuning partition (folds 1-4)...
+Final DE-SOM Map Saved to: results/haberman/haberman_de.map
+  Train QE: 0.072043 | Test QE (Fold 0): 0.101738 | Train TE: 0.930612 | Test TE (Fold 0): 0.950820
+[Step 2/3] Running 30 Independent Experiments for DE...
+DE Parameters: NP=50, Gen=2000, Neurons=48, CR=0.00109443, F=0.460399
+Run  1/30 (Fold 29) | Seed: 1 | Test QE: 0.104239 | Test TE: 0.909091 | Time: 92.1985s
+Run  2/30 (Fold 28) | Seed: 2 | Test QE: 0.0913227 | Test TE: 0.9 | Time: 91.9399s
+Run  3/30 (Fold 27) | Seed: 3 | Test QE: 0.120985 | Test TE: 0.6 | Time: 89.3575s
+Run  4/30 (Fold 26) | Seed: 4 | Test QE: 0.10409 | Test TE: 0.9 | Time: 92.8698s
+Run  5/30 (Fold 25) | Seed: 5 | Test QE: 0.0556833 | Test TE: 0.9 | Time: 90.259s
+Run  6/30 (Fold 24) | Seed: 6 | Test QE: 0.109478 | Test TE: 0.909091 | Time: 92.8825s
+Run  7/30 (Fold 23) | Seed: 7 | Test QE: 0.091831 | Test TE: 0.9 | Time: 90.2693s
+Run  8/30 (Fold 22) | Seed: 8 | Test QE: 0.082991 | Test TE: 0.9 | Time: 94.2129s
+Run  9/30 (Fold 21) | Seed: 9 | Test QE: 0.103434 | Test TE: 1 | Time: 91.9014s
+Run 10/30 (Fold 20) | Seed: 10 | Test QE: 0.0922725 | Test TE: 0.7 | Time: 104.174s
+Run 11/30 (Fold 19) | Seed: 11 | Test QE: 0.081081 | Test TE: 0.909091 | Time: 106.52s
+Run 12/30 (Fold 18) | Seed: 12 | Test QE: 0.100306 | Test TE: 0.9 | Time: 95.0552s
+Run 13/30 (Fold 17) | Seed: 13 | Test QE: 0.120397 | Test TE: 1 | Time: 94.6219s
+Run 14/30 (Fold 16) | Seed: 14 | Test QE: 0.111913 | Test TE: 1 | Time: 94.6553s
+Run 15/30 (Fold 15) | Seed: 15 | Test QE: 0.074357 | Test TE: 0.8 | Time: 93.473s
+Run 16/30 (Fold 14) | Seed: 16 | Test QE: 0.123449 | Test TE: 1 | Time: 79.9028s
+Run 17/30 (Fold 13) | Seed: 17 | Test QE: 0.0732621 | Test TE: 0.8 | Time: 88.2479s
+Run 18/30 (Fold 12) | Seed: 18 | Test QE: 0.088845 | Test TE: 0.9 | Time: 80.036s
+Run 19/30 (Fold 11) | Seed: 19 | Test QE: 0.106445 | Test TE: 0.8 | Time: 80.76s
+Run 20/30 (Fold 10) | Seed: 20 | Test QE: 0.0969299 | Test TE: 0.9 | Time: 79.2938s
+Run 21/30 (Fold  9) | Seed: 21 | Test QE: 0.132931 | Test TE: 0.818182 | Time: 78.9393s
+Run 22/30 (Fold  8) | Seed: 22 | Test QE: 0.0902099 | Test TE: 1 | Time: 81.7553s
+Run 23/30 (Fold  7) | Seed: 23 | Test QE: 0.114587 | Test TE: 0.8 | Time: 79.2927s
+Run 24/30 (Fold  6) | Seed: 24 | Test QE: 0.114694 | Test TE: 0.7 | Time: 81.001s
+Run 25/30 (Fold  5) | Seed: 25 | Test QE: 0.0841514 | Test TE: 0.7 | Time: 80.868s
+Run 26/30 (Fold  4) | Seed: 26 | Test QE: 0.08116 | Test TE: 0.909091 | Time: 80.0281s
+Run 27/30 (Fold  3) | Seed: 27 | Test QE: 0.127923 | Test TE: 0.8 | Time: 78.5565s
+Run 28/30 (Fold  2) | Seed: 28 | Test QE: 0.0892677 | Test TE: 0.8 | Time: 71.9838s
+Run 29/30 (Fold  1) | Seed: 29 | Test QE: 0.0993814 | Test TE: 0.9 | Time: 74.5059s
+Run 30/30 (Fold  0) | Seed: 30 | Test QE: 0.120839 | Test TE: 0.8 | Time: 71.5402s
+Finished 30 runs of DE-SOM. Saved to: results/haberman/runs_30_de.txt
+[Step 3/3] Generating Unified Distance Matrix (U-Matrix)...
+GPL Ghostscript 10.06.0 (2025-09-09)
+Copyright (C) 2025 Artifex Software, Inc.  All rights reserved.
+This software is supplied under the GNU AGPLv3 and comes with NO WARRANTY:
+see the file COPYING for details.
+Loading NimbusSans-Regular font from /usr/share/ghostscript/10.06.0/Resource/Font/NimbusSans-Regular... 3632568 2207425 2017032 709603 2 done.
+U-Matrix successfully generated: results/haberman/haberman_de_umat.png and .eps
+==========================================================
+ Pipeline Complete for DE-SOM on haberman!
+ Results in: results/haberman/ and workspace root
+==========================================================

@@ -7,3 +7,92 @@ Candidate  1/30 | LR: 7.9858 | LRDecay: 315.98 | Rad: 6.458 | RadDecay: 61.70 | 
   --> New Best SOM_PAK Parameter Found!
 Candidate  2/30 | LR: 8.6751 | LRDecay: 921.62 | Rad: 5.957 | RadDecay: 6.96 | 5-Fold Test QE: 0.192925
   --> New Best SOM_PAK Parameter Found!
+Candidate  3/30 | LR: 1.9001 | LRDecay: 315.94 | Rad: 3.130 | RadDecay: 54.85 | 5-Fold Test QE: 0.191411
+  --> New Best SOM_PAK Parameter Found!
+Candidate  4/30 | LR: 0.5620 | LRDecay: 1461.95 | Rad: 2.629 | RadDecay: 13.61 | 5-Fold Test QE: 0.191019
+  --> New Best SOM_PAK Parameter Found!
+Candidate  5/30 | LR: 4.7210 | LRDecay: 1296.91 | Rad: 5.762 | RadDecay: 47.80 | 5-Fold Test QE: 0.189288
+  --> New Best SOM_PAK Parameter Found!
+Candidate  6/30 | LR: 3.9156 | LRDecay: 73.15 | Rad: 2.616 | RadDecay: 27.90 | 5-Fold Test QE: 0.190722
+Candidate  7/30 | LR: 0.4404 | LRDecay: 1368.51 | Rad: 2.811 | RadDecay: 67.94 | 5-Fold Test QE: 0.192704
+Candidate  8/30 | LR: 5.7202 | LRDecay: 95.40 | Rad: 6.896 | RadDecay: 47.73 | 5-Fold Test QE: 0.196516
+Candidate  9/30 | LR: 3.3328 | LRDecay: 877.14 | Rad: 4.646 | RadDecay: 96.31 | 5-Fold Test QE: 0.187401
+  --> New Best SOM_PAK Parameter Found!
+Candidate 10/30 | LR: 8.3045 | LRDecay: 567.29 | Rad: 2.967 | RadDecay: 56.56 | 5-Fold Test QE: 0.191755
+Candidate 11/30 | LR: 0.2548 | LRDecay: 663.93 | Rad: 3.764 | RadDecay: 32.88 | 5-Fold Test QE: 0.191152
+Candidate 12/30 | LR: 7.9227 | LRDecay: 928.64 | Rad: 7.484 | RadDecay: 66.85 | 5-Fold Test QE: 0.190861
+Candidate 13/30 | LR: 1.0446 | LRDecay: 587.69 | Rad: 5.682 | RadDecay: 68.26 | 5-Fold Test QE: 0.193930
+Candidate 14/30 | LR: 4.7749 | LRDecay: 223.41 | Rad: 5.993 | RadDecay: 77.27 | 5-Fold Test QE: 0.191867
+Candidate 15/30 | LR: 5.2751 | LRDecay: 669.93 | Rad: 1.178 | RadDecay: 15.25 | 5-Fold Test QE: 0.191766
+Candidate 16/30 | LR: 5.6764 | LRDecay: 1058.50 | Rad: 1.975 | RadDecay: 62.42 | 5-Fold Test QE: 0.194732
+Candidate 17/30 | LR: 0.8621 | LRDecay: 470.14 | Rad: 2.129 | RadDecay: 93.32 | 5-Fold Test QE: 0.192159
+Candidate 18/30 | LR: 4.6197 | LRDecay: 366.74 | Rad: 3.916 | RadDecay: 88.91 | 5-Fold Test QE: 0.196255
+Candidate 19/30 | LR: 3.2482 | LRDecay: 209.58 | Rad: 2.596 | RadDecay: 45.58 | 5-Fold Test QE: 0.193450
+Candidate 20/30 | LR: 1.7301 | LRDecay: 824.43 | Rad: 4.394 | RadDecay: 70.78 | 5-Fold Test QE: 0.191898
+Candidate 21/30 | LR: 3.2997 | LRDecay: 802.25 | Rad: 5.921 | RadDecay: 39.54 | 5-Fold Test QE: 0.196002
+Candidate 22/30 | LR: 6.9934 | LRDecay: 1082.79 | Rad: 2.037 | RadDecay: 99.79 | 5-Fold Test QE: 0.190173
+Candidate 23/30 | LR: 0.6096 | LRDecay: 454.04 | Rad: 7.358 | RadDecay: 27.76 | 5-Fold Test QE: 0.192783
+Candidate 24/30 | LR: 2.4963 | LRDecay: 1024.60 | Rad: 6.331 | RadDecay: 27.58 | 5-Fold Test QE: 0.191911
+Candidate 25/30 | LR: 9.8359 | LRDecay: 628.30 | Rad: 6.715 | RadDecay: 80.84 | 5-Fold Test QE: 0.195793
+Candidate 26/30 | LR: 0.5037 | LRDecay: 906.79 | Rad: 5.743 | RadDecay: 6.58 | 5-Fold Test QE: 0.190140
+Candidate 27/30 | LR: 1.0521 | LRDecay: 1413.76 | Rad: 3.783 | RadDecay: 54.19 | 5-Fold Test QE: 0.190671
+Candidate 28/30 | LR: 1.2234 | LRDecay: 1390.81 | Rad: 7.141 | RadDecay: 29.50 | 5-Fold Test QE: 0.193260
+Candidate 29/30 | LR: 5.3435 | LRDecay: 400.69 | Rad: 1.652 | RadDecay: 90.24 | 5-Fold Test QE: 0.191211
+Candidate 30/30 | LR: 2.8608 | LRDecay: 1065.52 | Rad: 6.927 | RadDecay: 86.35 | 5-Fold Test QE: 0.192268
+
+SOM_PAK Best Parameters for seeds:
+  Grid: 8x6 (48 neurons)
+  Initial LR: 3.332754
+  LR Decay: 877.143765
+  Initial Radius: 4.645840
+  Radius Decay: 96.311343
+  5-Fold Test QE: 0.187401
+Saved optimal parameters to: results/seeds/random_params_som.txt
+
+Training final SOM_PAK map on reference tuning partition (folds 1-4)...
+Final SOM_PAK Map Saved to: results/seeds/seeds_som.map
+  Train QE: 0.166211 | Test QE (Fold 0): 0.196944 | Train TE: 0.047619 | Test TE (Fold 0): 0.071429
+[Step 2/3] Running 30 Independent Experiments for SOM...
+SOM_PAK Parameters: LR=3.33275, LRDecay=877.144, Radius=4.64584, RadiusDecay=96.3113
+Run  1/30 (Fold 29) | Seed: 1 | Test QE: 0.168411 | Test TE: 0 | Time: 4.32944s
+Run  2/30 (Fold 28) | Seed: 2 | Test QE: 0.258827 | Test TE: 0.142857 | Time: 5.6138s
+Run  3/30 (Fold 27) | Seed: 3 | Test QE: 0.144446 | Test TE: 0 | Time: 4.58218s
+Run  4/30 (Fold 26) | Seed: 4 | Test QE: 0.210186 | Test TE: 0.142857 | Time: 5.63582s
+Run  5/30 (Fold 25) | Seed: 5 | Test QE: 0.287913 | Test TE: 0 | Time: 5.96388s
+Run  6/30 (Fold 24) | Seed: 6 | Test QE: 0.195095 | Test TE: 0.142857 | Time: 3.96538s
+Run  7/30 (Fold 23) | Seed: 7 | Test QE: 0.223004 | Test TE: 0 | Time: 4.88389s
+Run  8/30 (Fold 22) | Seed: 8 | Test QE: 0.182735 | Test TE: 0.142857 | Time: 4.36323s
+Run  9/30 (Fold 21) | Seed: 9 | Test QE: 0.142121 | Test TE: 0.142857 | Time: 4.03884s
+Run 10/30 (Fold 20) | Seed: 10 | Test QE: 0.168644 | Test TE: 0.142857 | Time: 4.52629s
+Run 11/30 (Fold 19) | Seed: 11 | Test QE: 0.190943 | Test TE: 0 | Time: 4.12848s
+Run 12/30 (Fold 18) | Seed: 12 | Test QE: 0.169854 | Test TE: 0.142857 | Time: 3.65299s
+Run 13/30 (Fold 17) | Seed: 13 | Test QE: 0.20174 | Test TE: 0.142857 | Time: 4.09519s
+Run 14/30 (Fold 16) | Seed: 14 | Test QE: 0.17187 | Test TE: 0 | Time: 5.43042s
+Run 15/30 (Fold 15) | Seed: 15 | Test QE: 0.238774 | Test TE: 0.142857 | Time: 5.52581s
+Run 16/30 (Fold 14) | Seed: 16 | Test QE: 0.173821 | Test TE: 0.142857 | Time: 5.44843s
+Run 17/30 (Fold 13) | Seed: 17 | Test QE: 0.134769 | Test TE: 0 | Time: 4.32985s
+Run 18/30 (Fold 12) | Seed: 18 | Test QE: 0.152307 | Test TE: 0 | Time: 5.76833s
+Run 19/30 (Fold 11) | Seed: 19 | Test QE: 0.180359 | Test TE: 0.142857 | Time: 5.17652s
+Run 20/30 (Fold 10) | Seed: 20 | Test QE: 0.17906 | Test TE: 0.285714 | Time: 4.04552s
+Run 21/30 (Fold  9) | Seed: 21 | Test QE: 0.15774 | Test TE: 0 | Time: 4.61895s
+Run 22/30 (Fold  8) | Seed: 22 | Test QE: 0.215786 | Test TE: 0 | Time: 4.19968s
+Run 23/30 (Fold  7) | Seed: 23 | Test QE: 0.227043 | Test TE: 0.142857 | Time: 4.62852s
+Run 24/30 (Fold  6) | Seed: 24 | Test QE: 0.133107 | Test TE: 0.142857 | Time: 5.41936s
+Run 25/30 (Fold  5) | Seed: 25 | Test QE: 0.187608 | Test TE: 0 | Time: 5.92302s
+Run 26/30 (Fold  4) | Seed: 26 | Test QE: 0.179123 | Test TE: 0.142857 | Time: 5.84481s
+Run 27/30 (Fold  3) | Seed: 27 | Test QE: 0.256948 | Test TE: 0 | Time: 5.7501s
+Run 28/30 (Fold  2) | Seed: 28 | Test QE: 0.24787 | Test TE: 0 | Time: 4.44556s
+Run 29/30 (Fold  1) | Seed: 29 | Test QE: 0.162214 | Test TE: 0 | Time: 3.82174s
+Run 30/30 (Fold  0) | Seed: 30 | Test QE: 0.191813 | Test TE: 0 | Time: 5.93237s
+Finished 30 runs of Conventional SOM. Saved to: results/seeds/runs_30_som.txt
+[Step 3/3] Generating Unified Distance Matrix (U-Matrix)...
+GPL Ghostscript 10.06.0 (2025-09-09)
+Copyright (C) 2025 Artifex Software, Inc.  All rights reserved.
+This software is supplied under the GNU AGPLv3 and comes with NO WARRANTY:
+see the file COPYING for details.
+Loading NimbusSans-Regular font from /usr/share/ghostscript/10.06.0/Resource/Font/NimbusSans-Regular... 3632568 2207415 2017032 709465 2 done.
+U-Matrix successfully generated: results/seeds/seeds_som_umat.png and .eps
+==========================================================
+ Pipeline Complete for SOM on seeds!
+ Results in: results/seeds/ and workspace root
+==========================================================
