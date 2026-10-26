@@ -1,0 +1,97 @@
+==========================================================
+ Starting SOM_PAK Pipeline for: vertebral
+==========================================================
+[Step 1/3] Running 5-fold CV Random Search for SOM hyperparameters...
+Starting SOM_PAK Random Search for: vertebral
+Candidate  1/30 | LR: 7.9858 | LRDecay: 315.98 | Rad: 6.458 | RadDecay: 61.70 | 5-Fold Test QE: 0.172556
+  --> New Best SOM_PAK Parameter Found!
+Candidate  2/30 | LR: 8.6751 | LRDecay: 921.62 | Rad: 5.957 | RadDecay: 6.96 | 5-Fold Test QE: 0.171563
+  --> New Best SOM_PAK Parameter Found!
+Candidate  3/30 | LR: 1.9001 | LRDecay: 315.94 | Rad: 3.130 | RadDecay: 54.85 | 5-Fold Test QE: 0.170585
+  --> New Best SOM_PAK Parameter Found!
+Candidate  4/30 | LR: 0.5620 | LRDecay: 1461.95 | Rad: 2.629 | RadDecay: 13.61 | 5-Fold Test QE: 0.170479
+  --> New Best SOM_PAK Parameter Found!
+Candidate  5/30 | LR: 4.7210 | LRDecay: 1296.91 | Rad: 5.762 | RadDecay: 47.80 | 5-Fold Test QE: 0.170920
+Candidate  6/30 | LR: 3.9156 | LRDecay: 73.15 | Rad: 2.616 | RadDecay: 27.90 | 5-Fold Test QE: 0.171685
+Candidate  7/30 | LR: 0.4404 | LRDecay: 1368.51 | Rad: 2.811 | RadDecay: 67.94 | 5-Fold Test QE: 0.172348
+Candidate  8/30 | LR: 5.7202 | LRDecay: 95.40 | Rad: 6.896 | RadDecay: 47.73 | 5-Fold Test QE: 0.174175
+Candidate  9/30 | LR: 3.3328 | LRDecay: 877.14 | Rad: 4.646 | RadDecay: 96.31 | 5-Fold Test QE: 0.171588
+Candidate 10/30 | LR: 8.3045 | LRDecay: 567.29 | Rad: 2.967 | RadDecay: 56.56 | 5-Fold Test QE: 0.172149
+Candidate 11/30 | LR: 0.2548 | LRDecay: 663.93 | Rad: 3.764 | RadDecay: 32.88 | 5-Fold Test QE: 0.172082
+Candidate 12/30 | LR: 7.9227 | LRDecay: 928.64 | Rad: 7.484 | RadDecay: 66.85 | 5-Fold Test QE: 0.169488
+  --> New Best SOM_PAK Parameter Found!
+Candidate 13/30 | LR: 1.0446 | LRDecay: 587.69 | Rad: 5.682 | RadDecay: 68.26 | 5-Fold Test QE: 0.171766
+Candidate 14/30 | LR: 4.7749 | LRDecay: 223.41 | Rad: 5.993 | RadDecay: 77.27 | 5-Fold Test QE: 0.171215
+Candidate 15/30 | LR: 5.2751 | LRDecay: 669.93 | Rad: 1.178 | RadDecay: 15.25 | 5-Fold Test QE: 0.172038
+Candidate 16/30 | LR: 5.6764 | LRDecay: 1058.50 | Rad: 1.975 | RadDecay: 62.42 | 5-Fold Test QE: 0.171592
+Candidate 17/30 | LR: 0.8621 | LRDecay: 470.14 | Rad: 2.129 | RadDecay: 93.32 | 5-Fold Test QE: 0.173059
+Candidate 18/30 | LR: 4.6197 | LRDecay: 366.74 | Rad: 3.916 | RadDecay: 88.91 | 5-Fold Test QE: 0.172315
+Candidate 19/30 | LR: 3.2482 | LRDecay: 209.58 | Rad: 2.596 | RadDecay: 45.58 | 5-Fold Test QE: 0.170903
+Candidate 20/30 | LR: 1.7301 | LRDecay: 824.43 | Rad: 4.394 | RadDecay: 70.78 | 5-Fold Test QE: 0.171032
+Candidate 21/30 | LR: 3.2997 | LRDecay: 802.25 | Rad: 5.921 | RadDecay: 39.54 | 5-Fold Test QE: 0.172233
+Candidate 22/30 | LR: 6.9934 | LRDecay: 1082.79 | Rad: 2.037 | RadDecay: 99.79 | 5-Fold Test QE: 0.171401
+Candidate 23/30 | LR: 0.6096 | LRDecay: 454.04 | Rad: 7.358 | RadDecay: 27.76 | 5-Fold Test QE: 0.170922
+Candidate 24/30 | LR: 2.4963 | LRDecay: 1024.60 | Rad: 6.331 | RadDecay: 27.58 | 5-Fold Test QE: 0.172223
+Candidate 25/30 | LR: 9.8359 | LRDecay: 628.30 | Rad: 6.715 | RadDecay: 80.84 | 5-Fold Test QE: 0.173167
+Candidate 26/30 | LR: 0.5037 | LRDecay: 906.79 | Rad: 5.743 | RadDecay: 6.58 | 5-Fold Test QE: 0.171370
+Candidate 27/30 | LR: 1.0521 | LRDecay: 1413.76 | Rad: 3.783 | RadDecay: 54.19 | 5-Fold Test QE: 0.170580
+Candidate 28/30 | LR: 1.2234 | LRDecay: 1390.81 | Rad: 7.141 | RadDecay: 29.50 | 5-Fold Test QE: 0.172822
+Candidate 29/30 | LR: 5.3435 | LRDecay: 400.69 | Rad: 1.652 | RadDecay: 90.24 | 5-Fold Test QE: 0.172585
+Candidate 30/30 | LR: 2.8608 | LRDecay: 1065.52 | Rad: 6.927 | RadDecay: 86.35 | 5-Fold Test QE: 0.170939
+
+SOM_PAK Best Parameters for vertebral:
+  Grid: 8x6 (48 neurons)
+  Initial LR: 7.922738
+  LR Decay: 928.641972
+  Initial Radius: 7.484106
+  Radius Decay: 66.852318
+  5-Fold Test QE: 0.169488
+Saved optimal parameters to: results/vertebral/random_params_som.txt
+
+Training final SOM_PAK map on reference tuning partition (folds 1-4)...
+Final SOM_PAK Map Saved to: results/vertebral/vertebral_som.map
+  Train QE: 0.147388 | Test QE (Fold 0): 0.147966 | Train TE: 0.012097 | Test TE (Fold 0): 0.032258
+[Step 2/3] Running 30 Independent Experiments for SOM...
+SOM_PAK Parameters: LR=7.92274, LRDecay=928.642, Radius=7.48411, RadiusDecay=66.8523
+Run  1/30 (Fold 29) | Seed: 1 | Test QE: 0.143532 | Test TE: 0.0909091 | Time: 7.42759s
+Run  2/30 (Fold 28) | Seed: 2 | Test QE: 0.141152 | Test TE: 0.1 | Time: 8.85505s
+Run  3/30 (Fold 27) | Seed: 3 | Test QE: 0.113675 | Test TE: 0.1 | Time: 6.10387s
+Run  4/30 (Fold 26) | Seed: 4 | Test QE: 0.190038 | Test TE: 0 | Time: 5.89624s
+Run  5/30 (Fold 25) | Seed: 5 | Test QE: 0.121093 | Test TE: 0 | Time: 5.74384s
+Run  6/30 (Fold 24) | Seed: 6 | Test QE: 0.128895 | Test TE: 0 | Time: 6.44344s
+Run  7/30 (Fold 23) | Seed: 7 | Test QE: 0.21247 | Test TE: 0 | Time: 6.58349s
+Run  8/30 (Fold 22) | Seed: 8 | Test QE: 0.210419 | Test TE: 0 | Time: 5.90742s
+Run  9/30 (Fold 21) | Seed: 9 | Test QE: 0.122518 | Test TE: 0 | Time: 6.06194s
+Run 10/30 (Fold 20) | Seed: 10 | Test QE: 0.142414 | Test TE: 0 | Time: 5.38844s
+Run 11/30 (Fold 19) | Seed: 11 | Test QE: 0.168886 | Test TE: 0 | Time: 4.71459s
+Run 12/30 (Fold 18) | Seed: 12 | Test QE: 0.202014 | Test TE: 0 | Time: 5.87542s
+Run 13/30 (Fold 17) | Seed: 13 | Test QE: 0.391296 | Test TE: 0.181818 | Time: 6.62879s
+Run 14/30 (Fold 16) | Seed: 14 | Test QE: 0.185338 | Test TE: 0.1 | Time: 4.46456s
+Run 15/30 (Fold 15) | Seed: 15 | Test QE: 0.14224 | Test TE: 0 | Time: 4.82783s
+Run 16/30 (Fold 14) | Seed: 16 | Test QE: 0.151162 | Test TE: 0.0909091 | Time: 4.87801s
+Run 17/30 (Fold 13) | Seed: 17 | Test QE: 0.149766 | Test TE: 0 | Time: 5.38141s
+Run 18/30 (Fold 12) | Seed: 18 | Test QE: 0.162544 | Test TE: 0 | Time: 4.73137s
+Run 19/30 (Fold 11) | Seed: 19 | Test QE: 0.158299 | Test TE: 0.0909091 | Time: 5.053s
+Run 20/30 (Fold 10) | Seed: 20 | Test QE: 0.130443 | Test TE: 0 | Time: 6.10314s
+Run 21/30 (Fold  9) | Seed: 21 | Test QE: 0.147498 | Test TE: 0 | Time: 4.67933s
+Run 22/30 (Fold  8) | Seed: 22 | Test QE: 0.147638 | Test TE: 0 | Time: 4.75496s
+Run 23/30 (Fold  7) | Seed: 23 | Test QE: 0.104733 | Test TE: 0 | Time: 4.2336s
+Run 24/30 (Fold  6) | Seed: 24 | Test QE: 0.15267 | Test TE: 0.1 | Time: 4.74198s
+Run 25/30 (Fold  5) | Seed: 25 | Test QE: 0.156849 | Test TE: 0 | Time: 5.17382s
+Run 26/30 (Fold  4) | Seed: 26 | Test QE: 0.12513 | Test TE: 0 | Time: 5.88506s
+Run 27/30 (Fold  3) | Seed: 27 | Test QE: 0.150405 | Test TE: 0 | Time: 5.15305s
+Run 28/30 (Fold  2) | Seed: 28 | Test QE: 0.127212 | Test TE: 0 | Time: 4.82077s
+Run 29/30 (Fold  1) | Seed: 29 | Test QE: 0.160668 | Test TE: 0 | Time: 5.17893s
+Run 30/30 (Fold  0) | Seed: 30 | Test QE: 0.153356 | Test TE: 0.1 | Time: 4.89478s
+Finished 30 runs of Conventional SOM. Saved to: results/vertebral/runs_30_som.txt
+[Step 3/3] Generating Unified Distance Matrix (U-Matrix)...
+GPL Ghostscript 10.06.0 (2025-09-09)
+Copyright (C) 2025 Artifex Software, Inc.  All rights reserved.
+This software is supplied under the GNU AGPLv3 and comes with NO WARRANTY:
+see the file COPYING for details.
+Loading NimbusSans-Regular font from /usr/share/ghostscript/10.06.0/Resource/Font/NimbusSans-Regular... 3632568 2207479 2017032 709503 2 done.
+U-Matrix successfully generated: results/vertebral/vertebral_som_umat.png and .eps
+==========================================================
+ Pipeline Complete for SOM on vertebral!
+ Results in: results/vertebral/ and workspace root
+==========================================================

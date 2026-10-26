@@ -1,0 +1,197 @@
+%!PS-Adobe-3.0 EPSF-3.0
+%%BoundingBox: 0 0 1000 614
+%%Title: /home/ubuntu/Documents/SOMLib/somlib/glass_de_labeled.map
+%%Creator: umat V1.1
+%%CreationDate: Fri Oct 23 00:26:12 2026
+%%Pages: 0
+%%DocumentFonts: Helvetica
+%%DocumentNeededFonts: Helvetica
+%%EndComments
+%
+% PS header for umat - SOM to PS converter
+% Version 1.1 Wed June 28 1995
+% Author: Jussi Hynninen <hynde@nucleus.hut.fi>
+100 dict begin
+
+% predefine variables
+/yoff 0 def /xoff 0 def /xstep 0 def /ystep 0 def /y 0 def /radius 0 def
+/yoffset 0 def /xoffset 0 def
+/picwidth 0 def /picheight 0 def
+/doborder false def
+% default font
+/fontname /Helvetica def
+% font size relative to radius
+/fontsize 0.50 def
+
+% default black and white tresholds
+/bt 0.0 def /wt 1.0 def
+
+% labelpallon sade suhteessa hexan sateeseen
+/ballrad 0.2 def
+
+% newline function. Moves the y coordinate to the next line
+/NL 
+{ /yoff yoff ystep sub def % next row
+  /y y 1 add def % add y by one
+  } bind def
+
+% start of line (for hexagonal lattice) - moves the current position in 
+% x direction to the correct place of the line
+/XSH
+{ xoff 
+  y 4 mod
+  dup 3 eq {pop 1} if
+  xstep 2 div mul
+  add
+  yoff moveto % move to start of line
+} bind def
+
+% start of line (for rectangular lattice) - moves the current position in 
+% x direction to the correct place of the line
+/XSR { xoff yoff moveto } bind def
+
+% set label color. If block is light -> label is black and same for dark block
+/sbc { 0 setgray } bind def
+
+% set gray level
+/G { 
+  100 div dup bt le {pop 0}
+  { dup wt ge {pop 1} {bt sub wt bt sub div} ifelse
+  } ifelse
+} bind def
+
+% unlabelled node
+/LN { 
+  gsave
+  G sbc
+  currentpoint radius ballrad mul 0 360 arc fill 
+  grestore
+  xstep 2 mul 0 rmoveto
+} bind def
+
+%select font
+/selfont {
+  fontname findfont radius fontsize mul scalefont setfont
+} bind def
+
+% print single label
+
+/LAB { 
+  gsave
+  dup 50 lt { 1 setgray } { 0 setgray } ifelse
+  exch dup stringwidth pop 2 div neg fontsize radius mul 0.35 mul neg rmoveto
+  show
+  grestore
+  xstep 2 mul 0 rmoveto
+} bind def
+
+% print multiple labels on one unit
+/ML {
+  gsave
+  G sbc
+  /numlabs exch def %number of labels
+  numlabs
+  2 div 
+  0.25 sub
+  radius fontsize mul mul neg
+  0 exch rmoveto
+  1 1 numlabs {
+    pop
+    gsave
+    dup %duplicate string  
+    stringwidth
+    pop 
+    -2 div 0
+    rmoveto
+    show
+    grestore
+    0 fontsize radius mul rmoveto
+  } for 
+  grestore
+  xstep 2 mul 0 rmoveto
+} bind def
+
+% print hexagon
+/H { 
+  gsave
+  G dup setgray
+  currentpoint translate
+  newpath 0 radius moveto
+  5 {60 rotate 0 radius lineto} repeat
+  closepath
+  doborder { gsave fill grestore 0 setgray stroke pop }
+           { fill pop } ifelse
+  grestore  
+  xstep 0 rmoveto
+} bind def
+
+% print rectangle
+/R {
+  gsave
+  G dup setgray %duplicate gray level
+  currentpoint translate
+  newpath
+  xstep 0.5 mul dup moveto
+  xstep neg 0 rlineto
+  0 xstep neg rlineto
+  xstep 0 rlineto
+  closepath
+  doborder { gsave fill grestore sbc stroke}
+           { fill pop } ifelse
+  grestore  
+  xstep 0 rmoveto
+} bind def
+
+% swap x
+/swapx {
+/xstep xstep neg def
+/xoffset picwidth xoffset sub def
+} bind def
+
+%swap y
+/swapy {
+/ystep ystep neg def
+/yoffset picheight yoffset sub def
+} bind def
+
+1 setlinewidth
+
+% End of umat PS header
+% Start image
+
+
+/radius 36.084392 def
+/xstep 62.500000 def
+/ystep 54.126588 def
+/picwidth 1000.000000 def /picheight 613.434661 def
+%%IncludeFont: Helvetica
+/fontname /Helvetica def
+selfont
+/doborder true def
+/wt 1.000000 def /bt 0.000000 def
+/xoffset 31.250000 def /yoffset 577.350269 def
+/y 0 def
+/xoff xoffset def
+/yoff yoffset def
+XSH 67 H 62 H 62 H 59 H 63 H 67 H 70 H 73 H 66 H 77 H 73 H 69 H 75 H 85 H 84 H NL
+XSH 71 H 69 H 61 H 63 H 63 H 75 H 67 H 59 H 60 H 62 H 87 H 60 H 81 H 84 H 62 H NL
+XSH 70 H 56 H 62 H 60 H 76 H 77 H 63 H 55 H 61 H 61 H 62 H 64 H 70 H 58 H 62 H NL
+XSH 80 H 70 H 65 H 67 H 87 H 85 H 73 H 19 H 0 H 67 H 62 H 42 H 64 H 75 H 64 H NL
+XSH 80 H 81 H 77 H 100 H 85 H 83 H 70 H 6 H 24 H 29 H 65 H 69 H 61 H 47 H 64 H NL
+XSH 57 H 73 H 89 H 92 H 48 H 43 H 67 H 39 H 29 H 64 H 79 H 62 H 60 H 75 H 58 H NL
+XSH 65 H 65 H 63 H 42 H 44 H 45 H 68 H 71 H 63 H 62 H 71 H 74 H 66 H 37 H 37 H NL
+XSH 48 H 81 H 62 H 56 H 44 H 61 H 73 H 69 H 45 H 81 H 77 H 67 H 73 H 45 H 35 H NL
+XSH 51 H 51 H 60 H 51 H 56 H 61 H 67 H 83 H 67 H 69 H 80 H 80 H 70 H 46 H 36 H NL
+XSH 51 H 68 H 57 H 55 H 56 H 84 H 47 H 38 H 65 H 80 H 92 H 82 H 48 H 36 H 34 H NL
+XSH 68 H 69 H 63 H 69 H 62 H 37 H 43 H 53 H 72 H 78 H 80 H 51 H 47 H 47 H 40 H NL
+/y 0 def
+/xoff xoffset def
+/yoff yoffset def
+XSH (WinNF) 67 LAB (WinNF) 62 LAB (WinNF) 63 LAB (Con) 70 LAB (Con) 66 LAB (Head) 73 LAB (Con) 75 LAB (WinF) 84 LAB NL NL
+XSH (Veh) 70 LAB (Con) 62 LAB (Head) 76 LAB (Tab) 63 LAB (WinNF) 61 LAB (Con) 62 LAB (WinNF) 70 LAB (WinNF) 62 LAB NL NL
+XSH (WinF) 80 LAB (Head) 77 LAB (Head) 85 LAB (WinNF) 70 LAB (Head) 24 LAB (WinF) 65 LAB (WinF) 61 LAB (Con) 64 LAB NL NL
+XSH (Con) 65 LAB (Tab) 63 LAB (WinNF) 44 LAB (Head) 68 LAB (Con) 63 LAB (Veh) 71 LAB (Head) 66 LAB (Con) 37 LAB NL NL
+XSH (Con) 51 LAB (Con) 60 LAB (Con) 56 LAB (WinNF) 67 LAB (WinF) 67 LAB (WinNF) 80 LAB (Head) 70 LAB (Con) 36 LAB NL NL
+XSH (Con) 68 LAB (Con) 63 LAB (WinF) 62 LAB (WinF) 43 LAB (Head) 72 LAB (WinF) 80 LAB (Head) 47 LAB (WinF) 40 LAB NL NL
+end
+% end of EPS object

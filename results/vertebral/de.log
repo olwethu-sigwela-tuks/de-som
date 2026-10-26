@@ -1,0 +1,95 @@
+==========================================================
+ Starting DE-SOM Pipeline for: vertebral
+==========================================================
+[Step 1/3] Running 5-fold CV Random Search for DE hyperparameters...
+Candidate  1/30 | NP:  30 | Gen: 2000 | F: 0.2467 | CR: 0.201093 | Evaluating 5 folds... Done! Test QE: 0.183774 (Train QE: 0.162911)
+  --> New Best DE-SOM Parameter Found!
+Candidate  2/30 | NP:  50 | Gen: 1500 | F: 0.4567 | CR: 0.001974 | Evaluating 5 folds... Done! Test QE: 0.194494 (Train QE: 0.169746)
+Candidate  3/30 | NP:  20 | Gen: 1500 | F: 0.3670 | CR: 0.002643 | Evaluating 5 folds... Done! Test QE: 0.185417 (Train QE: 0.166237)
+Candidate  4/30 | NP:  50 | Gen: 1500 | F: 0.1451 | CR: 0.135819 | Evaluating 5 folds... Done! Test QE: 0.189030 (Train QE: 0.169618)
+Candidate  5/30 | NP: 100 | Gen: 2000 | F: 0.1006 | CR: 0.853559 | Evaluating 5 folds... Done! Test QE: 0.186465 (Train QE: 0.161264)
+Candidate  6/30 | NP:  20 | Gen: 1500 | F: 0.5893 | CR: 0.001049 | Evaluating 5 folds... Done! Test QE: 0.201764 (Train QE: 0.176455)
+Candidate  7/30 | NP:  30 | Gen: 1000 | F: 0.5198 | CR: 0.015181 | Evaluating 5 folds... Done! Test QE: 0.200386 (Train QE: 0.179034)
+Candidate  8/30 | NP:  20 | Gen: 1000 | F: 0.8790 | CR: 0.004872 | Evaluating 5 folds... Done! Test QE: 0.213822 (Train QE: 0.195027)
+Candidate  9/30 | NP:  30 | Gen: 1000 | F: 0.5947 | CR: 0.013486 | Evaluating 5 folds... Done! Test QE: 0.205505 (Train QE: 0.185265)
+Candidate 10/30 | NP:  50 | Gen: 2000 | F: 0.4734 | CR: 0.347114 | Evaluating 5 folds... Done! Test QE: 0.253914 (Train QE: 0.249246)
+Candidate 11/30 | NP:  50 | Gen: 2000 | F: 0.4604 | CR: 0.001094 | Evaluating 5 folds... Done! Test QE: 0.183644 (Train QE: 0.160106)
+  --> New Best DE-SOM Parameter Found!
+Candidate 12/30 | NP: 100 | Gen: 2000 | F: 0.5506 | CR: 0.013760 | Evaluating 5 folds... Done! Test QE: 0.189224 (Train QE: 0.166249)
+Candidate 13/30 | NP:  30 | Gen: 1000 | F: 0.2847 | CR: 0.005153 | Evaluating 5 folds... Done! Test QE: 0.196879 (Train QE: 0.173656)
+Candidate 14/30 | NP:  30 | Gen: 2000 | F: 0.5880 | CR: 0.289374 | Evaluating 5 folds... Done! Test QE: 0.264392 (Train QE: 0.254063)
+Candidate 15/30 | NP:  20 | Gen: 1000 | F: 0.4128 | CR: 0.003454 | Evaluating 5 folds... Done! Test QE: 0.198402 (Train QE: 0.182544)
+Candidate 16/30 | NP:  50 | Gen: 2000 | F: 0.4401 | CR: 0.004114 | Evaluating 5 folds... Done! Test QE: 0.183320 (Train QE: 0.157156)
+  --> New Best DE-SOM Parameter Found!
+Candidate 17/30 | NP:  50 | Gen: 1500 | F: 0.1251 | CR: 0.307832 | Evaluating 5 folds... Done! Test QE: 0.163920 (Train QE: 0.118393)
+  --> New Best DE-SOM Parameter Found!
+Candidate 18/30 | NP: 100 | Gen: 1500 | F: 0.4161 | CR: 0.546481 | Evaluating 5 folds... Done! Test QE: 0.273111 (Train QE: 0.263547)
+Candidate 19/30 | NP:  50 | Gen: 2000 | F: 0.3612 | CR: 0.048443 | Evaluating 5 folds... Done! Test QE: 0.192500 (Train QE: 0.174967)
+Candidate 20/30 | NP:  20 | Gen: 1500 | F: 0.8689 | CR: 0.312578 | Evaluating 5 folds... Done! Test QE: 0.286531 (Train QE: 0.282538)
+Candidate 21/30 | NP:  30 | Gen: 2000 | F: 0.5318 | CR: 0.054126 | Evaluating 5 folds... Done! Test QE: 0.205695 (Train QE: 0.191450)
+Candidate 22/30 | NP:  30 | Gen: 2000 | F: 0.5856 | CR: 0.006537 | Evaluating 5 folds... Done! Test QE: 0.188809 (Train QE: 0.163702)
+Candidate 23/30 | NP:  20 | Gen: 1000 | F: 0.2322 | CR: 0.001112 | Evaluating 5 folds... Done! Test QE: 0.206078 (Train QE: 0.183527)
+Candidate 24/30 | NP: 100 | Gen: 1500 | F: 0.4159 | CR: 0.007363 | Evaluating 5 folds... Done! Test QE: 0.188210 (Train QE: 0.163463)
+Candidate 25/30 | NP:  20 | Gen: 1000 | F: 0.2591 | CR: 0.126321 | Evaluating 5 folds... Done! Test QE: 0.201336 (Train QE: 0.183575)
+Candidate 26/30 | NP:  50 | Gen: 2000 | F: 0.5848 | CR: 0.545152 | Evaluating 5 folds... Done! Test QE: 0.285780 (Train QE: 0.277793)
+Candidate 27/30 | NP:  30 | Gen: 1500 | F: 0.8320 | CR: 0.324504 | Evaluating 5 folds... Done! Test QE: 0.272898 (Train QE: 0.272518)
+Candidate 28/30 | NP:  50 | Gen: 1500 | F: 0.1763 | CR: 0.012459 | Evaluating 5 folds... Done! Test QE: 0.176247 (Train QE: 0.150923)
+Candidate 29/30 | NP:  30 | Gen: 2000 | F: 0.6327 | CR: 0.055826 | Evaluating 5 folds... Done! Test QE: 0.214207 (Train QE: 0.203101)
+Candidate 30/30 | NP:  50 | Gen: 1000 | F: 0.5490 | CR: 0.013529 | Evaluating 5 folds... Done! Test QE: 0.200106 (Train QE: 0.183847)
+
+DE-SOM Best Parameters for vertebral:
+  Grid: 8x6 (48 neurons)
+  NP: 50
+  Generations: 1500
+  F: 0.125051
+  CR: 0.307832
+  5-Fold Test QE: 0.163920
+Saved optimal parameters to: results/vertebral/random_params_de.txt
+
+Training final DE-SOM map on reference tuning partition (folds 1-4)...
+Final DE-SOM Map Saved to: results/vertebral/vertebral_de.map
+  Train QE: 0.116985 | Test QE (Fold 0): 0.154476 | Train TE: 0.814516 | Test TE (Fold 0): 0.790323
+[Step 2/3] Running 30 Independent Experiments for DE...
+DE Parameters: NP=50, Gen=1500, Neurons=48, CR=0.307832, F=0.125051
+Run  1/30 (Fold 29) | Seed: 1 | Test QE: 0.149673 | Test TE: 0.909091 | Time: 70.5663s
+Run  2/30 (Fold 28) | Seed: 2 | Test QE: 0.147677 | Test TE: 1 | Time: 66.3652s
+Run  3/30 (Fold 27) | Seed: 3 | Test QE: 0.107991 | Test TE: 0.9 | Time: 71.0562s
+Run  4/30 (Fold 26) | Seed: 4 | Test QE: 0.158474 | Test TE: 1 | Time: 74.0958s
+Run  5/30 (Fold 25) | Seed: 5 | Test QE: 0.131527 | Test TE: 0.8 | Time: 82.686s
+Run  6/30 (Fold 24) | Seed: 6 | Test QE: 0.119721 | Test TE: 1 | Time: 76.5481s
+Run  7/30 (Fold 23) | Seed: 7 | Test QE: 0.163041 | Test TE: 0.909091 | Time: 67.5471s
+Run  8/30 (Fold 22) | Seed: 8 | Test QE: 0.205627 | Test TE: 1 | Time: 68.1264s
+Run  9/30 (Fold 21) | Seed: 9 | Test QE: 0.138757 | Test TE: 0.5 | Time: 64.0426s
+Run 10/30 (Fold 20) | Seed: 10 | Test QE: 0.13565 | Test TE: 0.727273 | Time: 66.5082s
+Run 11/30 (Fold 19) | Seed: 11 | Test QE: 0.135615 | Test TE: 1 | Time: 65.084s
+Run 12/30 (Fold 18) | Seed: 12 | Test QE: 0.15851 | Test TE: 0.9 | Time: 49.5752s
+Run 13/30 (Fold 17) | Seed: 13 | Test QE: 0.365062 | Test TE: 0.909091 | Time: 49.0078s
+Run 14/30 (Fold 16) | Seed: 14 | Test QE: 0.167944 | Test TE: 1 | Time: 63.6268s
+Run 15/30 (Fold 15) | Seed: 15 | Test QE: 0.148486 | Test TE: 1 | Time: 49.4437s
+Run 16/30 (Fold 14) | Seed: 16 | Test QE: 0.134599 | Test TE: 1 | Time: 48.9064s
+Run 17/30 (Fold 13) | Seed: 17 | Test QE: 0.151123 | Test TE: 0.9 | Time: 46.9105s
+Run 18/30 (Fold 12) | Seed: 18 | Test QE: 0.1563 | Test TE: 1 | Time: 50.4437s
+Run 19/30 (Fold 11) | Seed: 19 | Test QE: 0.15014 | Test TE: 1 | Time: 50.1635s
+Run 20/30 (Fold 10) | Seed: 20 | Test QE: 0.13372 | Test TE: 0.9 | Time: 48.7012s
+Run 21/30 (Fold  9) | Seed: 21 | Test QE: 0.133129 | Test TE: 0.8 | Time: 48.8649s
+Run 22/30 (Fold  8) | Seed: 22 | Test QE: 0.140496 | Test TE: 0.909091 | Time: 48.6033s
+Run 23/30 (Fold  7) | Seed: 23 | Test QE: 0.10247 | Test TE: 1 | Time: 49.0433s
+Run 24/30 (Fold  6) | Seed: 24 | Test QE: 0.152935 | Test TE: 1 | Time: 49.6218s
+Run 25/30 (Fold  5) | Seed: 25 | Test QE: 0.146016 | Test TE: 0.909091 | Time: 48.8885s
+Run 26/30 (Fold  4) | Seed: 26 | Test QE: 0.140448 | Test TE: 1 | Time: 50.8653s
+Run 27/30 (Fold  3) | Seed: 27 | Test QE: 0.145498 | Test TE: 0.8 | Time: 49.6533s
+Run 28/30 (Fold  2) | Seed: 28 | Test QE: 0.131101 | Test TE: 0.909091 | Time: 48.8533s
+Run 29/30 (Fold  1) | Seed: 29 | Test QE: 0.166294 | Test TE: 0.8 | Time: 47.9348s
+Run 30/30 (Fold  0) | Seed: 30 | Test QE: 0.158004 | Test TE: 0.5 | Time: 49.7177s
+Finished 30 runs of DE-SOM. Saved to: results/vertebral/runs_30_de.txt
+[Step 3/3] Generating Unified Distance Matrix (U-Matrix)...
+GPL Ghostscript 10.06.0 (2025-09-09)
+Copyright (C) 2025 Artifex Software, Inc.  All rights reserved.
+This software is supplied under the GNU AGPLv3 and comes with NO WARRANTY:
+see the file COPYING for details.
+Loading NimbusSans-Regular font from /usr/share/ghostscript/10.06.0/Resource/Font/NimbusSans-Regular... 3632568 2207477 2017032 709499 2 done.
+U-Matrix successfully generated: results/vertebral/vertebral_de_umat.png and .eps
+==========================================================
+ Pipeline Complete for DE-SOM on vertebral!
+ Results in: results/vertebral/ and workspace root
+==========================================================
