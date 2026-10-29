@@ -1,0 +1,95 @@
+==========================================================
+ Starting SOM_PAK Pipeline for: wine
+==========================================================
+[Step 1/3] Running 5-fold CV Random Search for SOM hyperparameters...
+Starting SOM_PAK Random Search for: wine
+Candidate  1/30 | LR: 7.9858 | LRDecay: 315.98 | Rad: 6.458 | RadDecay: 61.70 | 5-Fold Test QE: 0.436618
+  --> New Best SOM_PAK Parameter Found!
+Candidate  2/30 | LR: 8.6751 | LRDecay: 921.62 | Rad: 5.957 | RadDecay: 6.96 | 5-Fold Test QE: 0.433112
+  --> New Best SOM_PAK Parameter Found!
+Candidate  3/30 | LR: 1.9001 | LRDecay: 315.94 | Rad: 3.130 | RadDecay: 54.85 | 5-Fold Test QE: 0.438228
+Candidate  4/30 | LR: 0.5620 | LRDecay: 1461.95 | Rad: 2.629 | RadDecay: 13.61 | 5-Fold Test QE: 0.437159
+Candidate  5/30 | LR: 4.7210 | LRDecay: 1296.91 | Rad: 5.762 | RadDecay: 47.80 | 5-Fold Test QE: 0.435993
+Candidate  6/30 | LR: 3.9156 | LRDecay: 73.15 | Rad: 2.616 | RadDecay: 27.90 | 5-Fold Test QE: 0.443658
+Candidate  7/30 | LR: 0.4404 | LRDecay: 1368.51 | Rad: 2.811 | RadDecay: 67.94 | 5-Fold Test QE: 0.437962
+Candidate  8/30 | LR: 5.7202 | LRDecay: 95.40 | Rad: 6.896 | RadDecay: 47.73 | 5-Fold Test QE: 0.440454
+Candidate  9/30 | LR: 3.3328 | LRDecay: 877.14 | Rad: 4.646 | RadDecay: 96.31 | 5-Fold Test QE: 0.439371
+Candidate 10/30 | LR: 8.3045 | LRDecay: 567.29 | Rad: 2.967 | RadDecay: 56.56 | 5-Fold Test QE: 0.436738
+Candidate 11/30 | LR: 0.2548 | LRDecay: 663.93 | Rad: 3.764 | RadDecay: 32.88 | 5-Fold Test QE: 0.439878
+Candidate 12/30 | LR: 7.9227 | LRDecay: 928.64 | Rad: 7.484 | RadDecay: 66.85 | 5-Fold Test QE: 0.437245
+Candidate 13/30 | LR: 1.0446 | LRDecay: 587.69 | Rad: 5.682 | RadDecay: 68.26 | 5-Fold Test QE: 0.435113
+Candidate 14/30 | LR: 4.7749 | LRDecay: 223.41 | Rad: 5.993 | RadDecay: 77.27 | 5-Fold Test QE: 0.444381
+Candidate 15/30 | LR: 5.2751 | LRDecay: 669.93 | Rad: 1.178 | RadDecay: 15.25 | 5-Fold Test QE: 0.437740
+Candidate 16/30 | LR: 5.6764 | LRDecay: 1058.50 | Rad: 1.975 | RadDecay: 62.42 | 5-Fold Test QE: 0.435349
+Candidate 17/30 | LR: 0.8621 | LRDecay: 470.14 | Rad: 2.129 | RadDecay: 93.32 | 5-Fold Test QE: 0.435648
+Candidate 18/30 | LR: 4.6197 | LRDecay: 366.74 | Rad: 3.916 | RadDecay: 88.91 | 5-Fold Test QE: 0.435170
+Candidate 19/30 | LR: 3.2482 | LRDecay: 209.58 | Rad: 2.596 | RadDecay: 45.58 | 5-Fold Test QE: 0.437508
+Candidate 20/30 | LR: 1.7301 | LRDecay: 824.43 | Rad: 4.394 | RadDecay: 70.78 | 5-Fold Test QE: 0.433279
+Candidate 21/30 | LR: 3.2997 | LRDecay: 802.25 | Rad: 5.921 | RadDecay: 39.54 | 5-Fold Test QE: 0.438774
+Candidate 22/30 | LR: 6.9934 | LRDecay: 1082.79 | Rad: 2.037 | RadDecay: 99.79 | 5-Fold Test QE: 0.436144
+Candidate 23/30 | LR: 0.6096 | LRDecay: 454.04 | Rad: 7.358 | RadDecay: 27.76 | 5-Fold Test QE: 0.435919
+Candidate 24/30 | LR: 2.4963 | LRDecay: 1024.60 | Rad: 6.331 | RadDecay: 27.58 | 5-Fold Test QE: 0.433516
+Candidate 25/30 | LR: 9.8359 | LRDecay: 628.30 | Rad: 6.715 | RadDecay: 80.84 | 5-Fold Test QE: 0.435429
+Candidate 26/30 | LR: 0.5037 | LRDecay: 906.79 | Rad: 5.743 | RadDecay: 6.58 | 5-Fold Test QE: 0.438884
+Candidate 27/30 | LR: 1.0521 | LRDecay: 1413.76 | Rad: 3.783 | RadDecay: 54.19 | 5-Fold Test QE: 0.436717
+Candidate 28/30 | LR: 1.2234 | LRDecay: 1390.81 | Rad: 7.141 | RadDecay: 29.50 | 5-Fold Test QE: 0.432440
+  --> New Best SOM_PAK Parameter Found!
+Candidate 29/30 | LR: 5.3435 | LRDecay: 400.69 | Rad: 1.652 | RadDecay: 90.24 | 5-Fold Test QE: 0.436166
+Candidate 30/30 | LR: 2.8608 | LRDecay: 1065.52 | Rad: 6.927 | RadDecay: 86.35 | 5-Fold Test QE: 0.436059
+
+SOM_PAK Best Parameters for wine:
+  Grid: 8x6 (48 neurons)
+  Initial LR: 1.223388
+  LR Decay: 1390.805748
+  Initial Radius: 7.141375
+  Radius Decay: 29.504455
+  5-Fold Test QE: 0.432440
+Saved optimal parameters to: results/wine/random_params_som.txt
+
+Training final SOM_PAK map on reference tuning partition (folds 1-4)...
+Final SOM_PAK Map Saved to: results/wine/wine_som.map
+  Train QE: 0.399613 | Test QE (Fold 0): 0.432166 | Train TE: 0.006993 | Test TE (Fold 0): 0.028571
+[Step 2/3] Running 30 Independent Experiments for SOM...
+SOM_PAK Parameters: LR=1.22339, LRDecay=1390.81, Radius=7.14138, RadiusDecay=29.5045
+Run  1/30 (Fold 29) | Seed: 1 | Test QE: 0.343458 | Test TE: 0 | Time: 3.1183s
+Run  2/30 (Fold 28) | Seed: 2 | Test QE: 0.380409 | Test TE: 0 | Time: 3.84544s
+Run  3/30 (Fold 27) | Seed: 3 | Test QE: 0.396305 | Test TE: 0.166667 | Time: 4.03558s
+Run  4/30 (Fold 26) | Seed: 4 | Test QE: 0.37456 | Test TE: 0 | Time: 2.78653s
+Run  5/30 (Fold 25) | Seed: 5 | Test QE: 0.480296 | Test TE: 0 | Time: 3.38065s
+Run  6/30 (Fold 24) | Seed: 6 | Test QE: 0.457521 | Test TE: 0.333333 | Time: 3.61088s
+Run  7/30 (Fold 23) | Seed: 7 | Test QE: 0.517575 | Test TE: 0 | Time: 2.93172s
+Run  8/30 (Fold 22) | Seed: 8 | Test QE: 0.476891 | Test TE: 0 | Time: 3.38476s
+Run  9/30 (Fold 21) | Seed: 9 | Test QE: 0.427267 | Test TE: 0 | Time: 3.38198s
+Run 10/30 (Fold 20) | Seed: 10 | Test QE: 0.519019 | Test TE: 0 | Time: 3.57346s
+Run 11/30 (Fold 19) | Seed: 11 | Test QE: 0.396005 | Test TE: 0.166667 | Time: 3.2836s
+Run 12/30 (Fold 18) | Seed: 12 | Test QE: 0.607254 | Test TE: 0 | Time: 3.81713s
+Run 13/30 (Fold 17) | Seed: 13 | Test QE: 0.540695 | Test TE: 0 | Time: 2.99074s
+Run 14/30 (Fold 16) | Seed: 14 | Test QE: 0.340884 | Test TE: 0 | Time: 3.28812s
+Run 15/30 (Fold 15) | Seed: 15 | Test QE: 0.342287 | Test TE: 0 | Time: 3.26537s
+Run 16/30 (Fold 14) | Seed: 16 | Test QE: 0.400377 | Test TE: 0 | Time: 3.47564s
+Run 17/30 (Fold 13) | Seed: 17 | Test QE: 0.317262 | Test TE: 0 | Time: 4.54614s
+Run 18/30 (Fold 12) | Seed: 18 | Test QE: 0.395377 | Test TE: 0 | Time: 3.49055s
+Run 19/30 (Fold 11) | Seed: 19 | Test QE: 0.348981 | Test TE: 0 | Time: 4.08258s
+Run 20/30 (Fold 10) | Seed: 20 | Test QE: 0.51992 | Test TE: 0 | Time: 3.84439s
+Run 21/30 (Fold  9) | Seed: 21 | Test QE: 0.410113 | Test TE: 0.166667 | Time: 3.50089s
+Run 22/30 (Fold  8) | Seed: 22 | Test QE: 0.381136 | Test TE: 0 | Time: 3.4487s
+Run 23/30 (Fold  7) | Seed: 23 | Test QE: 0.367245 | Test TE: 0 | Time: 3.38152s
+Run 24/30 (Fold  6) | Seed: 24 | Test QE: 0.449316 | Test TE: 0 | Time: 3.71176s
+Run 25/30 (Fold  5) | Seed: 25 | Test QE: 0.483113 | Test TE: 0 | Time: 3.501s
+Run 26/30 (Fold  4) | Seed: 26 | Test QE: 0.378382 | Test TE: 0 | Time: 3.64995s
+Run 27/30 (Fold  3) | Seed: 27 | Test QE: 0.434842 | Test TE: 0 | Time: 3.33407s
+Run 28/30 (Fold  2) | Seed: 28 | Test QE: 0.352988 | Test TE: 0 | Time: 3.82051s
+Run 29/30 (Fold  1) | Seed: 29 | Test QE: 0.438644 | Test TE: 0.166667 | Time: 3.44542s
+Run 30/30 (Fold  0) | Seed: 30 | Test QE: 0.404345 | Test TE: 0 | Time: 3.32727s
+Finished 30 runs of Conventional SOM. Saved to: results/wine/runs_30_som.txt
+[Step 3/3] Generating Unified Distance Matrix (U-Matrix)...
+GPL Ghostscript 10.06.0 (2025-09-09)
+Copyright (C) 2025 Artifex Software, Inc.  All rights reserved.
+This software is supplied under the GNU AGPLv3 and comes with NO WARRANTY:
+see the file COPYING for details.
+Loading NimbusSans-Regular font from /usr/share/ghostscript/10.06.0/Resource/Font/NimbusSans-Regular... 3632568 2207411 2017032 709457 2 done.
+U-Matrix successfully generated: results/wine/wine_som_umat.png and .eps
+==========================================================
+ Pipeline Complete for SOM on wine.
+ Results in: results/wine/ and workspace root
+==========================================================

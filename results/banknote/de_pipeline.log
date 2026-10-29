@@ -1,0 +1,96 @@
+==========================================================
+ Starting DE-SOM Pipeline for: banknote
+==========================================================
+[Step 1/3] Running 5-fold CV Random Search for DE hyperparameters...
+Candidate  1/30 | NP:  30 | Gen: 2000 | F: 0.2467 | CR: 0.201093 | Evaluating 5 folds... Done! Test QE: 0.131203 (Train QE: 0.130107)
+  --> New Best DE-SOM Parameter Found!
+Candidate  2/30 | NP:  50 | Gen: 1500 | F: 0.4567 | CR: 0.001974 | Evaluating 5 folds... Done! Test QE: 0.103120 (Train QE: 0.099237)
+  --> New Best DE-SOM Parameter Found!
+Candidate  3/30 | NP:  20 | Gen: 1500 | F: 0.3670 | CR: 0.002643 | Evaluating 5 folds... Done! Test QE: 0.102074 (Train QE: 0.098514)
+  --> New Best DE-SOM Parameter Found!
+Candidate  4/30 | NP:  50 | Gen: 1500 | F: 0.1451 | CR: 0.135819 | Evaluating 5 folds... Done! Test QE: 0.125520 (Train QE: 0.124354)
+Candidate  5/30 | NP: 100 | Gen: 2000 | F: 0.1006 | CR: 0.853559 | Evaluating 5 folds... Done! Test QE: 0.095026 (Train QE: 0.091676)
+  --> New Best DE-SOM Parameter Found!
+Candidate  6/30 | NP:  20 | Gen: 1500 | F: 0.5893 | CR: 0.001049 | Evaluating 5 folds... Done! Test QE: 0.105609 (Train QE: 0.102690)
+Candidate  7/30 | NP:  30 | Gen: 1000 | F: 0.5198 | CR: 0.015181 | Evaluating 5 folds... Done! Test QE: 0.118215 (Train QE: 0.116026)
+Candidate  8/30 | NP:  20 | Gen: 1000 | F: 0.8790 | CR: 0.004872 | Evaluating 5 folds... Done! Test QE: 0.121340 (Train QE: 0.120808)
+Candidate  9/30 | NP:  30 | Gen: 1000 | F: 0.5947 | CR: 0.013486 | Evaluating 5 folds... Done! Test QE: 0.120910 (Train QE: 0.116628)
+Candidate 10/30 | NP:  50 | Gen: 2000 | F: 0.4734 | CR: 0.347114 | Evaluating 5 folds... Done! Test QE: 0.173202 (Train QE: 0.172557)
+Candidate 11/30 | NP:  50 | Gen: 2000 | F: 0.4604 | CR: 0.001094 | Evaluating 5 folds... Done! Test QE: 0.097750 (Train QE: 0.094284)
+Candidate 12/30 | NP: 100 | Gen: 2000 | F: 0.5506 | CR: 0.013760 | Evaluating 5 folds... Done! Test QE: 0.106122 (Train QE: 0.103720)
+Candidate 13/30 | NP:  30 | Gen: 1000 | F: 0.2847 | CR: 0.005153 | Evaluating 5 folds... Done! Test QE: 0.109767 (Train QE: 0.106426)
+Candidate 14/30 | NP:  30 | Gen: 2000 | F: 0.5880 | CR: 0.289374 | Evaluating 5 folds... Done! Test QE: 0.179155 (Train QE: 0.178094)
+Candidate 15/30 | NP:  20 | Gen: 1000 | F: 0.4128 | CR: 0.003454 | Evaluating 5 folds... Done! Test QE: 0.109437 (Train QE: 0.107872)
+Candidate 16/30 | NP:  50 | Gen: 2000 | F: 0.4401 | CR: 0.004114 | Evaluating 5 folds... Done! Test QE: 0.097104 (Train QE: 0.094877)
+Candidate 17/30 | NP:  50 | Gen: 1500 | F: 0.1251 | CR: 0.307832 | Evaluating 5 folds... Done! Test QE: 0.079813 (Train QE: 0.071900)
+  --> New Best DE-SOM Parameter Found!
+Candidate 18/30 | NP: 100 | Gen: 1500 | F: 0.4161 | CR: 0.546481 | Evaluating 5 folds... Done! Test QE: 0.179880 (Train QE: 0.179073)
+Candidate 19/30 | NP:  50 | Gen: 2000 | F: 0.3612 | CR: 0.048443 | Evaluating 5 folds... Done! Test QE: 0.118025 (Train QE: 0.115695)
+Candidate 20/30 | NP:  20 | Gen: 1500 | F: 0.8689 | CR: 0.312578 | Evaluating 5 folds... Done! Test QE: 0.201668 (Train QE: 0.198594)
+Candidate 21/30 | NP:  30 | Gen: 2000 | F: 0.5318 | CR: 0.054126 | Evaluating 5 folds... Done! Test QE: 0.127675 (Train QE: 0.125716)
+Candidate 22/30 | NP:  30 | Gen: 2000 | F: 0.5856 | CR: 0.006537 | Evaluating 5 folds... Done! Test QE: 0.104001 (Train QE: 0.100565)
+Candidate 23/30 | NP:  20 | Gen: 1000 | F: 0.2322 | CR: 0.001112 | Evaluating 5 folds... Done! Test QE: 0.109920 (Train QE: 0.106570)
+Candidate 24/30 | NP: 100 | Gen: 1500 | F: 0.4159 | CR: 0.007363 | Evaluating 5 folds... Done! Test QE: 0.104582 (Train QE: 0.100126)
+Candidate 25/30 | NP:  20 | Gen: 1000 | F: 0.2591 | CR: 0.126321 | Evaluating 5 folds... Done! Test QE: 0.133045 (Train QE: 0.131354)
+Candidate 26/30 | NP:  50 | Gen: 2000 | F: 0.5848 | CR: 0.545152 | Evaluating 5 folds... Done! Test QE: 0.197038 (Train QE: 0.192763)
+Candidate 27/30 | NP:  30 | Gen: 1500 | F: 0.8320 | CR: 0.324504 | Evaluating 5 folds... Done! Test QE: 0.196909 (Train QE: 0.195951)
+Candidate 28/30 | NP:  50 | Gen: 1500 | F: 0.1763 | CR: 0.012459 | Evaluating 5 folds... Done! Test QE: 0.104002 (Train QE: 0.099189)
+Candidate 29/30 | NP:  30 | Gen: 2000 | F: 0.6327 | CR: 0.055826 | Evaluating 5 folds... Done! Test QE: 0.136449 (Train QE: 0.133472)
+Candidate 30/30 | NP:  50 | Gen: 1000 | F: 0.5490 | CR: 0.013529 | Evaluating 5 folds... Done! Test QE: 0.117350 (Train QE: 0.115193)
+
+DE-SOM Best Parameters for banknote:
+  Grid: 8x6 (48 neurons)
+  NP: 50
+  Generations: 1500
+  F: 0.125051
+  CR: 0.307832
+  5-Fold Test QE: 0.079813
+Saved optimal parameters to: results/banknote/random_params_de.txt
+
+Training final DE-SOM map on reference tuning partition (folds 1-4)...
+Final DE-SOM Map Saved to: results/banknote/banknote_de.map
+  Train QE: 0.071607 | Test QE (Fold 0): 0.078739 | Train TE: 0.790528 | Test TE (Fold 0): 0.832117
+[Step 2/3] Running 30 Independent Experiments for DE...
+DE Parameters: NP=50, Gen=1500, Neurons=48, CR=0.307832, F=0.125051
+Run  1/30 (Fold 29) | Seed: 1 | Test QE: 0.0760734 | Test TE: 0.956522 | Time: 273.763s
+Run  2/30 (Fold 28) | Seed: 2 | Test QE: 0.0796501 | Test TE: 1 | Time: 190.228s
+Run  3/30 (Fold 27) | Seed: 3 | Test QE: 0.0794594 | Test TE: 0.956522 | Time: 217.367s
+Run  4/30 (Fold 26) | Seed: 4 | Test QE: 0.0758728 | Test TE: 0.888889 | Time: 255.953s
+Run  5/30 (Fold 25) | Seed: 5 | Test QE: 0.087207 | Test TE: 0.804348 | Time: 217.344s
+Run  6/30 (Fold 24) | Seed: 6 | Test QE: 0.0685559 | Test TE: 0.913043 | Time: 211.812s
+Run  7/30 (Fold 23) | Seed: 7 | Test QE: 0.0851873 | Test TE: 0.913043 | Time: 212.881s
+Run  8/30 (Fold 22) | Seed: 8 | Test QE: 0.0789358 | Test TE: 0.911111 | Time: 214.51s
+Run  9/30 (Fold 21) | Seed: 9 | Test QE: 0.076352 | Test TE: 0.695652 | Time: 216.473s
+Run 10/30 (Fold 20) | Seed: 10 | Test QE: 0.0706579 | Test TE: 0.913043 | Time: 215.83s
+Run 11/30 (Fold 19) | Seed: 11 | Test QE: 0.0681362 | Test TE: 0.934783 | Time: 217.988s
+Run 12/30 (Fold 18) | Seed: 12 | Test QE: 0.0779914 | Test TE: 0.777778 | Time: 213.082s
+Run 13/30 (Fold 17) | Seed: 13 | Test QE: 0.0729323 | Test TE: 0.978261 | Time: 212.46s
+Run 14/30 (Fold 16) | Seed: 14 | Test QE: 0.0745958 | Test TE: 0.847826 | Time: 213.638s
+Run 15/30 (Fold 15) | Seed: 15 | Test QE: 0.0797499 | Test TE: 0.777778 | Time: 221.835s
+Run 16/30 (Fold 14) | Seed: 16 | Test QE: 0.0741565 | Test TE: 0.869565 | Time: 212.629s
+Run 17/30 (Fold 13) | Seed: 17 | Test QE: 0.0748458 | Test TE: 1 | Time: 212.49s
+Run 18/30 (Fold 12) | Seed: 18 | Test QE: 0.0795581 | Test TE: 0.913043 | Time: 212.591s
+Run 19/30 (Fold 11) | Seed: 19 | Test QE: 0.0745918 | Test TE: 0.866667 | Time: 263.281s
+Run 20/30 (Fold 10) | Seed: 20 | Test QE: 0.0747801 | Test TE: 0.978261 | Time: 215.823s
+Run 21/30 (Fold  9) | Seed: 21 | Test QE: 0.0688542 | Test TE: 0.956522 | Time: 218.343s
+Run 22/30 (Fold  8) | Seed: 22 | Test QE: 0.0841015 | Test TE: 0.869565 | Time: 217.572s
+Run 23/30 (Fold  7) | Seed: 23 | Test QE: 0.0820701 | Test TE: 0.911111 | Time: 217.278s
+Run 24/30 (Fold  6) | Seed: 24 | Test QE: 0.0944143 | Test TE: 0.869565 | Time: 217.897s
+Run 25/30 (Fold  5) | Seed: 25 | Test QE: 0.0833329 | Test TE: 0.826087 | Time: 216.227s
+Run 26/30 (Fold  4) | Seed: 26 | Test QE: 0.0782211 | Test TE: 0.913043 | Time: 216.962s
+Run 27/30 (Fold  3) | Seed: 27 | Test QE: 0.0768761 | Test TE: 0.911111 | Time: 188.237s
+Run 28/30 (Fold  2) | Seed: 28 | Test QE: 0.0762924 | Test TE: 0.956522 | Time: 185.501s
+Run 29/30 (Fold  1) | Seed: 29 | Test QE: 0.0701688 | Test TE: 0.891304 | Time: 196.964s
+Run 30/30 (Fold  0) | Seed: 30 | Test QE: 0.0764088 | Test TE: 0.911111 | Time: 291.892s
+Finished 30 runs of DE-SOM. Saved to: results/banknote/runs_30_de.txt
+[Step 3/3] Generating Unified Distance Matrix (U-Matrix)...
+GPL Ghostscript 10.06.0 (2025-09-09)
+Copyright (C) 2025 Artifex Software, Inc.  All rights reserved.
+This software is supplied under the GNU AGPLv3 and comes with NO WARRANTY:
+see the file COPYING for details.
+Loading NimbusSans-Regular font from /usr/share/ghostscript/10.06.0/Resource/Font/NimbusSans-Regular... 3632568 2207425 2017032 709603 2 done.
+U-Matrix successfully generated: results/banknote/banknote_de_umat.png and .eps
+==========================================================
+ Pipeline Complete for DE-SOM on banknote.
+ Results in: results/banknote/ and workspace root
+==========================================================
